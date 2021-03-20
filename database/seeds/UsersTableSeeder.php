@@ -17,16 +17,22 @@ class UsersTableSeeder extends Seeder
                 'name' => "kame",
                 'email' => "a@bcd",
                 "password" => bcrypt("qwert"),                
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),
             ],
             [                
                 'name' => "same",
                 'email' => "b@bcd",
-                "password" => bcrypt("asdfg"),                
+                "password" => bcrypt("asdfg"), 
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),               
             ],
             [                
                 'name' => "tome",
                 'email' => "c@bcd",
-                "password" => bcrypt("zxcvb"),                
+                "password" => bcrypt("zxcvb"), 
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),               
             ]
         );
     }

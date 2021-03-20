@@ -13,7 +13,7 @@ class StoreTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('stores')->insert(
+        DB::table('stores')->insert([
             [             
                 'id'=> "1",
                 'name' => "カフェカフェダ",
@@ -29,7 +29,7 @@ class StoreTableSeeder extends Seeder
                 'description' => "西洋のお店風なお店です。",
                 'available' => "5",
                 'store_url' => "nothing",                
-            ],          
-        );
+            ],                  
+        ]);
     }
 }
