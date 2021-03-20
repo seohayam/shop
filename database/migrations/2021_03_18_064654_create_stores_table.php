@@ -18,10 +18,12 @@ class CreateStoresTable extends Migration
             $table->string('name');
             $table->string('adress');
             $table->text('description');
-            $table->text('imgae');
-            $table->integer('available');
-            $table->string('store_url');
-            $table->bigInteger('store_owner_id')->unsigned()->index();
+            $table->text('imgae')->nullable();
+            $table->string('available');
+            $table->string('store_url')->nullable();
+
+            // ストアログイン作るまで
+            $table->bigInteger('store_owner_id')->unsigned()->index()->nullable();
             $table->timestamps();
                         
             $table->foreign('store_owner_id')->references('id')->on('store_owners')->onDelete('cascade');            

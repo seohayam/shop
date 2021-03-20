@@ -16,12 +16,17 @@ class CreateCommentsTable extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->bigIncrements('id');            
             $table->text('content');
-            $table->bigInteger('from')->unsigned()->index();
-            $table->bigInteger('to');         
-            
-            $table->foreign('from')->references('id')->on('items')->onDelete('cascade');            
+            $table->bigInteger('from_user_id')->unsigned()->index()->nullable();
+            $table->bigInteger('from_store_owner_id')->unsigned()->index()->nullable();
+            $table->bigInteger('to_user_id')->unsigned()->index()->nullable();
+            $table->bigInteger('to_store_owner_id')->unsigned()->index()->nullable();
 
-            $table->timestamps();            
+            $table->foreign('from_user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('from_store_owner_id')->references('id')->on('store_owners')->onDelete('cascade');
+            $table->foreign('to_user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('to_store_owner_id')->references('id')->on('store_owners')->onDelete('cascade');
+
+            $table->timestamps();
         });
     }
 

@@ -9,17 +9,26 @@ class Comment extends Model
 {
     protected $regurded = array('id');
 
-    protected $fillable = ['content','from','to'];
+    protected $fillable = ['content','from_user_id','from_store_owner_id','to_user_id','to_store_owner_id'];
 
-    public function user()
+    public function from_user()
     {
-        // HasManyの逆
-        return $this->belongsTo('App\User','from or to','id');
+            return $this->belongsTo('App\User', 'from_user_id', 'id');                            
     }
 
-    public function owner()
+    // public function from_store_owner()
+    // {
+    //         return $this->belongsTo('App\', 'from_store_owner_id', 'id');                            
+    // }
+
+
+    public function to_user()
     {
-        // HasManyの逆
-        return $this->belongsTo('App\Owner','from or to','id');
+        return $this->belongsTo('App\User', 'to_user_id', 'id');
     }
+
+    // public function to_store_owner()
+    // {
+    //         return $this->belongsTo('App\', 'to_store_owner_id', 'id');                            
+    // }
 }
