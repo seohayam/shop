@@ -1,8 +1,25 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+// // Fonts
+// @import url('https://fonts.googleapis.com/css?family=Nunito');
 
-// Variables
-@import 'variables';
+// // Variables
+// @import 'variables';
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+// // Bootstrap
+// @import '~bootstrap/scss/bootstrap';
+
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+body {
+  input,
+  textarea {
+    border: 2px solid black;
+  }
+
+  .card-item {
+    width: 50%;
+  }
+}

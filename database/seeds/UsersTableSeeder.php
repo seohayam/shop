@@ -13,6 +13,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert(
+            [
             [                
                 'name' => "kame",
                 'email' => "a@bcd",
@@ -33,7 +34,7 @@ class UsersTableSeeder extends Seeder
                 "password" => bcrypt("zxcvb"), 
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),               
-            ]
-        );
+            ]            
+            ]);
     }
 }

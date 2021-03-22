@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ItemRequest;
 use App\Item as Item;
+use App\Store;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
@@ -27,7 +30,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        return view('items.create');
     }
 
     /**
@@ -36,9 +39,27 @@ class ItemController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(ItemRequest $request)
+    {           
+        $item = new Item();
+        $user_id = Auth::id();
+    
+        $item->title        = $request->title;
+        $item->description  = $request->description;
+        $item->value        = $request->value;        
+        $item->item_url     = $request->item_url;
+        $item->user_id      = $user_id;
+        // $item->image = スッキップ
+        
+        $item->save();                
+
+        return redirect()->route('items.show',$item->id);
+
+
+        
+
+
+
     }
 
     /**
@@ -48,9 +69,7 @@ class ItemController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Item $item)
-    {
-        
-
+    {        
         return view('items.show',['item'=>$item]);
     }
 
@@ -62,7 +81,7 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        //
+        
     }
 
     /**
