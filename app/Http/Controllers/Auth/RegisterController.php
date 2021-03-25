@@ -8,6 +8,9 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\StoreOwner;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -39,6 +42,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->middleware('guest:store_owner');
     }
 
     /**
@@ -70,4 +74,34 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    /**
+     * store_owner
+     */
+
+     protected function storeOwnerValidator(array $data)
+     {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+     }
+
+     protected function showStoreOwnerRegisterForm()
+     {
+         return view('auth.register', ['authgroup' => 'store_owner']);
+     }
+
+     protected function createStoreOwner(Request $request)
+     {
+        //  バリデーションしてから
+        $this->storeOwnerValidator($request->all())->validate();
+        $store_owner = StoreOwner::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+        ]);
+        return redirect()->intended('login/store_owner');
+     }
 }

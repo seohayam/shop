@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Auth\AuthenticationException;
 
 class Handler extends ExceptionHandler
 {
@@ -52,4 +53,30 @@ class Handler extends ExceptionHandler
     {
         return parent::render($request, $exception);
     }
+
+    /**
+     * 認証してない場合
+     * 401 -> store_owner , user
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @param AuthenticationException $exception
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+     */
+
+     public function unauthenticated($request, AuthenticationException $exception){
+
+        // Jsonで返す
+        if($request->expectsJson()){
+            return response()->json(['messgae' => $exception->getMessage()],401);
+        }
+        
+        // owner_sotreをひっかける
+        if($request->is('store_owner') || $request->is('store_owner/*') ) {
+            return redirect()->guest('/login/store_owner');
+        }
+
+        return redirect()->guest($exception->redirectTo() ?? route('login'));
+
+    }
+
 }

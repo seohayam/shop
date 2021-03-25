@@ -8,11 +8,11 @@ use Illuminate\Notifications\Notifiable;
 
 use App\Comment;
 
-class User extends Authenticatable
+class StoreOwner extends Authenticatable
 {
     use Notifiable;
 
-    protected $guard = 'user';
+    protected $guard = 'store_owner';
 
     /**
      * The attributes that are mass assignable.
@@ -42,9 +42,9 @@ class User extends Authenticatable
     ];
 
 
-    public function item()
+    public function store()
     {
-        return $this->hasMany('App\Item', 'user_id', 'id');
+        return $this->hasMany('App\Store', 'store_owner_id', 'id');
     }
 
     public function comment()

@@ -7,19 +7,18 @@
 // // Bootstrap
 // @import '~bootstrap/scss/bootstrap';
 
-@tailwind base;
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 
-@tailwind components;
+// Variables
+@import "variables";
 
-@tailwind utilities;
+$fa-font-path: "../webfonts"; //追記
 
-body {
-  input,
-  textarea {
-    border: 2px solid black;
-  }
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
 
-  .card-item {
-    width: 50%;
-  }
-}
+@import "~@fortawesome/fontawesome-free/scss/fontawesome"; //追記
+@import "~@fortawesome/fontawesome-free/scss/solid"; //追記
+@import "~@fortawesome/fontawesome-free/scss/regular"; //追記
+@import "~@fortawesome/fontawesome-free/scss/brands"; //追記

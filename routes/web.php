@@ -11,11 +11,13 @@
 |
 */
 
-
+use App\Http\Controllers\Auth\LoginController as AuthLoginController;
 use App\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Auth;
 // 注意 Facades を使う事
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,6 +27,20 @@ Route::get('/', function () {
 
 Route::resource('/items', 'ItemController');
 
+
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/login/store_owner', 'Auth\LoginController@showStoreOwnerLoginForm');
+Route::get('/register/store_owner', 'Auth\RegisterController@showStoreOwnerRegisterForm');
+
+Route::post('/login/store_owner', 'Auth\LoginController@storeOwnerLogin');
+Route::post('/register/store_owner', 'Auth\RegisterController@createStoreOwner')->name('store_owner-register');
+
+Route::view('/store_owner', 'store_owner')->middleware('auth:store_owner')->name('store_owner-home');
+
+
+Auth::routes();
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
