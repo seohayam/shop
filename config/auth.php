@@ -84,6 +84,7 @@ return [
         'store_owners' => [
             'driver' => 'eloquent',
             'model' => App\StoreOwner::class,
+            
         ],
         
     ],

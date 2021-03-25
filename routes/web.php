@@ -41,3 +41,6 @@ Route::view('/store_owner', 'store_owner')->middleware('auth:store_owner')->name
 
 
 Auth::routes();
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
