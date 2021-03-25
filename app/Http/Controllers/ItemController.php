@@ -7,9 +7,17 @@ use App\Item as Item;
 use App\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+// use 
 
 class ItemController extends Controller
 {
+
+    public function __construct(){
+        
+        $this->middleware('auth');
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -40,8 +48,9 @@ class ItemController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(ItemRequest $request)
-    {           
-        $item = new Item();
+    {                      
+
+        $item = new Item();              
         $user_id = Auth::id();
     
         $item->title        = $request->title;
@@ -49,16 +58,12 @@ class ItemController extends Controller
         $item->value        = $request->value;        
         $item->item_url     = $request->item_url;
         $item->user_id      = $user_id;
+        
         // $item->image = スッキップ
         
         $item->save();                
 
         return redirect()->route('items.show',$item->id);
-
-
-        
-
-
 
     }
 
@@ -81,6 +86,11 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
+        if(Auth::id() != $item->user_id){
+            return abort('403');
+        }
+
+        return view('items.edit', ['item' => $item]);
         
     }
 
@@ -92,8 +102,21 @@ class ItemController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Item $item)
-    {
-        //
+    {        
+        
+        if(Auth::id() != $item->user_id) {
+            return abort('403');
+        }            
+
+        $item->title        = $request->title;
+        $item->description  = $request->description;
+        $item->value        = $request->value;        
+        $item->item_url     = $request->item_url;
+
+        $item->save();
+        
+        return redirect()->route('items.edit', $item);
+
     }
 
     /**
@@ -102,8 +125,16 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Item $item)
-    {
-        //
+    public function destroy(Request $request, Item $item)
+    {                
+
+        if(Auth::id() != $item->user_id){
+            return abort('403');            
+        }            
+            
+        $item->delete();
+
+        return redirect()->route('items.index');
+        
     }
 }
