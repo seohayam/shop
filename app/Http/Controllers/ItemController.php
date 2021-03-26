@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ItemRequest;
 use App\Item as Item;
 use App\Store;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 // use 
@@ -14,7 +15,7 @@ class ItemController extends Controller
 
     public function __construct(){
         
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['index', 'show']);
 
     }
 
@@ -57,6 +58,7 @@ class ItemController extends Controller
         $item->description  = $request->description;
         $item->value        = $request->value;        
         $item->item_url     = $request->item_url;
+        $item->created_at    = new DateTime();
         $item->user_id      = $user_id;
         
         // $item->image = スッキップ
@@ -101,7 +103,7 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Item $item)
+    public function update(ItemRequest $request, Item $item)
     {        
         
         if(Auth::id() != $item->user_id) {
@@ -112,6 +114,7 @@ class ItemController extends Controller
         $item->description  = $request->description;
         $item->value        = $request->value;        
         $item->item_url     = $request->item_url;
+        $item->updated_at = new DateTime();
 
         $item->save();
         

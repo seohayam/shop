@@ -44,7 +44,7 @@
 
     <textarea name="description" id="" cols="30" rows="10" placeholder="description">{{old('description', $item->description)}}</textarea>
     
-    <input type="submit" name="" id="" value="投稿">
+    <input type="submit" name="" id="" value="更新">
 </form>
 
 @endsection

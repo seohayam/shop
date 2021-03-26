@@ -44,12 +44,12 @@ class StoreOwner extends Authenticatable
 
     public function store()
     {
-        return $this->hasMany('App\Store', 'store_owner_id', 'id');
+        return $this->hasMany('App\Store', 'store_owner_id','id');
     }
 
-    public function comment()
-    {
-        // HasManyの逆
-        return $this->hasMany('App\Comment');
-    }
+    // public function comment()
+    // {
+    //     // HasManyの逆
+    //     return $this->hasMany('App\Comment');
+    // }
 }

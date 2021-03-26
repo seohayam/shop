@@ -21,12 +21,13 @@ class CreateStoresTable extends Migration
             $table->text('imgae')->nullable();
             $table->string('available');
             $table->string('store_url')->nullable();
-
-            // ストアログイン作るまで
-            $table->bigInteger('store_owner_id')->unsigned()->index()->nullable();
+            
+            // ストアログイン作るまで            
             $table->timestamps();
                         
+            $table->bigInteger('store_owner_id')->unsigned()->index();
             $table->foreign('store_owner_id')->references('id')->on('store_owners')->onDelete('cascade');            
+            
         });
     }
 

@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class UsersTableSeeder extends Seeder
+class StoreOwnerTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,29 +12,29 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert(
-            [
+        DB::table('store_owners')->insert(
+        [
             [                
                 'name' => "kame",
-                'email' => "a@bcd",
-                "password" => bcrypt("qwert"),                
+                'email' => "s@bcd",
+                "password" => bcrypt("same"),                
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
             ],
             [                
                 'name' => "same",
-                'email' => "b@bce",
-                "password" => bcrypt("asdfg"), 
+                'email' => "s@bce",
+                "password" => bcrypt("kame"), 
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),               
             ],
             [                
                 'name' => "tome",
-                'email' => "c@bcf",
-                "password" => bcrypt("zxcvb"), 
+                'email' => "s@bcf",
+                "password" => bcrypt("mame"), 
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),               
             ]            
-            ]);
+        ]);
     }
 }
