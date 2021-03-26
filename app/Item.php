@@ -19,14 +19,14 @@ class Item extends Model
     public function user()
     {
         // HasManyの逆
-        // ＊\飲む気に注意
+        // ＊\のむ気に注意
         return $this->belongsTo('App\User');
     }
 
-    public function application()
-    {
-        return $this->hasMany('App\application', 'item_id', 'id');
-    }
+    // public function application()
+    // {
+    //     return $this->hasMany('App\application', 'item_id', 'id');
+    // }
 
     // public function comment()
     // {
