@@ -26,17 +26,21 @@ Route::get('/', function () {
 // Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/items', 'ItemController');
-Route::resource('/stores', 'StoreController');
+
+Route::prefix('store_owner')->group(function(){
+    Route::group(['middleware' => 'guest:store_owner'], function () {
+        Route::get('/login', 'Auth\LoginController@showStoreOwnerLoginForm');
+        Route::get('/register', 'Auth\RegisterController@showStoreOwnerRegisterForm');
+        Route::post('/login', 'Auth\LoginController@storeOwnerLogin');
+        Route::post('/register', 'Auth\RegisterController@createStoreOwner')->name('store_owner-register');        
+    });    
+    
+    Route::resource('/stores', 'StoreController');
+});
 
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/login/store_owner', 'Auth\LoginController@showStoreOwnerLoginForm');
-Route::get('/register/store_owner', 'Auth\RegisterController@showStoreOwnerRegisterForm');
-
-Route::post('/login/store_owner', 'Auth\LoginController@storeOwnerLogin');
-Route::post('/register/store_owner', 'Auth\RegisterController@createStoreOwner')->name('store_owner-register');
 
 Route::view('/store_owner', 'store_owner')->middleware('auth:store_owner')->name('store_owner-home');
 
