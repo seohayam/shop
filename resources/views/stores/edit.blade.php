@@ -2,6 +2,7 @@
 
 @section('content')
 <h1>store edit</h1>
+{{$store->store_owner_id}}
 
 @if(count($errors)>0)
 

@@ -9,7 +9,7 @@
 
                 <div class="card-body">
                     @isset($authgroup)
-                        <form method="POST" action="{{ url("login/$authgroup") }}">
+                        <form method="POST" action="{{ url("$authgroup/login") }}">
                     @else
                         <form method="POST" action="{{ route('login') }}">
                     @endisset

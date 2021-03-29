@@ -14,7 +14,7 @@ class StoreController extends Controller
 
     public function __construct(){
         
-        $this->middleware('auth')->except(['index', 'show']);
+        $this->middleware('auth:store_owner');
 
     }
 
@@ -37,7 +37,7 @@ class StoreController extends Controller
      */
     public function create()
     {
-        //
+        return view('stores.create');
     }
 
     /**
@@ -48,18 +48,21 @@ class StoreController extends Controller
      */
     public function store(StoreRequest $request)
     {
+        $store = new Store();
 
-        // $store->name = $request->name;
-        // $store->adress = $request->adress;
-        // $store->description = $request->description;
-        // $store->available = $request->available;
-        // $store->store_url = $request->store_url;
-        // $store->updated_at = new DateTime();
+        $store->name = $request->name;
+        $store->adress = $request->adress;
+        $store->description = $request->description;
+        $store->available = $request->available;
+        $store->store_url = $request->store_url;
+        $store->created_at = new DateTime();
 
-        // $store->save();
+        dd($store);
 
-        // return redirect()->route('stores.edit', $store);
-        //$store->created_at = new DateTime();
+        $store->save();
+
+        return redirect()->route('stores.edit', $store);
+
     }
 
     /**
@@ -81,6 +84,10 @@ class StoreController extends Controller
      */
     public function edit(Store $store)
     {
+        if(Auth::id() != $store->store_owner_id){
+            return abort('403');
+        }
+
         return view('stores.edit', ['store' => $store]);
     }
 
@@ -117,8 +124,14 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Store $store)
     {
-        //
+        if(Auth::id() != $store->store_owner_id){
+            return abort('403');            
+        }                
+            
+        $store->delete();
+
+        return redirect()->route('stores.index');
     }
 }

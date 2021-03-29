@@ -129,7 +129,7 @@ class ItemController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, Item $item)
-    {                
+    {                        
 
         if(Auth::id() != $item->user_id){
             return abort('403');            

@@ -17,7 +17,7 @@ class StoreOwnerTableSeeder extends Seeder
             [                
                 'name' => "kame",
                 'email' => "s@bcd",
-                "password" => bcrypt("same"),                
+                "password" => bcrypt("asdfghjkl"),                
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
             ],

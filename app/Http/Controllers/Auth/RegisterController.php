@@ -102,6 +102,6 @@ class RegisterController extends Controller
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
         ]);
-        return redirect()->intended('login/store_owner');
+        return redirect()->intended('store_owner/login');
      }
 }

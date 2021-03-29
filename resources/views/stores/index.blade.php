@@ -2,6 +2,7 @@
 
 @section('content')
 <h1>store index</h1>
+<a href="{{ route('stores.create') }}">追加する</a>
 
 @foreach ($stores as $store)
 

@@ -72,7 +72,7 @@ class Handler extends ExceptionHandler
         
         // owner_sotreをひっかける
         if($request->is('store_owner') || $request->is('store_owner/*') ) {
-            return redirect()->guest('/login/store_owner');
+            return redirect()->guest('store_owner/login');
         }
 
         return redirect()->guest($exception->redirectTo() ?? route('login'));
