@@ -31,7 +31,7 @@ Route::prefix('store_owner')->group(function(){
     Route::group(['middleware' => 'guest:store_owner'], function () {
         Route::get('/login', 'Auth\LoginController@showStoreOwnerLoginForm');
         Route::get('/register', 'Auth\RegisterController@showStoreOwnerRegisterForm');
-        Route::post('/login', 'Auth\LoginController@storeOwnerLogin');
+        Route::post('/login', 'Auth\LoginController@storeOwnerLogin')->name('store_owner.login');
         Route::post('/register', 'Auth\RegisterController@createStoreOwner')->name('store_owner-register');        
     });    
     

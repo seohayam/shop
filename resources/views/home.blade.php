@@ -20,4 +20,12 @@
         </div>
     </div>
 </div>
+
+<div>
+    <h1>一覧表示</h1>
+    <div class="d-flex">
+        <p>items</p>        
+        <p>stores</p>
+    </div>
+</div>
 @endsection

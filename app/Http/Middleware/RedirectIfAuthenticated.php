@@ -18,13 +18,12 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if($guard == 'owner_store' && Auth::guard($guard)->check()) {
-            return redirect(route('store_owner-home'));
-        }
 
-        if (Auth::guard($guard)->check()) {
-            return redirect(RouteServiceProvider::HOME);
-        }
+        $redirectTo = '/home';        
+        
+        if(Auth::guard($guard)->check()) {
+            return redirect($redirectTo);
+        }        
 
         return $next($request);
     }

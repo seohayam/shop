@@ -1,6 +1,6 @@
 <?php
 
-return [
+$authConf = [
 
     /*
     |--------------------------------------------------------------------------
@@ -133,3 +133,16 @@ return [
     'password_timeout' => 10800,
 
 ];
+
+$uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+
+if(strstr($uri, '/store_owner/') !==false || $uri === '/store_ownre_login')
+{
+    $authConf['defaults'] = [
+        'guard' => 'store_owner',
+        'password' => 'store_owners',
+    ];
+}
+
+return $authConf;
+
