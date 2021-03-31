@@ -17086,3 +17086,118 @@ readers do not read off random characters that represent icons */
   font-weight: 400;
 }
 
+.fas {
+  color: #716040;
+}
+
+.text-main {
+  color: #f9f4ef;
+}
+
+.text-second {
+  color: #eaddcf;
+}
+
+.text-point {
+  color: #716040;
+}
+
+.text-btn {
+  color: #8c7851;
+}
+
+.bg-main {
+  background-color: #f9f4ef;
+}
+
+.bg-second {
+  background-color: #eaddcf;
+}
+
+.bg-point {
+  background-color: #716040;
+}
+
+.bg-btn {
+  background-color: #8c7851;
+}
+
+#nav-top {
+  background-color: #f9f4ef;
+}
+
+#top > img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+}
+
+#item .item-card {
+  background-color: #fff;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+  background-position: center;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+#item .item-card img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  transition: all linear 0.25s;
+}
+
+#item .item-card .item-card-name {
+  position: absolute;
+  left: 30px;
+  bottom: 50px;
+  font-size: 30px;
+  color: #fff;
+  text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+  transition: all linear 0.25s;
+}
+
+#item .item-card .item-card-icons {
+  position: absolute;
+  bottom: 15px;
+  right: 30px;
+  transition: all linear 0.25s;
+}
+
+#item .item-card .item-card-username {
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+  color: #fff;
+  font-size: 13px;
+  transition: all linear 0.25s;
+}
+
+#item .item-card .item-card-icons .fab {
+  margin: 5px;
+  color: white;
+}
+
+#item .item-card:hover img {
+  filter: grayscale(100%);
+}
+
+#item .item-card:hover .item-card-name {
+  bottom: 80px;
+}
+
+#item .item-card:hover .item-card-username {
+  bottom: 60px;
+}
+
+#item .item-card:hover .item-card-icons {
+  right: 40px;
+}
+
+#footer {
+  height: 500px;
+}
+

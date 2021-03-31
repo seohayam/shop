@@ -1,24 +1,140 @@
-// // Fonts
-// @import url('https://fonts.googleapis.com/css?family=Nunito');
-
-// // Variables
-// @import 'variables';
-
-// // Bootstrap
-// @import '~bootstrap/scss/bootstrap';
-
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Nunito");
 
 // Variables
 @import "variables";
 
-$fa-font-path: "../webfonts"; //追記
-
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
 
-@import "~@fortawesome/fontawesome-free/scss/fontawesome"; //追記
-@import "~@fortawesome/fontawesome-free/scss/solid"; //追記
-@import "~@fortawesome/fontawesome-free/scss/regular"; //追記
-@import "~@fortawesome/fontawesome-free/scss/brands"; //追記
+// Font Awesome
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+
+$main: #f9f4ef;
+$second: #eaddcf;
+$point: #716040;
+$button: #8c7851;
+
+// ===icon===
+.fas {
+  color: $point;
+}
+
+// ===text===
+.text-main {
+  color: $main;
+}
+.text-second {
+  color: $second;
+}
+.text-point {
+  color: $point;
+}
+.text-btn {
+  color: $button;
+}
+
+// ===bg===
+
+.bg-main {
+  background-color: $main;
+}
+.bg-second {
+  background-color: $second;
+}
+.bg-point {
+  background-color: $point;
+}
+.bg-btn {
+  background-color: $button;
+}
+
+// ===nav===
+#nav-top {
+  background-color: $main;
+}
+
+// ===top===
+#top {
+  > img {
+    object-fit: cover;
+    width: 100%;
+  }
+}
+
+// ===item一覧＝＝＝
+#item {
+  .item-card {
+    // width: 300px;
+    // height: 200px;
+    background-color: #fff;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+    background-position: center;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+
+  .item-card img {
+    object-fit: cover;
+    width: 100%;
+    transition: all linear 0.25s;
+  }
+
+  .item-card .item-card-name {
+    position: absolute;
+    left: 30px;
+    bottom: 50px;
+    font-size: 30px;
+    color: #fff;
+    text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+    transition: all linear 0.25s;
+  }
+
+  .item-card .item-card-icons {
+    position: absolute;
+    bottom: 15px;
+    right: 30px;
+    transition: all linear 0.25s;
+  }
+
+  .item-card .item-card-username {
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+    color: #fff;
+    font-size: 13px;
+    transition: all linear 0.25s;
+  }
+
+  .item-card .item-card-icons .fab {
+    margin: 5px;
+    color: white;
+  }
+
+  .item-card:hover img {
+    filter: grayscale(100%);
+  }
+
+  .item-card:hover .item-card-name {
+    bottom: 80px;
+  }
+
+  .item-card:hover .item-card-username {
+    bottom: 60px;
+  }
+
+  .item-card:hover .item-card-icons {
+    right: 40px;
+  }
+}
+
+// ===footer===
+#footer {
+  height: 500px;
+}

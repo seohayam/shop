@@ -21,10 +21,10 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav id="nav-top" class="navbar navbar-expand-md navbar-light shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <a class="navbar-nav text-point" href="{{ url('/') }}">                    
+                   expo
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -90,9 +90,75 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="bg-main">
             @yield('content')
         </main>
+
+        <div id="footer" class="bg-second d-flex align-items-center">
+
+            <div class="container-fluid text-center">
+
+                <h1><a class="text-point" href="#">expo</a></h1>
+
+                <nav role="footer-nav" class="navbar navbar-expand-lg navbar-light">
+                    <div class="container-fluid d-flex justify-content-center">                                    
+                        <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Pricing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                        </li>
+                        </ul>
+                    </div>                                
+                </nav>
+
+                <nav role="social-icon-nav" class="navbar navbar-expand-lg navbar-light">
+                    <div class="container-fluid d-flex justify-content-center">                                    
+                        <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="">
+                                <i class="fab fa-twitter fa-2x rounded rounded-circle bg-main
+                                p-2"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">
+                                <i class="fab fa-twitter fa-2x rounded rounded-circle bg-main
+                                p-2"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">
+                                <i class="fab fa-twitter fa-2x rounded rounded-circle bg-main
+                                p-2"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">
+                                <i class="fab fa-twitter fa-2x rounded rounded-circle bg-main
+                                p-2"></i>
+                            </a>
+                        </li>
+                        </ul>
+                    </div>                                
+                </nav>
+
+                <small>&copy;haruto All rights Resved</small>
+
+            </div>
+
+        </div>
+
+
+
+
     </div>
 </body>
 </html>

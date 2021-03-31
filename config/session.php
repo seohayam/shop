@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Str;
 
-$sessConf = [
+return [
 
     /*
     |--------------------------------------------------------------------------
@@ -199,14 +199,4 @@ $sessConf = [
 ];
 
 
-$uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
 
-if(strstr($uri, '/store_owner/') !== false || $uri === 'store_owner/login')
-{
-    $sessConf['cookie'] = env(
-        'SESSION_COOKIE_STOREOWNER',
-        str_slug(env('APP_NAME', 'laravel'), '_').'_admin_session'
-    );
-}
-
-return $sessConf;

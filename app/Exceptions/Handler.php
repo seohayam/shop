@@ -5,10 +5,8 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Auth\AuthenticationException;
-use Illuminate\Session\TokenMismatchException;
-use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
-use Illuminate\Support\Facades\Auth;
-use Throwable;
+// use Illuminate\Routing\Route;
+use Route;
 
 class Handler extends ExceptionHandler
 {
@@ -53,10 +51,10 @@ class Handler extends ExceptionHandler
      *
      * @throws \Exception
      */
-    // public function render($request, Exception $exception)
-    // {
-    //     return parent::render($request, $exception);
-    // }
+    public function render($request, Exception $exception)
+    {
+        return parent::render($request, $exception);
+    }
 
     /**
      * 認証してない場合
@@ -67,51 +65,29 @@ class Handler extends ExceptionHandler
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
 
-     public function unauthenticated($request, AuthenticationException $exception){        
-
-        $redirectTo = in_array('store_owner', $exception->guards(), true) ? 'store_owner.login' : 'login';
-
-        return $request->expectsJson()
-        ? response()->json(['message' => $exception->getMessage()], 401)
-        : redirect()->guest((route($redirectTo)));
-
+     public function unauthenticated($request, AuthenticationException $exception){   
+         
+        // dd($request);
         
 
-        // // Jsonで返す
+        // Jsonで返す
         // if($request->expectsJson()){
         //     return response()->json(['messgae' => $exception->getMessage()],401);
         // }
         
         // // owner_sotreをひっかける
-        // if($request->is('store_owner') || $request->is('store_owner/*') ) {
-        //     return redirect()->guest('store_owner/login');
+        // if(Route::is('stores.*')) {
+        //     return redirect()->guest(route('store_owner.login'));
         // }
 
         // return redirect()->guest($exception->redirectTo() ?? route('login'));
 
+        // dd(Route::is('stores.*'));
+
+        return $request->expectsJson()
+                ? response()->json(['message' => $exception->getMessage()], 401)
+                : (Route::is('stores.*') ? redirect()->guest(route('store_owner.login')) : redirect()->guest(route('login')));
+
     }
 
-
-    // public function render($request, Exception $exception)
-    // {
-    //     if($exception instanceof TokenMismatchException)
-    //     {
-    //         return redirect('/login')->with('message', 'セッションが切れてしまいました。もう一度ログインしてください');
-    //     }
-
-    //     return parent::render($request, $exception);
-    // }
- 
-    public function render($request, Throwable $exception)
-    {
-        // TokenMismatchException 例外発生時
-        if($exception instanceof \Illuminate\Session\TokenMismatchException) {
-            // ログアウトリクエスト時は、強制的にログアウト
-            if($request->is('logout')) {
-                return redirect('/login')->with('message', 'セッションが切れてしまいました。もう一度ログインしてください');
-            }
-        }
- 
-        return parent::render($request, $exception);
-    }
 }
