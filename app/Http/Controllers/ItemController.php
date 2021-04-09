@@ -28,8 +28,10 @@ class ItemController extends Controller
     {
                 
         $items = Item::where('user_id', Auth::id())->with('user')->get();
+        $itemMax = Item::max('id');                
+        $user = User::where('id', Auth::id())->with('item')->first();        
 
-        return view('items.index',['items'=> $items]);
+        return view('items.index',['items'=> $items, 'user' => $user, 'itemMax' => $itemMax]);
     }
 
     /**
@@ -87,8 +89,10 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function edit(Item $item)
+    public function edit($item)
     {
+        $item = Item::where('id', $item)->with('user')->first();                 
+
         if(Auth::id() != $item->user_id){
             return abort('403');
         }
@@ -129,16 +133,17 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, Item $item)
-    {                        
+    public function destroy(Request $request,$item)
+    {                                
+        $item = Item::where('id', $item)->with('user')->first();                 
 
         if(Auth::id() != $item->user_id){
             return abort('403');            
-        }            
+        }                  
             
         $item->delete();
 
-        return redirect()->route('items.index');
+        return redirect()->route('items.index', ['user' => Auth::id()]);
         
     }
 }

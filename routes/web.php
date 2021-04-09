@@ -38,7 +38,7 @@ Route::prefix('users')->group(function(){
 
     Route::post('/logout','Auth\LoginController@logout')->name('logout');
     Route::resource('{user}/items', 'ItemController');
-    Route::get('/home', 'HomeController@userIndex')->name('user.home');
+    Route::get('/home', 'HomeController@userIndex')->name('user.home');    
 });
 
 Route::prefix('store_owners')->group(function(){

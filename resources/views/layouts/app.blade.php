@@ -33,15 +33,36 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                                               
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">                                          
-
+                    <ul class="navbar-nav ml-auto">                                                                  
                         @if (Auth::check() || Auth::guard('store_owner')->check())
 
                         {{-- ===login　中=== --}}
+
+                            <li class="nav-item mr-3">
+                                @if(!Route::is('welcome.index'))     
+                                    <a class="btn bg-point text-second" href="{{ route('welcome.index')}}">                                                                   
+                                        @if(Auth::guard('store_owner')->check())                                        
+                                            <i class="text-second fas fa-search"></i>　商品を探す
+                                        @else
+                                            <i class="text-second fas fa-search"></i>　お店を探す
+                                        @endif     
+                                    </a>  
+                                @else                                                                                                   
+                                        @if(Auth::guard('store_owner')->check())                                      
+                                            <a class="btn bg-point text-second" href="{{ route('stores.index',['store_owner' => Auth::guard('store_owner')->user()->id])}}">
+                                                <i class="text-second fas fa-search"></i>　プロフィールへ
+                                            </a>
+                                        @else
+                                            <a class="btn bg-point text-second" href="{{ route('items.index', ['user' => Auth::user()->id])}}">
+                                                <i class="text-second fas fa-search"></i>　プロフィールへ
+                                            </a>                            
+                                        @endif                                                               
+                                @endif                
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 @if(Auth::guard('store_owner')->check())

@@ -27,7 +27,7 @@
 
 @endif
 
-<form method="POST" action="{{route('items.store')}}" enctype="multipart/form-data">
+<form method="POST" action="{{route('items.store', ['user' => Auth::id()])}}" enctype="multipart/form-data">
     @csrf
     <input name="title" type="text" placeholder="title" value="{{ old('title') }}">
     <input name="value" type="number" placeholder="value" value="{{ old('value') }}">
