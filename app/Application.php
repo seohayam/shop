@@ -17,25 +17,24 @@ class Application extends Model
         return $this->belongsTo('App\application', 'item_id', 'id');
     }
 
-    public function from_user()
+    public function fromUser()
     {
             return $this->belongsTo('App\User', 'from_user_id', 'id');                            
     }
 
-    // public function from_store_owner()
-    // {
-    //         return $this->belongsTo('App\', 'from_store_owner_id', 'id');                            
-    // }
+    public function fromStoreOwner()
+    {
+            return $this->belongsTo('App\StoreOwner', 'from_store_owner_id', 'id');                            
+    }
 
-
-    public function to_user()
+    public function toUser()
     {
         return $this->belongsTo('App\User', 'to_user_id', 'id');
     }
 
-    // public function to_store_owner()
-    // {
-    //         return $this->belongsTo('App\', 'to_store_owner_id', 'id');                            
-    // }
+    public function toStoreOwner()
+    {
+            return $this->belongsTo('App\StoreOwner', 'to_store_owner_id', 'id');                            
+    }
 
 }

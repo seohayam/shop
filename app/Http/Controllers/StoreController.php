@@ -26,9 +26,11 @@ class StoreController extends Controller
      */
     public function index()
     {
-        $stores = Store::with('storeOwner')->get();        
+        $stores = store::where('store_owner_id', Auth::id())->with('storeOwner')->get();
+        $storeMax = store::max('id');                
+        $store_owner = StoreOwner::where('id', Auth::id())->with('store')->first();        
 
-        return view('stores.index', ['stores' => $stores]);
+        return view('stores.index',['stores'=> $stores, 'store_owner' => $store_owner, 'storeMax' => $storeMax]);
     }
 
     /**

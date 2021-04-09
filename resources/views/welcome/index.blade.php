@@ -11,23 +11,27 @@
     
     <div class="container-fluid border-bottom bg-second py-5 pl-5">
 
-        <div class="contaienr">
-
-            <div class="mb-5">
+        <div class="contaienr">            
+            @if(Auth::guard('store_owner')->check())
                 <h1>商品を探そう</h1>
                 <p>新しい商品をお店に体幹しに行こう！</p>
-            </div>
+            @else
+                <h1>お店を探そう</h1>
+                <p>新しいお店を探して自分の商品を広めよう</p>
+            @endif
 
-            <div class="row">
-                <div class="text-center mx-3">
-                    <a class="btn bg-main" href="">+　店舗情報を登録</a>
+            <div class="row d-flex jsutify-content-left">
+                <div class="text-center mr-3">
+                    @if(Auth::guard('store_owner')->check())
+                        <a class="btn bg-main" href="{{ route('stores.create', ['store_owner' => Auth::guard('store_owner')->user()->id]) }}">+　店舗情報を登録</a>
+                    @elseif(Auth::check())
+                        <a class="btn bg-main" href="{{ route('items.create', ['user' => Auth::user()->id]) }}">+　商品を登録</a>                    
+                    @endif
                 </div>        
-                <div class="text-center mx-3">
+                <div class="text-center">
                     <a class="btn bg-point" href="">手順を確認する</a>
-                </div>
-        
-            </div>
-
+                </div>                
+            </div>                       
         </div>
 
 
@@ -52,12 +56,12 @@
 
     <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="items" role="tabpanel" aria-labelledby="nav-home-tab">
-            <div class="container d-flex flex-wrap">
+            <div class="w-100 d-flex flex-wrap">
                 @foreach ($items as $item)
                     <div role="card" class="col-3 p-0 item-card m-5">
                         <a href="{{ route('welcome.showItem', $item) }}">
                             {{-- <img src="http://envato.jayasankarkr.in/code/profile/assets/img/profile-2.jpg" class="img img-responsive"> --}}
-                            <img src="img/1.jpg" class="img img-responsive">
+                            <img src="img/1.jpg" class="img img-responsive">                            
                             <div class="item-card-name">{{$item->title}}</div>
                             <div class="item-card-username">ユーザー名：{{$item->user->name}}</div>
                             {{-- <div class="item-card-icons"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin"></i></a></div> --}}
@@ -68,7 +72,7 @@
         </div>
 
         <div class="tab-pane fade" id="stores" role="tabpanel" aria-labelledby="nav-profile-tab">
-            <div class="container d-flex flex-wrap">
+            <div class="w-100 d-flex flex-wrap">
                 @foreach ($stores as $store)
                     <div role="card" class="col-3 p-0 item-card m-5">
                         <a href="{{ route('welcome.showStore', $store) }}">
@@ -86,7 +90,5 @@
     </div>
 
 </div>
-
-
 
 @endsection

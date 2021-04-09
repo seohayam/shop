@@ -32,7 +32,7 @@
 
 @endif
 
-<form method="POST" action="{{route('stores.store')}}" enctype="multipart/form-data">
+<form method="POST" action="{{route('stores.store', ['store_owner' => Auth::id()])}}" enctype="multipart/form-data">
     @csrf        
 
     <input name="name" type="text" placeholder="name" value="{{ old('name') }}">
@@ -42,7 +42,7 @@
 
     <textarea name="description" id="" cols="30" rows="10" placeholder="description">{{old('description')}}</textarea>
     
-    <input type="submit" name="" id="" value="更新">
+    <input type="submit" name="" id="" value="追加">
 </form>
 
 @endsection

@@ -35,7 +35,7 @@
 
 @endif
 
-<form method="POST" action="{{route('items.update', $item )}}" enctype="multipart/form-data">
+<form method="POST" action="{{route('items.update', ['user' => Auth::id(), 'item' => $item] )}}" enctype="multipart/form-data">
     @method('PATCH')
     @csrf        
     <input name="title" type="text" placeholder="title" value="{{ old('title', $item->title) }}">

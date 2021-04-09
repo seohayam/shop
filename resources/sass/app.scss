@@ -18,12 +18,31 @@ $second: #eaddcf;
 $point: #716040;
 $button: #8c7851;
 
+// # Heading：28 ~ 34px
+// # SubHeading：20 ~ 24p
+// # Text：16 ~ 18px
+// # SubText：14px
+
 // ===icon===
 .fas {
   color: $point;
 }
 
 // ===text===
+.text-title {
+  font-size: 28px;
+}
+.text-subTitle {
+  font-size: 20px;
+}
+.text-text {
+  font-size: 16px;
+}
+.text-subText {
+  font-size: 14px;
+}
+
+// ===text-color===
 .text-main {
   color: $main;
 }
@@ -55,6 +74,21 @@ $button: #8c7851;
 // ===nav===
 #nav-top {
   background-color: $main;
+}
+
+// ===nav-item===
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  background-color: $point;
+}
+
+// ===card===
+.card {
+  background-color: #fff;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+  background-position: center;
+  overflow: hidden;
+  border-radius: 10px;
 }
 
 // ===top===
@@ -134,6 +168,11 @@ $button: #8c7851;
   }
 }
 
+// ===show===
+.show-img {
+  object-fit: cover;
+  width: 100%;
+}
 // ===footer===
 #footer {
   height: 500px;

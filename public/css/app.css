@@ -17090,6 +17090,22 @@ readers do not read off random characters that represent icons */
   color: #716040;
 }
 
+.text-title {
+  font-size: 28px;
+}
+
+.text-subTitle {
+  font-size: 20px;
+}
+
+.text-text {
+  font-size: 16px;
+}
+
+.text-subText {
+  font-size: 14px;
+}
+
 .text-main {
   color: #f9f4ef;
 }
@@ -17124,6 +17140,19 @@ readers do not read off random characters that represent icons */
 
 #nav-top {
   background-color: #f9f4ef;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  background-color: #716040;
+}
+
+.card {
+  background-color: #fff;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+  background-position: center;
+  overflow: hidden;
+  border-radius: 10px;
 }
 
 #top > img {
@@ -17195,6 +17224,12 @@ readers do not read off random characters that represent icons */
 
 #item .item-card:hover .item-card-icons {
   right: 40px;
+}
+
+.show-img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
 }
 
 #footer {
