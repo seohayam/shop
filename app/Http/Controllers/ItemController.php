@@ -26,11 +26,11 @@ class ItemController extends Controller
      */
     public function index()
     {
-                
-        $items = Item::where('user_id', Auth::id())->with('user')->get();
-        $itemMax = Item::max('id');                
-        $user = User::where('id', Auth::id())->with('item')->first();        
 
+        $items = Item::where('user_id', Auth::id())->with('user')->get();
+        $itemMax = Item::count('id');               
+        $user = User::where('id', Auth::id())->with('item')->first();                
+        
         return view('items.index',['items'=> $items, 'user' => $user, 'itemMax' => $itemMax]);
     }
 
@@ -108,9 +108,10 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function update(ItemRequest $request, Item $item)
-    {        
-        
+    public function update(ItemRequest $request, $item)
+    {   
+        $item = Item::where('id', $item)->with('user')->first();
+
         if(Auth::id() != $item->user_id) {
             return abort('403');
         }            
@@ -123,7 +124,7 @@ class ItemController extends Controller
 
         $item->save();
         
-        return redirect()->route('items.edit', $item);
+        return redirect()->route('items.edit', ['user' => Auth::id(), 'item' => $item]);
 
     }
 

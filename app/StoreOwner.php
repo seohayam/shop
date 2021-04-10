@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use Illuminate\Support\Facades\Auth;
 use App\Comment;
 
 class StoreOwner extends Authenticatable
@@ -45,6 +45,16 @@ class StoreOwner extends Authenticatable
     public function store()
     {
         return $this->hasMany('App\Store', 'store_owner_id','id');
+    }
+
+    public function application()
+    {
+        if(Auth::guard('store_owner')->check())
+        {
+            return $this->hasMany('App\Application', 'from_store_owner_id','id');
+        }else{
+            return $this->hasMany('App\Application', 'to_store_owner_id','id');
+        }        
     }
 
     // public function comment()

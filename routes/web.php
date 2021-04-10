@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\applicationController;
 use App\Http\Controllers\Auth\LoginController as AuthLoginController;
 use App\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Auth;
@@ -18,11 +19,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-
+use App\Http\Controllers\CommentController;
 
 Route::get('/', 'WelcomeController@index')->name('welcome.index');
 Route::get('/show/items/{item}', 'WelcomeController@showItem')->name('welcome.showItem');
 Route::get('/show/stores/{store}', 'WelcomeController@showStore')->name('welcome.showStore');
+
+Route::get('applications', 'applicationController@index')->name('applications.index');
+
+// Route::resource('/comments', 'CommentController');
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
@@ -37,7 +42,7 @@ Route::prefix('users')->group(function(){
     });
 
     Route::post('/logout','Auth\LoginController@logout')->name('logout');
-    Route::resource('{user}/items', 'ItemController');
+    Route::resource('{user}/items', 'ItemController');    
     Route::get('/home', 'HomeController@userIndex')->name('user.home');    
 });
 
@@ -50,7 +55,7 @@ Route::prefix('store_owners')->group(function(){
     });    
 
     Route::post('/logout','Auth\LoginController@logout')->name('logout');
-    Route::resource('{store_owner}/stores', 'StoreController');
+    Route::resource('{store_owner}/stores', 'StoreController');    
     Route::get('/home', 'HomeController@storeOwnerIndex')->name('store_owners.home');
 });
 

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class Application extends Model
 {
@@ -17,24 +18,27 @@ class Application extends Model
         return $this->belongsTo('App\application', 'item_id', 'id');
     }
 
-    public function fromUser()
+    
+    
+    public function storeOwner()
     {
-            return $this->belongsTo('App\User', 'from_user_id', 'id');                            
-    }
-
-    public function fromStoreOwner()
-    {
+        if(Auth::guard('store_owner')->check())
+        {
             return $this->belongsTo('App\StoreOwner', 'from_store_owner_id', 'id');                            
-    }
-
-    public function toUser()
-    {
-        return $this->belongsTo('App\User', 'to_user_id', 'id');
-    }
-
-    public function toStoreOwner()
-    {
+        }else
+        {
             return $this->belongsTo('App\StoreOwner', 'to_store_owner_id', 'id');                            
+        }
+    }
+    public function user()
+    {
+        if(Auth::guard('store_owner')->check())
+        {
+            return $this->belongsTo('App\User', 'to_user_id', 'id');
+        }else{
+            return $this->belongsTo('App\User', 'from_user_id', 'id');
+        }
+        
     }
 
 }

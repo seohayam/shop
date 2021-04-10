@@ -37,8 +37,5 @@
 
     <input type="submit" name="" id="" value="投稿">
 </form>
-    
-
-
 
 @endsection

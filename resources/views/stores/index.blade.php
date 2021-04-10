@@ -11,7 +11,7 @@
       <a class="nav-link text-point" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">投稿商品一覧</a>      
     </li>   
     <li class="nav-item">
-      <a class="nav-link text-point" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">チャット</a>
+        <a class="nav-link text-point" href="{{ route('comments.index', ['store_owner' => Auth::id()]) }}">チャット</a>
     </li>
     <li class="nav-item text-center">
         <a class="nav-link text-point" href="{{ route('stores.create', ['store_owner' => Auth::id()]) }}"><i class="far fa-2x fa-plus-square"></i></a>

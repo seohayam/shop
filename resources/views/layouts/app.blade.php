@@ -54,11 +54,11 @@
                                 @else                                                                                                   
                                         @if(Auth::guard('store_owner')->check())                                      
                                             <a class="btn bg-point text-second" href="{{ route('stores.index',['store_owner' => Auth::guard('store_owner')->user()->id])}}">
-                                                <i class="text-second fas fa-search"></i>　プロフィールへ
+                                                <i class="far fa-user-circle"></i>　プロフィールへ
                                             </a>
                                         @else
                                             <a class="btn bg-point text-second" href="{{ route('items.index', ['user' => Auth::user()->id])}}">
-                                                <i class="text-second fas fa-search"></i>　プロフィールへ
+                                                <i class="far fa-user-circle"></i>　プロフィールへ
                                             </a>                            
                                         @endif                                                               
                                 @endif                
