@@ -10,7 +10,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,6 +19,7 @@
 
     <!-- Styles -->      
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -54,11 +56,11 @@
                                 @else                                                                                                   
                                         @if(Auth::guard('store_owner')->check())                                      
                                             <a class="btn bg-point text-second" href="{{ route('stores.index',['store_owner' => Auth::guard('store_owner')->user()->id])}}">
-                                                <i class="text-second fas fa-search"></i>　プロフィールへ
+                                                <i class="far fa-user-circle"></i>　プロフィールへ
                                             </a>
                                         @else
                                             <a class="btn bg-point text-second" href="{{ route('items.index', ['user' => Auth::user()->id])}}">
-                                                <i class="text-second fas fa-search"></i>　プロフィールへ
+                                                <i class="far fa-user-circle"></i>　プロフィールへ
                                             </a>                            
                                         @endif                                                               
                                 @endif                
@@ -195,5 +197,7 @@
 
         </div>
     </div>
+
+    @yield('js')
 </body>
 </html>

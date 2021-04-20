@@ -17,7 +17,7 @@ class CreateItemsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->text('description');
-            $table->text('image')->nullable();
+            // $table->text('image')->nullable();
             $table->integer('value');
             $table->text('item_url')->nullable();                        
             $table->timestamps();

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Application;
 use App\Http\Requests\ItemRequest;
 use App\Item as Item;
 use App\Store;
@@ -9,6 +10,7 @@ use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use JD\Cloudder\Facades\Cloudder;
 
 class ItemController extends Controller
 {
@@ -26,12 +28,15 @@ class ItemController extends Controller
      */
     public function index()
     {
-                
-        $items = Item::where('user_id', Auth::id())->with('user')->get();
-        $itemMax = Item::max('id');                
-        $user = User::where('id', Auth::id())->with('item')->first();        
 
-        return view('items.index',['items'=> $items, 'user' => $user, 'itemMax' => $itemMax]);
+        $items = Item::where('user_id', Auth::id())->with('user')->get();
+        $itemMax = $items->count();
+        $user = User::where('id', Auth::id())->with('item')->first();                
+        $application = Application::where('from_user_id', Auth::id());       
+        $fromUserApplicationNum = $application->count();
+        $fromStoreOwnerApplicationNum = $application->whereNotNull('from_store_owner_id')->count();
+        
+        return view('items.index',['items'=> $items, 'user' => $user, 'itemMax' => $itemMax,'application' => $application,'fromUserApplicationNum' => $fromUserApplicationNum, 'fromStoreOwnerApplicationNum' => $fromStoreOwnerApplicationNum]);
     }
 
     /**
@@ -64,11 +69,24 @@ class ItemController extends Controller
         $item->created_at    = new DateTime();
         $item->user_id      = $user_id;
         
-        // $item->image = スッキップ
+        $image = $request->file('image');
+        if($image)
+        {
+            $image_path = $image->getRealPath();
+            Cloudder::upload($image_path, null);
+            $publicId = Cloudder::getPublicId();
+            $logoUrl = Cloudder::secureShow($publicId, [
+                'width'     => 500,
+                'height'    => 500,
+            ]);
+            // DB
+            $item->image_path   = $logoUrl;
+            $item->public_id    = $publicId;
+        }
         
         $item->save();                
 
-        return redirect()->route('items.show',$item->id);
+        return redirect()->route('items.show',['user' => Auth::id(),'item' => $item]);
 
     }
 
@@ -108,9 +126,12 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function update(ItemRequest $request, Item $item)
-    {        
-        
+    public function update(ItemRequest $request, $item)
+    {   
+        // 画像アップデート：画像を消す→新規追加
+
+        $item = Item::where('id', $item)->with('user')->first();
+
         if(Auth::id() != $item->user_id) {
             return abort('403');
         }            
@@ -123,7 +144,7 @@ class ItemController extends Controller
 
         $item->save();
         
-        return redirect()->route('items.edit', $item);
+        return redirect()->route('items.edit', ['user' => Auth::id(), 'item' => $item]);
 
     }
 

@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.2.5|^8.0",
         "fideloper/proxy": "^4.4",
+        "jrm2k6/cloudder": "^0.7.0",
         "laravel/framework": "^6.20",
         "laravel/helpers": "^1.4",
         "laravel/tinker": "^2.5",

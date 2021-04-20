@@ -15,7 +15,7 @@ class StoreOwnerTableSeeder extends Seeder
         DB::table('store_owners')->insert(
         [
             [                
-                'name' => "kame",
+                'name' => "kyameron",
                 'email' => "s@bcd",
                 "password" => bcrypt("asdfghjkl"),                
                 'created_at' => new DateTime(),

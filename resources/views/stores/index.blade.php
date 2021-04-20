@@ -11,7 +11,7 @@
       <a class="nav-link text-point" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">投稿商品一覧</a>      
     </li>   
     <li class="nav-item">
-      <a class="nav-link text-point" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">チャット</a>
+        <a class="nav-link text-point" href="{{ route('applications.index', ['store_owner' => Auth::id()]) }}">チャット</a>      
     </li>
     <li class="nav-item text-center">
         <a class="nav-link text-point" href="{{ route('stores.create', ['store_owner' => Auth::id()]) }}"><i class="far fa-2x fa-plus-square"></i></a>
@@ -62,8 +62,8 @@
         <div id="item" class="container-fluid">
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="items" role="tabpanel" aria-labelledby="nav-home-tab">
-                    <div class="container d-flex flex-wrap">
-                        @foreach ($stores as $store)
+                    <div class="container-fluid d-flex flex-wrap justify-content-center">
+                        @foreach ($stores as $store)                        
                             <div role="card" class="col-3 p-0 item-card m-5">
                                 <a href="{{ route('stores.show', ['store_owner' => Auth::id(), 'store' => $store]) }}">
                                     {{-- <img src="http://envato.jayasankarkr.in/code/profile/assets/img/profile-2.jpg" class="img img-responsive"> --}}

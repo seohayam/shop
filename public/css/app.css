@@ -17086,6 +17086,32 @@ readers do not read off random characters that represent icons */
   font-weight: 400;
 }
 
+form > label > input {
+  border: none;
+  border-bottom: solid #716040 2px;
+  outline: none;
+  margin: 5px 0;
+  height: 25px;
+  background-color: #f9f4ef;
+}
+
+form > label > textarea {
+  border: none;
+  border-bottom: solid #716040 2px;
+  outline: none;
+  margin: 5px 0;
+  height: 50px;
+  background-color: #f9f4ef;
+}
+
+form > .sumbmitInput {
+  border-radius: 10px;
+  border: none;
+  margin: 5px 0;
+  height: 35px;
+  background-color: #eaddcf;
+}
+
 .fas {
   color: #716040;
 }

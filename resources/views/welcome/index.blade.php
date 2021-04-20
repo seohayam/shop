@@ -59,9 +59,12 @@
             <div class="w-100 d-flex flex-wrap">
                 @foreach ($items as $item)
                     <div role="card" class="col-3 p-0 item-card m-5">
-                        <a href="{{ route('welcome.showItem', $item) }}">
-                            {{-- <img src="http://envato.jayasankarkr.in/code/profile/assets/img/profile-2.jpg" class="img img-responsive"> --}}
-                            <img src="img/1.jpg" class="img img-responsive">                            
+                        <a href="{{ route('welcome.showItem', $item) }}">                                                        
+                             @isset($item->image_path)
+                                <img class="img img-responsive" alt="" height="200" src="{{ $item->image_path }}">
+                            @else
+                                <img class="img img-responsive" alt="" height="200" src="{{ asset('/img/1.jpg') }}">                                        
+                            @endisset   
                             <div class="item-card-name">{{$item->title}}</div>
                             <div class="item-card-username">ユーザー名：{{$item->user->name}}</div>
                             {{-- <div class="item-card-icons"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin"></i></a></div> --}}
@@ -76,8 +79,11 @@
                 @foreach ($stores as $store)
                     <div role="card" class="col-3 p-0 item-card m-5">
                         <a href="{{ route('welcome.showStore', $store) }}">
-                            {{-- <img src="http://envato.jayasankarkr.in/code/profile/assets/img/profile-2.jpg" class="img img-responsive"> --}}
-                            <img src="img/1.jpg" class="img img-responsive">
+                                @isset($store->image_path)
+                                <img class="img img-responsive" alt="" height="200" src="{{ $store->image_path }}">
+                            @else
+                                <img class="img img-responsive" alt="" height="200" src="{{ asset('/img/1.jpg') }}">                                        
+                            @endisset
                             <div class="item-card-name">{{$store->name}}</div>
                             <div class="item-card-username">ユーザー名：{{$store->storeOwner->name}}</div>
                             {{-- <div class="item-card-icons"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin"></i></a></div> --}}

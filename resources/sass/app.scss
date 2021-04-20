@@ -23,6 +23,48 @@ $button: #8c7851;
 // # Text：16 ~ 18px
 // # SubText：14px
 
+// ===numeric-design===
+form {
+  // width: 350px;
+
+  // > label[for="image"] {
+  //   > input[type="file"] {
+  //     display: none;
+  //   }
+  // }
+
+  // > label[for="image"]::after{
+
+  // }
+
+  > label {
+    > input {
+      border: none;
+      border-bottom: solid $point 2px;
+      outline: none;
+      margin: 5px 0;
+      height: 25px;
+      background-color: $main;
+    }
+    > textarea {
+      border: none;
+      border-bottom: solid $point 2px;
+      outline: none;
+      margin: 5px 0;
+      height: 50px;
+      background-color: $main;
+    }
+  }
+
+  > .sumbmitInput {
+    border-radius: 10px;
+    border: none;
+    margin: 5px 0;
+    height: 35px;
+    background-color: $second;
+  }
+}
+
 // ===icon===
 .fas {
   color: $point;

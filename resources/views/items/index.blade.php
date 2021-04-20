@@ -9,8 +9,8 @@
     <li class="nav-item">
       <a class="nav-link text-point" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">投稿商品一覧</a>      
     </li>   
-    <li class="nav-item">
-      <a class="nav-link text-point" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">チャット</a>
+    <li class="nav-item">    
+        <a class="nav-link text-point" href="{{ route('applications.index') }}">チャット</a>      
     </li>
     <li class="nav-item text-center">
         <a class="nav-link text-point" href="{{ route('items.create', ['user' => Auth::id()]) }}"><i class="far fa-2x fa-plus-square"></i></a>
@@ -41,11 +41,11 @@
                                 </div>
                                 <div class="contaienr">
                                     <p>応募したお店の数</p>
-                                    <p class="text-center">?</p>
+                                    <p class="text-center">{{$fromUserApplicationNum}}</p>
                                 </div>
                                 <div class="contaienr">
-                                    <p>オファーを受けた数</p>
-                                    <p class="text-center">?</p>
+                                    <p>オファーを受けた数</p>                                    
+                                    <p class="text-center">{{$fromStoreOwnerApplicationNum}}</p>
                                 </div>
                                 {{-- <a href="{{$item->url}}" class="w-25 btn bg-main">ネットショップへ遷移する</a>    --}}
                                 {{-- <a class="" href="{{ route('items.index', ['user' => Auth::id()] ) }}"><i class="fas fa-2x fa-user-edit"></i></a>                                --}}
@@ -61,12 +61,15 @@
         <div id="item" class="container-fluid">
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="items" role="tabpanel" aria-labelledby="nav-home-tab">
-                    <div class="container d-flex flex-wrap">
+                    <div class="container-fluid d-flex flex-wrap justify-content-center">
                         @foreach ($items as $item)
-                            <div role="card" class="col-3 p-0 item-card m-5">
-                                <a href="{{ route('items.show', ['user' => Auth::id(), 'item' => $item]) }}">
-                                    {{-- <img src="http://envato.jayasankarkr.in/code/profile/assets/img/profile-2.jpg" class="img img-responsive"> --}}
-                                    <img class="img img-responsive" alt="" src="{{ asset('/img/1.jpg') }}">
+                            <div role="card" class="col-3 p-0 item-card m-3">
+                                <a href="{{ route('items.show', ['user' => Auth::id(), 'item' => $item]) }}">                                    
+                                    @isset($item->image_path)
+                                        <img class="img img-responsive" alt="" height="155" src="{{ $item->image_path }}">
+                                    @else
+                                        <img class="img img-responsive" alt="" height="155" src="{{ asset('/img/1.jpg') }}">                                        
+                                    @endisset                                                                        
                                     <div class="item-card-name">{{$item->title}}</div>
                                     <div class="item-card-username">ユーザー名：{{$item->user->name}}</div>
                                     {{-- <div class="item-card-icons"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin"></i></a></div> --}}

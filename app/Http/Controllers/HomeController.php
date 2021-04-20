@@ -18,7 +18,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -31,11 +31,13 @@ class HomeController extends Controller
         // $items = Item::where('user_id', Auth::id())->with('user')->get();
 
         // return view('items.index', ['items'=> $items]);
-        $items = Item::where('user_id', Auth::id())->with('user')->get();
-        $itemMax = Item::max('id');                
-        $user = User::where('id', Auth::id())->with('item')->first();        
+        // $items = Item::where('user_id', Auth::id())->with('user')->get();
+        // $itemMax = $items->count();
+        // $user = User::where('id', Auth::id())->with('item')->first();        
 
-        return view('items.index',['items'=> $items, 'user' => $user, 'itemMax' => $itemMax]);
+        // return view('items.index',['items'=> $items, 'user' => $user, 'itemMax' => $itemMax]);
+
+        return redirect()->route('items.index', ['user' => Auth::id()]);
     }
 
     public function storeOwnerIndex()
@@ -44,11 +46,12 @@ class HomeController extends Controller
         
         // return view('store_owners.home', ['stores'=> $stores]);
 
-        $stores = store::where('store_owner_id', Auth::id())->with('storeOwner')->get();
-        $storeMax = store::max('id');                
-        $store_owner = StoreOwner::where('id', Auth::id())->with('store')->first();        
+        // $stores = store::where('store_owner_id', Auth::id())->with('storeOwner')->get();
+        // $storeMax = $stores->count();
+        // $store_owner = StoreOwner::where('id', Auth::id())->with('store')->first();        
 
-        return view('stores.index',['stores'=> $stores, 'store_owner' => $store_owner, 'storeMax' => $storeMax]);
+        // return view('stores.index',['stores'=> $stores, 'store_owner' => $store_owner, 'storeMax' => $storeMax]);
 
+        return redirect()->route('stores.index', ['store_owner' => Auth::id()]);
     }
 }

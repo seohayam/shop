@@ -27,7 +27,7 @@ class ItemRequest extends FormRequest
             'title'     => 'required',
             'value'     => 'required|numeric',
             'item_url'  => 'required',
-            // 'image'     => 'required|file|image',
+            'image'     => 'mimes:jpeg,jpg,png,gif|max:10240',
             'description'=> 'required'
             
         ];
@@ -39,7 +39,8 @@ class ItemRequest extends FormRequest
             'title.required'        => 'タイトルを入れて！',
             'value.required'        => '数値を入れて！',
             'item_url.required'     => 'URLを入れて！',
-            // 'image.required'        => '画像を入れて！',
+            'image.mimes'        => 'jpeg,jpg,png,gifのどれかで！',
+            'image.max'        => 'サイズを１０MB以下にして下さい',
             'description.required'   => '説明を入れて１',
         ];
     }

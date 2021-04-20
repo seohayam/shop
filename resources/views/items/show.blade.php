@@ -5,7 +5,7 @@
 {{-- img --}}
 <div class="contaienr-fluid  d-flex justify-content-md-end py-5">
   <div class="w-75  d-flex justify-content-center">
-      <img class="card show-img w-50" alt="" src="{{ asset('/img/1.jpg') }}">
+      <img class="card show-img w-50" alt="" src="{{ $item->image_path }}">
   </div>
 </div>
 {{-- card --}}
