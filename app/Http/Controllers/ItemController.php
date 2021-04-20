@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Application;
 use App\Http\Requests\ItemRequest;
 use App\Item as Item;
 use App\Store;
@@ -31,8 +32,11 @@ class ItemController extends Controller
         $items = Item::where('user_id', Auth::id())->with('user')->get();
         $itemMax = $items->count();
         $user = User::where('id', Auth::id())->with('item')->first();                
+        $application = Application::where('from_user_id', Auth::id());       
+        $fromUserApplicationNum = $application->count();
+        $fromStoreOwnerApplicationNum = $application->whereNotNull('from_store_owner_id')->count();
         
-        return view('items.index',['items'=> $items, 'user' => $user, 'itemMax' => $itemMax]);
+        return view('items.index',['items'=> $items, 'user' => $user, 'itemMax' => $itemMax,'application' => $application,'fromUserApplicationNum' => $fromUserApplicationNum, 'fromStoreOwnerApplicationNum' => $fromStoreOwnerApplicationNum]);
     }
 
     /**

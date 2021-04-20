@@ -17,7 +17,7 @@ class CreateCommentsTable extends Migration
             $table->bigIncrements('id');                        
             $table->text('content');
             // 一旦nullable
-            $table->bigInteger('application_id')->unsigned()->index()->nullable();
+            $table->bigInteger('application_id')->unsigned()->index();
             $table->bigInteger('from_user_id')->unsigned()->index()->nullable();
             $table->bigInteger('from_store_owner_id')->unsigned()->index()->nullable();
             $table->bigInteger('to_user_id')->unsigned()->index()->nullable();

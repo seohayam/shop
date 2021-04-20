@@ -10,7 +10,7 @@
       <a class="nav-link text-point" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">投稿商品一覧</a>      
     </li>   
     <li class="nav-item">    
-        <a class="nav-link text-point" href="{{ route('applications.index', ['user' => Auth::id()]) }}">チャット</a>      
+        <a class="nav-link text-point" href="{{ route('applications.index') }}">チャット</a>      
     </li>
     <li class="nav-item text-center">
         <a class="nav-link text-point" href="{{ route('items.create', ['user' => Auth::id()]) }}"><i class="far fa-2x fa-plus-square"></i></a>
@@ -41,11 +41,11 @@
                                 </div>
                                 <div class="contaienr">
                                     <p>応募したお店の数</p>
-                                    <p class="text-center">?</p>
+                                    <p class="text-center">{{$fromUserApplicationNum}}</p>
                                 </div>
                                 <div class="contaienr">
-                                    <p>オファーを受けた数</p>
-                                    <p class="text-center">?</p>
+                                    <p>オファーを受けた数</p>                                    
+                                    <p class="text-center">{{$fromStoreOwnerApplicationNum}}</p>
                                 </div>
                                 {{-- <a href="{{$item->url}}" class="w-25 btn bg-main">ネットショップへ遷移する</a>    --}}
                                 {{-- <a class="" href="{{ route('items.index', ['user' => Auth::id()] ) }}"><i class="fas fa-2x fa-user-edit"></i></a>                                --}}

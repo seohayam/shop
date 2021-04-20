@@ -25,9 +25,15 @@ Route::get('/', 'WelcomeController@index')->name('welcome.index');
 Route::get('/show/items/{item}', 'WelcomeController@showItem')->name('welcome.showItem');
 Route::get('/show/stores/{store}', 'WelcomeController@showStore')->name('welcome.showStore');
 
-Route::get('applications', 'applicationController@index')->name('applications.index');
+Route::get('/comments', 'CommentController@index')->name('comments.index');
+Route::post('/comments/store', 'CommentController@store')->name('comments.store');
+Route::get('/applications/{application}/show/result/ajax', 'CommentController@getData')->name('comments.getData');
 
-// Route::resource('/comments', 'CommentController');
+
+Route::get('/applications', 'applicationController@index')->name('applications.index');
+Route::get('/applications/{application}/show', 'applicationController@show')->name('applications.show');
+Route::post('/applications', 'applicationController@store')->name('applications.store');
+
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
@@ -42,7 +48,7 @@ Route::prefix('users')->group(function(){
     });
 
     Route::post('/logout','Auth\LoginController@logout')->name('logout');
-    Route::resource('{user}/items', 'ItemController');    
+    Route::resource('{user}/items', 'ItemController');        
     Route::get('/home', 'HomeController@userIndex')->name('user.home');    
 });
 

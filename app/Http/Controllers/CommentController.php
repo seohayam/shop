@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Application;
 use App\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,21 +23,6 @@ class CommentController extends Controller
     public function index()
     {
 
-        $comments = Comment::get();
-
-        // dd($comments);
-
-        return view('comments.index', ['comments' => $comments]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -47,51 +33,20 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
+        
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function getData(Request $request)
     {
-        //
-    }
+        // $applicationId = $request->query('application_id');
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $applicationId = $request->application;        
+        
+        $comments = Comment::where('application_id', $applicationId)->orderBy('created_at', 'desc')->with('fromUser','fromStoreOwner','toUser','toStoreOwner')->get();
+        
+        $json = ['comments' => $comments];
+        return response()->json($json);
     }
 }

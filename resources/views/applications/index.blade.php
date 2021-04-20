@@ -2,62 +2,21 @@
 
 @section('content')
 
-{{-- @foreach($comments as $comment)
-{{$comment->content}}
-@endforeach --}}
+<div class="container-fluid">
 
-@if(isset($applications))
-{{dd($applications)}}
-    @foreach($applications as $application)
-        state:{{$application->applicaiton_status}}
-        date:{{$application->created_at}}    
-        form:{{$application->user->name}}
-        to:{{$application->storeOwner->name}}
-    @endforeach
-@endif
-
-
-<div class="container-fluid row">
-
-    <div class="col-4 bg-point">
+    <div class="bg-point mx-auto col-8">
         <h1>applications</h1>
-    </div>
+        @if(isset($applications))
 
-    <div class="col-8">
-        <div class="chat-container">
-            <div class="chat-area">
-                <div class="card">
-                    <div class="card-header">Comment</div>
-                    <div class="card-body chat-card">
-                        @include('components.comment')
-                        @include('components.comment')
-                        @include('components.comment')
-                        @include('components.comment')
-                        @include('components.comment')
-                        @include('components.comment')
-                        @include('components.comment')
-                        @include('components.comment')
-                        @include('components.comment')
-                        @include('components.comment')
-                        @include('components.comment')
-                        @include('components.comment')
-                        @include('components.comment')
-                        @include('components.comment')
-                        @include('components.comment')
-                        @include('components.comment')
-                    </div>
+            @foreach($applications as $application)  
+                <div class="my-3 mx-auto">
+                    @include('components.cardApplication', ['applcation' => $application])                
                 </div>
-            </div>
-        </div>
-
-        <div class="comment-container">
-            <div class="input-group comment-area">
-                <textarea class="form-control" placeholder="input massage" aria-label="With textarea"></textarea>
-                <button type="input-group-prepend button" class="btn btn-outline-primary comment-btn">Submit</button>
-            </div>
-        </div>
+            @endforeach
+    
+        @endif        
     </div>
-
+    
 </div>
 
 @endsection
