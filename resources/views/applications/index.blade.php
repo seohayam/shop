@@ -10,7 +10,7 @@
 
             @foreach($applications as $application)  
                 <div class="my-3 mx-auto">
-                    @include('components.cardApplication', ['applcation' => $application])                
+                    @include('components.cardApplication', ['application' => $application])                
                 </div>
             @endforeach
     

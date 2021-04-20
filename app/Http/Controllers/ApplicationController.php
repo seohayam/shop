@@ -47,8 +47,7 @@ class applicationController extends Controller
 
         // $url = url()->current();
         // $url = $request->application;
-        // dd($url);
-
+        // dd($url);        
         return view('applications.show', ['application' => $application]);
     }
     
@@ -89,5 +88,19 @@ class applicationController extends Controller
         // }        
 
         return redirect()->route('applications.index',['user' => Auth::id(), 'store_owner' => Auth::id()]);
+    }
+
+
+    public function update(Request $request)
+    {
+
+        $applicationId = $request->application_id;
+        $application = Application::where('id', $applicationId)->first();
+        $application->applicaiton_status = $request->status;
+
+        $application->save();
+
+        return redirect()->route('applications.show', ['application' => $application]);
+
     }
 }

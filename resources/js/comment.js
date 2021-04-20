@@ -13,6 +13,9 @@ const get_data = () => {
     success: (data) => {
       // console.log(data.comments);
       console.log(query);
+      console.log(data.auth);
+      // auth-confirmation
+      const auth = data.auth;
 
       for (let i = 0; i < data.comments.length; i++) {
         console.log(data.comments[i].content);
@@ -22,22 +25,34 @@ const get_data = () => {
         // let toStoreOwner = data.comments[i].to_store_owner;
 
         let name = "";
-        let logo = ``;
+        let logo = "";
+        let flex = "start";
 
         if (!isEmpty(fromUser)) {
           name = fromUser.name;
           logo = `<i class="far fa-3x fa-user-circle"></i>`;
-          // return name;
         }
+
+        if (auth == "user" && !isEmpty(fromUser)) {
+          name = fromUser.name;
+          logo = `<i class="far fa-3x fa-user-circle"></i>`;
+          flex = "end";
+        }
+
         if (!isEmpty(fromStoreOwner)) {
           name = fromStoreOwner.name;
           logo = `<i class="fas fa-3x fa-store"></i>`;
-          // return name;
+        }
+
+        if (auth == "store_owner" && !isEmpty(fromStoreOwner)) {
+          name = fromUser.name;
+          logo = `<i class="far fa-3x fa-user-circle"></i>`;
+          flex = "end";
         }
 
         var html = `                                        
-                    <div class="media my-3">                    
-                      <div class="media-body comment-body col-3 bg-main rounded row d-flex justify-content-center py-3">                        
+                    <div class="media my-3 d-flex justify-content-${flex}">                    
+                      <div class="media-body comment-body col-3 bg-main rounded row d-flex justify-content-center py-3 mx-5">                        
 
                         <div class="col-3 d-flex justify-content-center align-items-center">
                           ${logo}

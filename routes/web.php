@@ -33,6 +33,7 @@ Route::get('/applications/{application}/show/result/ajax', 'CommentController@ge
 Route::get('/applications', 'applicationController@index')->name('applications.index');
 Route::get('/applications/{application}/show', 'applicationController@show')->name('applications.show');
 Route::post('/applications', 'applicationController@store')->name('applications.store');
+Route::post('/applications/update', 'applicationController@update')->name('applications.update');
 
 
 // Route::get('/home', 'HomeController@index')->name('home');

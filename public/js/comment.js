@@ -17384,6 +17384,9 @@ var get_data = function get_data() {
     success: function success(data) {
       // console.log(data.comments);
       console.log(query);
+      console.log(data.auth); // auth-confirmation
+
+      var auth = data.auth;
 
       for (var i = 0; i < data.comments.length; i++) {
         console.log(data.comments[i].content);
@@ -17393,18 +17396,31 @@ var get_data = function get_data() {
 
         var name = "";
         var logo = "";
+        var flex = "start";
 
         if (!isEmpty(fromUser)) {
           name = fromUser.name;
-          logo = "<i class=\"far fa-3x fa-user-circle\"></i>"; // return name;
+          logo = "<i class=\"far fa-3x fa-user-circle\"></i>";
+        }
+
+        if (auth == "user" && !isEmpty(fromUser)) {
+          name = fromUser.name;
+          logo = "<i class=\"far fa-3x fa-user-circle\"></i>";
+          flex = "end";
         }
 
         if (!isEmpty(fromStoreOwner)) {
           name = fromStoreOwner.name;
-          logo = "<i class=\"fas fa-3x fa-store\"></i>"; // return name;
+          logo = "<i class=\"fas fa-3x fa-store\"></i>";
         }
 
-        var html = "                                        \n                    <div class=\"media my-3\">                    \n                      <div class=\"media-body comment-body col-3 bg-main rounded row d-flex justify-content-center py-3\">                        \n\n                        <div class=\"col-3 d-flex justify-content-center align-items-center\">\n                          ".concat(logo, "\n                        </div>\n\n                        <div class=\"col-7 d-flex flex-column\">                    \n                          <span class=\"comment-body-user\">").concat(name, "</span>\n                          <span class=\"comment-body-time\">").concat(data.comments[i].created_at, "</span>                        \n                          <span class=\"comment-body-content\">\n                            ").concat(data.comments[i].content, "\n                          </span>\n                        </div>\n\n                      </div>\n                    </div>\n                ");
+        if (auth == "store_owner" && !isEmpty(fromStoreOwner)) {
+          name = fromUser.name;
+          logo = "<i class=\"far fa-3x fa-user-circle\"></i>";
+          flex = "end";
+        }
+
+        var html = "                                        \n                    <div class=\"media my-3 d-flex justify-content-".concat(flex, "\">                    \n                      <div class=\"media-body comment-body col-3 bg-main rounded row d-flex justify-content-center py-3 mx-5\">                        \n\n                        <div class=\"col-3 d-flex justify-content-center align-items-center\">\n                          ").concat(logo, "\n                        </div>\n\n                        <div class=\"col-7 d-flex flex-column\">                    \n                          <span class=\"comment-body-user\">").concat(name, "</span>\n                          <span class=\"comment-body-time\">").concat(data.comments[i].created_at, "</span>                        \n                          <span class=\"comment-body-content\">\n                            ").concat(data.comments[i].content, "\n                          </span>\n                        </div>\n\n                      </div>\n                    </div>\n                ");
         $("#comment-data").append(html);
       }
     },

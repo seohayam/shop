@@ -45,8 +45,15 @@ class CommentController extends Controller
         $applicationId = $request->application;        
         
         $comments = Comment::where('application_id', $applicationId)->orderBy('created_at', 'desc')->with('fromUser','fromStoreOwner','toUser','toStoreOwner')->get();
+
+        if(Auth::guard('store_owner')->check())
+        {
+            $auth = "store_owner";
+        }else{
+            $auth = "user";
+        }
         
-        $json = ['comments' => $comments];
+        $json = ['comments' => $comments, 'auth' => $auth];
         return response()->json($json);
     }
 }
