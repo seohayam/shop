@@ -24,6 +24,7 @@ const get_data = () => {
         let name = "";
         let logo = "";
         let flex = "start";
+        let time = data.comments[i].updated_at;
 
         if (!isEmpty(fromUser)) {
           name = fromUser.name;
@@ -47,6 +48,12 @@ const get_data = () => {
           flex = "end";
         }
 
+        // if (!isEmpty(time)) {
+        //   time = time;
+        // } else {
+        //   time = data.comments[i].created_at;
+        // }
+
         var html = `                                        
                     <div class="media my-3 d-flex justify-content-${flex}">                    
                       <div class="media-body comment-body col-3 bg-main rounded row d-flex justify-content-center py-3 mx-5">                        
@@ -57,7 +64,7 @@ const get_data = () => {
 
                         <div class="col-7 d-flex flex-column">                    
                           <span class="comment-body-user">${name}</span>
-                          <span class="comment-body-time">${data.comments[i].created_at}</span>                        
+                          <span class="comment-body-time">${time}</span>                        
                           <span class="comment-body-content">
                             ${data.comments[i].content}
                           </span>
