@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Application;
 use App\Http\Requests\ItemRequest;
 use App\Item;
 use App\Store;
@@ -49,19 +50,22 @@ class WelcomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showItem($item)
+    public function showItem($itemId)
     {
-        $item = Item::where('id', $item)->first();
+        $item = Item::where('id', $itemId)->first();
+        $applications = Application::where('item_id', $itemId)->get();
+        // dd($applications);
         // $store = Store::where('id', $store)->first();        
 
-        return view('welcome.show', ['item' => $item]);
+        return view('welcome.show', ['item' => $item, 'applications' => $applications]);
     }
 
-    public function showStore($store)
+    public function showStore($storeId)
     {
-        $store = Store::where('id', $store)->first();    
+        $store = Store::where('id', $storeId)->first();   
+        $applications = Application::where('store_id', $storeId)->get(); 
 
-        return view('welcome.show', ['store' => $store]);
+        return view('welcome.show', ['store' => $store, 'applications' => $applications]);
     }
 
     /**

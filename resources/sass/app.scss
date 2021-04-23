@@ -142,73 +142,73 @@ form {
 }
 
 // ===item一覧＝＝＝
-#item {
-  .item-card {
-    // width: 300px;
-    // height: 200px;
-    background-color: #fff;
-    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
-    background-position: center;
-    overflow: hidden;
-    position: relative;
-    cursor: pointer;
-    border-radius: 10px;
-  }
-
-  .item-card img {
-    object-fit: cover;
-    width: 100%;
-    transition: all linear 0.25s;
-  }
-
-  .item-card .item-card-name {
-    position: absolute;
-    left: 30px;
-    bottom: 50px;
-    font-size: 30px;
-    color: #fff;
-    text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
-    font-weight: bold;
-    transition: all linear 0.25s;
-  }
-
-  .item-card .item-card-icons {
-    position: absolute;
-    bottom: 15px;
-    right: 30px;
-    transition: all linear 0.25s;
-  }
-
-  .item-card .item-card-username {
-    position: absolute;
-    bottom: 20px;
-    left: 30px;
-    color: #fff;
-    font-size: 13px;
-    transition: all linear 0.25s;
-  }
-
-  .item-card .item-card-icons .fab {
-    margin: 5px;
-    color: white;
-  }
-
-  .item-card:hover img {
-    filter: grayscale(100%);
-  }
-
-  .item-card:hover .item-card-name {
-    bottom: 80px;
-  }
-
-  .item-card:hover .item-card-username {
-    bottom: 60px;
-  }
-
-  .item-card:hover .item-card-icons {
-    right: 40px;
-  }
+// #item {
+.item-card {
+  // width: 300px;
+  // height: 200px;
+  background-color: #fff;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+  background-position: center;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  border-radius: 10px;
 }
+
+.item-card img {
+  object-fit: cover;
+  width: 100%;
+  transition: all linear 0.25s;
+}
+
+.item-card .item-card-name {
+  position: absolute;
+  left: 30px;
+  bottom: 50px;
+  font-size: 30px;
+  color: #fff;
+  text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+  transition: all linear 0.25s;
+}
+
+.item-card .item-card-icons {
+  position: absolute;
+  bottom: 15px;
+  right: 30px;
+  transition: all linear 0.25s;
+}
+
+.item-card .item-card-username {
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+  color: #fff;
+  font-size: 13px;
+  transition: all linear 0.25s;
+}
+
+.item-card .item-card-icons .fab {
+  margin: 5px;
+  color: white;
+}
+
+.item-card:hover img {
+  filter: grayscale(100%);
+}
+
+.item-card:hover .item-card-name {
+  bottom: 80px;
+}
+
+.item-card:hover .item-card-username {
+  bottom: 60px;
+}
+
+.item-card:hover .item-card-icons {
+  right: 40px;
+}
+// }
 
 // ===show===
 .show-img {

@@ -1,6 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+
+@if(!isset($itemMax))
+<div class="container-fluid p-0">
+    <div class="toast bg-point m-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-body">
+            右上の <i class="far fa-plus-square text-second"></i> 商品を押して追加してみよう！
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+</div>
+@endif
+
 {{-- プロフィール --}}
 <ul class="nav nav-pills mb-3 d-flex justify-content-around pt-5" id="pills-tab" role="tablist">
     <li class="nav-item">
@@ -83,6 +97,9 @@
     </div>
     {{-- tab3 --}}
     <div class="tab-pane fade py-5" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
-  </div>
+</div>
+@endsection
 
-  @endsection
+@section('js')
+    <script src="{{ mix('/js/toast.js') }}"></script>
+@endsection

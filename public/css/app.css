@@ -17187,7 +17187,7 @@ form > .sumbmitInput {
   width: 100%;
 }
 
-#item .item-card {
+.item-card {
   background-color: #fff;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
   background-position: center;
@@ -17197,14 +17197,14 @@ form > .sumbmitInput {
   border-radius: 10px;
 }
 
-#item .item-card img {
+.item-card img {
   -o-object-fit: cover;
      object-fit: cover;
   width: 100%;
   transition: all linear 0.25s;
 }
 
-#item .item-card .item-card-name {
+.item-card .item-card-name {
   position: absolute;
   left: 30px;
   bottom: 50px;
@@ -17215,14 +17215,14 @@ form > .sumbmitInput {
   transition: all linear 0.25s;
 }
 
-#item .item-card .item-card-icons {
+.item-card .item-card-icons {
   position: absolute;
   bottom: 15px;
   right: 30px;
   transition: all linear 0.25s;
 }
 
-#item .item-card .item-card-username {
+.item-card .item-card-username {
   position: absolute;
   bottom: 20px;
   left: 30px;
@@ -17231,24 +17231,24 @@ form > .sumbmitInput {
   transition: all linear 0.25s;
 }
 
-#item .item-card .item-card-icons .fab {
+.item-card .item-card-icons .fab {
   margin: 5px;
   color: white;
 }
 
-#item .item-card:hover img {
+.item-card:hover img {
   filter: grayscale(100%);
 }
 
-#item .item-card:hover .item-card-name {
+.item-card:hover .item-card-name {
   bottom: 80px;
 }
 
-#item .item-card:hover .item-card-username {
+.item-card:hover .item-card-username {
   bottom: 60px;
 }
 
-#item .item-card:hover .item-card-icons {
+.item-card:hover .item-card-icons {
   right: 40px;
 }
 
