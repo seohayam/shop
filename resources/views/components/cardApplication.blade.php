@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-body">            
             {{-- @if(isset($application->item))             --}}
-                <h5 class="card-title">{{$application->item->title}}</h5>  
+                <h5 class="card-title">{{$application->item->title}}</h5>
                 <a class="btn bg-main" href="{{ route('welcome.showItem', ['item' => $application->item_id]) }}">            
                     詳細
                 </a>       

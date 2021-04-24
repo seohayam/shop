@@ -56,7 +56,7 @@ const get_data = () => {
 
         var html = `                                        
                     <div class="media my-3 d-flex justify-content-${flex}">                    
-                      <div class="media-body comment-body col-3 bg-main rounded row d-flex justify-content-center py-3 mx-5">                        
+                      <div class="media-body comment-body col-5 bg-main rounded row d-flex justify-content-center py-3 mx-5">                        
 
                         <div class="col-3 d-flex justify-content-center align-items-center">
                           ${logo}

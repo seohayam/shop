@@ -1,6 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
+{{-- errors --}}
+@if($errors->any())
+
+<div class="container-fluid p-0">
+    <div class="alert alert-warning alert-dismissible fade show w-100 m-0" role="alert">
+        {{$errors->first()}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</div>
+
+@endif
 
 {{-- item --}}
 @if (isset($item))
@@ -19,17 +32,26 @@
                 <p class="text-text text-truncate">紹介：{{$item->description}}</p>
                 <p class="text-text text-truncate">値段：{{$item->value}}</p>
                 <div class="container d-flex justify-content-around pt-5">
-                    <a href="{{$item->url}}" class="w-25 btn bg-main">ネットショップを見る</a>
+                    <a href="{{$item->url}}" class="w-25 h-25 btn bg-main">ネットショップを見る</a>
                                                             
-                    @if (Auth::guard('store_owner')->check())
+                    @if (Auth::guard('store_owner')->check() && $storeNum != 0)
                         <form class="w-25 border rounded text-center bg-point" method="POST" action="{{ route('applications.store', ['store_owner' => Auth::id()])}}">
                             @csrf
-                            <input name="item_id" type="hidden" value="{{ $item->id }}">
-                            <input name="user_id" type="hidden" value="{{$item->user->id}}">
+                            <input name="itemId" type="hidden" value="{{ $item->id }}">
+                            <input name="userId" type="hidden" value="{{$item->user->id}}">
                             <input class="btn bg-point" type="submit" value="応募する">
                         </form>
-                        {{-- <a href="{{ route('applications.store', ['store' => $store]) }}" class="w-25 btn bg-point">応募する</a>                                             --}}
-                    @endif                   
+                    @elseif(Auth::guard('store_owner')->check() && $storeNum == 0)
+                        <div class="p-0">
+                            <div class="alert alert-warning alert-dismissible fade show w-100 m-0" role="alert">
+                                <p class="m-0 text-subText">お店を登録すると応募ができます。</p>
+                                <a class="btn bg-second my-2" href="{{ route('stores.create', ['store_owner' => Auth::guard('store_owner')->id()]) }}">お店を登録する</a>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -53,16 +75,35 @@
                 <p class="text-text text-truncate text-second">紹介：{{$store->description}}</p>
                 {{-- <p class="text-text text-truncate">値段：{{$store->value}}</p> --}}
                 <div class="container d-flex justify-content-around pt-5">                    
-                    <a href="{{$store->adress}}" class="w-25 btn bg-second">マップで確認する</a>
-                                                            
-                    @if (Auth::check())
-                        <form class="w-25 border rounded text-center bg-point" method="POST" action="{{ route('applications.store',['user' => Auth::id()])}}">
+                    <a href="{{$store->adress}}" class="w-25 h-25 btn bg-second">マップで確認する</a>
+
+                    @if (Auth::check() && $userItemNum != 0)
+                        <form class="w-25" method="POST" action="{{ route('applications.store',['user' => Auth::id()])}}">
                             @csrf                            
-                            <input name="store_id" type="hidden" value="{{$store->id}}">
-                            <input name="storeOwner_id" type="hidden" value="{{$store->storeOwner->id}}">
-                            <input class="btn bg-point" type="submit" value="応募する">
+                            <input name="storeId" type="hidden" value="{{$store->id}}">
+                            <input name="storeOwnerId" type="hidden" value="{{$store->storeOwner->id}}">
+                            <input class="btn bg-main w-100" type="submit" value="応募する">
+
+                            <div class="">
+                                <p class="m-0 text-subText">your marchendasie</p>
+                            </div>
+                            <select required name="userItemId" id="userItemSelect" class="custom-select custom-select-sm ">
+                                @foreach ($userItems as $userItem)
+                                <option value="{{$userItem->id}}">{{$userItem->title}}</option>
+                                @endforeach
+                            </select>
                         </form>
                         {{-- <a href="{{ route('applications.store', ['store' => $store]) }}" class="w-25 btn bg-point">応募する</a>                                             --}}
+                    @elseif(Auth::check() && $userItemNum == 0)
+                        <div class="w-25 p-0">
+                            <div class="alert alert-warning alert-dismissible fade show w-100 m-0" role="alert">
+                                <h5>応募する</h5>
+                                <p class="m-0 text-subText">最低一つの商品投稿をしてください！</p>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
                     @endif                    
                 </div>
             </div>
@@ -71,6 +112,7 @@
 </div>
 @endif
 
+{{-- relationship --}}
 <div class="container-fluid text-center py-5">
     @if(isset($item))
         <h1>この商品があるお店</h1>

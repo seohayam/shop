@@ -20,6 +20,7 @@
 </div>
 
 {{-- statu --}}
+@if(Auth::id() != $application->from_user_id || Auth::guard('store_owner')->id() != $application->from_store_owner_id)
 <div class="status-container py-2">    
     <div class="row col-10 mx-auto">
         {{-- accept --}}
@@ -69,6 +70,7 @@
         </div>              
     </div>
 </div>
+@endif
 
 <div class="comment-container">    
     <form class="row col-10 mx-auto" method="POST" action="{{ route('comments.store') }}">                        

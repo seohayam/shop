@@ -30,8 +30,12 @@ class StoreController extends Controller
         $storeId = Auth::guard('store_owner')->id();
         $stores = store::where('store_owner_id', $storeId)->with('storeOwner')->get();
         $storeMax = $stores->count();
-        $store_owner = StoreOwner::where('id', $storeId)->with('store')->first();        
 
+        if($storeMax == 0){
+            return redirect()->route('stores.create', ['store_owner' => Auth::guard('store_owner')->id()]);
+        }
+
+        $store_owner = StoreOwner::where('id', $storeId)->with('store')->first();        
         $fromStoreOwnerApplicationNum   = Application::where('from_store_owner_id', $storeId)->count();
         $fromUserApplicationNum         = Application::where('to_store_owner_id', $storeId )->count();
 
