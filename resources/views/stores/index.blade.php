@@ -2,7 +2,7 @@
 
 @section('content')
 
-@if(!isset($storeMax))
+@if($storeMax == 0)
 <div class="container-fluid p-0">
     <div class="toast bg-point m-0" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-body">
@@ -21,14 +21,16 @@
       <a class="nav-link active text-point" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">アカウント</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link text-point" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">投稿商品一覧</a>      
+      <a class="nav-link text-point" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">お店詳細</a>      
     </li>   
     <li class="nav-item">
-        <a class="nav-link text-point" href="{{ route('applications.index', ['store_owner' => Auth::id()]) }}">チャット</a>      
+        <a class="nav-link text-point" href="{{ route('applications.index', ['store_owner' => Auth::guard('store_owner')->id()]) }}">チャット</a>      
     </li>
+    @if($storeMax == 0)
     <li class="nav-item text-center">
-        <a class="nav-link text-point" href="{{ route('stores.create', ['store_owner' => Auth::id()]) }}"><i class="far fa-2x fa-plus-square"></i></a>
+        <a class="nav-link text-point" href="{{ route('stores.create', ['store_owner' => Auth::guard('store_owner')->id()]) }}"><i class="far fa-2x fa-plus-square"></i></a>
     </li>
+    @endif
   </ul>
 
   <div class="tab-content" id="pills-tabContent">
@@ -49,12 +51,12 @@
                             </div>                           
                             <hr class="bg-point">                            
                             <div class="container d-flex justify-content-around pt-5">
-                                <div class="contaienr">
+                                {{-- <div class="contaienr">
                                     <p>投稿した商品数</p>
                                     <p class="text-center">{{$storeMax}}</p>
-                                </div>
+                                </div> --}}
                                 <div class="contaienr">
-                                    <p>応募したお店の数</p>
+                                    <p>応募した商品の数</p>
                                     <p class="text-center">{{$fromStoreOwnerApplicationNum}}</p>
                                 </div>
                                 <div class="contaienr">

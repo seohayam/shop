@@ -2,7 +2,7 @@
 
 @section('content')
 
-@if(!isset($itemMax))
+@if($itemMax == 0)
 <div class="container-fluid p-0">
     <div class="toast bg-point m-0" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-body">

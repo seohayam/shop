@@ -7,6 +7,7 @@ use App\Http\Requests\ItemRequest;
 use App\Item;
 use App\Store;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WelcomeController extends Controller
 {
@@ -54,18 +55,22 @@ class WelcomeController extends Controller
     {
         $item = Item::where('id', $itemId)->first();
         $applications = Application::where('item_id', $itemId)->get();
+        $storeId = Auth::guard('store_owner')->id();
+        $storeNum = Store::where('store_owner_id', $storeId)->count();
         // dd($applications);
         // $store = Store::where('id', $store)->first();        
 
-        return view('welcome.show', ['item' => $item, 'applications' => $applications]);
+        return view('welcome.show', ['item' => $item, 'applications' => $applications, 'storeNum' => $storeNum]);
     }
 
     public function showStore($storeId)
     {
+        $userItems = Item::where('user_id', Auth::id())->get();
+        $userItemNum = $userItems->count();
         $store = Store::where('id', $storeId)->first();   
         $applications = Application::where('store_id', $storeId)->get(); 
 
-        return view('welcome.show', ['store' => $store, 'applications' => $applications]);
+        return view('welcome.show', ['store' => $store, 'applications' => $applications, 'userItems' => $userItems, 'userItemNum' => $userItemNum]);
     }
 
     /**
