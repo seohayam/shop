@@ -1,5 +1,38 @@
 {{-- itemの場合 --}}
 
+<div class="card border-0 rounded-0" style="width: 18rem;">
+    {{-- <img src="{{$application->item->image_path}}" class="card-img-top" alt="..."> --}}
+    @isset($item->image_path)
+        <img class="img img-responsive" alt="" height="200" src="{{ $item->image_path }}">
+    @else
+        <img class="img img-responsive" alt="" height="200" src="{{ asset('/img/1.jpg') }}">                                        
+    @endisset   
+    <div class="p-3">
+      <p class="text-secondary">{{$application->created_at->format('Y m/d')}}</p>
+      <h5 class="">
+        @if(isset($application->fromUser))
+            ユーザー：{{$application->fromUser->name}}
+        @endif
+        
+        @if(isset($application->fromStoreOwner))
+            ストアオーナー：{{$application->fromStoreOwner->name}}
+        @endif  
+      </h5>
+
+      <div class="col-12">
+        <div class="row d-flex justify-content-between align-items-center">
+            <div>
+                <p class="card-text text-secondary">{{$application->item->title}}</p>
+            </div>
+            <div>
+                <a href="#"><i class="fas fa-2x fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+      </div>
+
+    </div>
+</div>
+
     <div class="card">
         <div class="card-body">            
             {{-- @if(isset($application->item))             --}}

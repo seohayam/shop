@@ -81,37 +81,30 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/toast.js":
-/*!*******************************!*\
-  !*** ./resources/js/toast.js ***!
-  \*******************************/
+/***/ "./resources/js/map.js":
+/*!*****************************!*\
+  !*** ./resources/js/map.js ***!
+  \*****************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$(function () {
-  $(".toast").toast({
-    animation: true,
-    autohide: false,
-    delay: 3000
-  });
-  $(".toast").toast("show");
-});
+
 
 /***/ }),
 
-/***/ 4:
-/*!**********************************!*\
-  !*** multi ./resources/js/toast ***!
-  \**********************************/
+/***/ 1:
+/*!***********************************!*\
+  !*** multi ./resources/js/map.js ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/haruto/dev/expo/resources/js/toast */"./resources/js/toast.js");
+module.exports = __webpack_require__(/*! /Users/haruto/dev/expo/resources/js/map.js */"./resources/js/map.js");
 
 
 /***/ })

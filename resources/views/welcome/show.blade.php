@@ -67,16 +67,17 @@
     </div>
 </div>
 {{-- card --}}
-<div class="contaienr-fluid d-flex justify-content-end pb-5">
+<div class="contaienr-fluid d-flex justify-content-end">
     <div class="card w-75">
         <div class="card-body bg-point">
             <div class="contaienr p-5">
                 <h5 class="text-title text-capitalize pb-3 text-second">{{$store->name}}</h5>
                 <p class="text-text text-truncate text-second">紹介：{{$store->description}}</p>
                 {{-- <p class="text-text text-truncate">値段：{{$store->value}}</p> --}}
-                <div class="container d-flex justify-content-around pt-5">                    
-                    <a href="{{$store->adress}}" class="w-25 h-25 btn bg-second">マップで確認する</a>
+                <div class="container d-flex justify-content-around pt-5"> 
 
+                    <a class="w-25 h-25 btn bg-second cursor" data-toggle="collapse" href="#map" role="button" aria-expanded="false" aria-controls="map">マップで確認する</a>
+                    
                     @if (Auth::check() && $userItemNum != 0)
                         <form class="w-25" method="POST" action="{{ route('applications.store',['user' => Auth::id()])}}">
                             @csrf                            
@@ -104,13 +105,25 @@
                                 </button>
                             </div>
                         </div>
-                    @endif                    
+                    @endif
+                    
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endif
+
+{{-- masp --}}
+<div id="map" class="collapse">
+    <div class="container-fluid d-flex justify-content-end p-0">
+        <div class="w-75">
+            @if (isset($store->adress))
+                <iframe id='map' src='https://www.google.com/maps/embed/v1/place?key={{ config("services.google-map.apikey") }}&q={{$store->adress}}' width='100%' height='700' frameborder='0'></iframe>
+            @endif
+        </div>
+    </div>
+</div>
 
 {{-- relationship --}}
 <div class="container-fluid text-center py-5">
@@ -121,42 +134,49 @@
     @endif
 </div>
 
-<div class="container-fluid row">
-    @if(isset($applications))
-        @foreach($applications as $application)
-            @if(isset($item))
-                
-                <div role="card" class="col-3 p-0 item-card m-5">
-                    <a href="{{ route('welcome.showItem', $application->store) }}">                                                        
-                        @isset($application->store->image_path)
-                            <img class="img img-responsive" alt="" height="200" src="{{ $application->store->image_path }}">
-                        @else
-                            <img class="img img-responsive" alt="" height="200" src="{{ asset('/img/1.jpg') }}">                                        
-                        @endisset   
-                        <div class="item-card-name">{{$application->store->title}}</div>
-                        <div class="item-card-username">ユーザー名：{{$application->store->storeOwner->name}}</div>
-                        {{-- <div class="item-card-icons"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin"></i></a></div> --}}
-                    </a>
-                </div>
+<div class="container-fluid d-flex justify-content-center py-5">
+    <div class="row item-card-container">
+        @if(isset($applications))
+            @foreach($applications as $application)
+                @if(isset($item))
 
+                    <div role="card" class="p-0 item-card">
+                        <a href="{{ route('welcome.showItem', $application->store) }}">                                                        
+                            @isset($application->store->image_path)
+                                <img class="img img-responsive" alt="" height="200" src="{{ $application->store->image_path }}">
+                            @else
+                                <img class="img img-responsive" alt="" height="200" src="{{ asset('/img/1.jpg') }}">                                        
+                            @endisset   
+                            <div class="item-card-name">{{$application->store->title}}</div>
+                            <div class="item-card-username">ユーザー名：{{$application->store->storeOwner->name}}</div>
+                            {{-- <div class="item-card-icons"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin"></i></a></div> --}}
+                        </a>
+                    </div>
+                    
                 @elseif(isset($store))
-                
-                <div role="card" class="col-3 p-0 item-card m-5">
-                    <a href="{{ route('welcome.showItem', $application->item) }}">                                                        
-                        @isset($application->item->image_path)
-                            <img class="img img-responsive" alt="" height="200" src="{{ $application->item->image_path }}">
-                        @else
-                            <img class="img img-responsive" alt="" height="200" src="{{ asset('/img/1.jpg') }}">                                        
-                        @endisset   
-                        <div class="item-card-name">{{$application->item->title}}</div>
-                        <div class="item-card-username">ユーザー名：{{$application->item->user->name}}</div>
-                        {{-- <div class="item-card-icons"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin"></i></a></div> --}}
-                    </a>
-                </div>
 
-            @endif
-        @endforeach
-    @endif
+                    <div role="card" class="p-0 item-card">
+                        <a href="{{ route('welcome.showItem', $application->item) }}">                                                        
+                            @isset($application->item->image_path)
+                                <img class="img img-responsive" alt="" height="200" src="{{ $application->item->image_path }}">
+                            @else
+                                <img class="img img-responsive" alt="" height="200" src="{{ asset('/img/1.jpg') }}">                                        
+                            @endisset   
+                            <div class="item-card-name">{{$application->item->title}}</div>
+                            <div class="item-card-username">ユーザー名：{{$application->item->user->name}}</div>
+                            {{-- <div class="item-card-icons"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin"></i></a></div> --}}
+                        </a>
+                    </div>
+
+                @endif
+            @endforeach
+        @endif
+    </div>
 </div>
 
+@endsection
+
+@section('js')
+    <script src="{{ mix('/js/map.js') }}"></script>
+    {{-- <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=AIzaSyCC05dInZBrIvVs5I4iAzTdGOqT2TExrEY&callback=initMap" async defer></script> --}}
 @endsection
