@@ -77,12 +77,12 @@
                 <div class="tab-pane fade show active" id="items" role="tabpanel" aria-labelledby="nav-home-tab">
                     <div class="container-fluid d-flex flex-wrap justify-content-center">
                         @foreach ($items as $item)
-                            <div role="card" class="col-3 p-0 item-card m-3">
+                            <div role="card" class="col-3 p-0 item-card">
                                 <a href="{{ route('items.show', ['user' => Auth::id(), 'item' => $item]) }}">                                    
                                     @isset($item->image_path)
-                                        <img class="img img-responsive" alt="" height="155" src="{{ $item->image_path }}">
+                                        <img class="img img-responsive" alt="" src="{{ $item->image_path }}">
                                     @else
-                                        <img class="img img-responsive" alt="" height="155" src="{{ asset('/img/1.jpg') }}">                                        
+                                        <img class="img img-responsive" alt="" src="{{ asset('/img/1.jpg') }}">                                        
                                     @endisset                                                                        
                                     <div class="item-card-name">{{$item->title}}</div>
                                     <div class="item-card-username">ユーザー名：{{$item->user->name}}</div>

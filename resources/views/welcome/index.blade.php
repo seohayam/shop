@@ -2,9 +2,9 @@
 
 @section('content')
 
-<div id="top">
+{{-- <div id="top">
     <img src="img/top.png" alt="">
-</div>
+</div> --}}
 
 {{-- 説明・誘導 --}}
 <div id="explain">
@@ -52,45 +52,54 @@
 </div>
 
 {{-- カード --}}
-<div id="item" class="container-fluid">
+<div id="item" class="container-fluid p-0 py-5">
 
     <div class="tab-content" id="nav-tabContent">
+
         <div class="tab-pane fade show active" id="items" role="tabpanel" aria-labelledby="nav-home-tab">
-            <div class="w-100 d-flex flex-wrap">
-                @foreach ($items as $item)
-                    <div role="card" class="col-3 p-0 item-card m-5">
-                        <a href="{{ route('welcome.showItem', $item) }}">                                                        
-                             @isset($item->image_path)
-                                <img class="img img-responsive" alt="" height="200" src="{{ $item->image_path }}">
-                            @else
-                                <img class="img img-responsive" alt="" height="200" src="{{ asset('/img/1.jpg') }}">                                        
-                            @endisset   
-                            <div class="item-card-name">{{$item->title}}</div>
-                            <div class="item-card-username">ユーザー名：{{$item->user->name}}</div>
-                            {{-- <div class="item-card-icons"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin"></i></a></div> --}}
-                        </a>
-                    </div>
-                @endforeach
+
+            <div class="container-fluid d-flex justify-content-center">
+                <div class="item-card-container d-flex row">
+                    @foreach ($items as $item)
+                        <div role="card" class="p-0 item-card">
+                            <a href="{{ route('welcome.showItem', $item) }}">                                                        
+                                @isset($item->image_path)
+                                    <img class="img img-responsive" alt="" height="200" src="{{ $item->image_path }}">
+                                @else
+                                    <img class="img img-responsive" alt="" height="200" src="{{ asset('/img/1.jpg') }}">                                        
+                                @endisset   
+                                <div class="item-card-name">{{$item->title}}</div>
+                                <div class="item-card-username">ユーザー名：{{$item->user->name}}</div>
+                                {{-- <div class="item-card-icons"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin"></i></a></div> --}}
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
             </div>
+
         </div>
 
         <div class="tab-pane fade" id="stores" role="tabpanel" aria-labelledby="nav-profile-tab">
-            <div class="w-100 d-flex flex-wrap">
-                @foreach ($stores as $store)
-                    <div role="card" class="col-3 p-0 item-card m-5">
-                        <a href="{{ route('welcome.showStore', $store) }}">
-                                @isset($store->image_path)
-                                <img class="img img-responsive" alt="" height="200" src="{{ $store->image_path }}">
-                            @else
-                                <img class="img img-responsive" alt="" height="200" src="{{ asset('/img/1.jpg') }}">                                        
-                            @endisset
-                            <div class="item-card-name">{{$store->name}}</div>
-                            <div class="item-card-username">ユーザー名：{{$store->storeOwner->name}}</div>
-                            {{-- <div class="item-card-icons"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin"></i></a></div> --}}
-                        </a>
-                    </div>
-                @endforeach
+            
+            <div class="container-fluid d-flex justify-content-center">
+                <div class="item-card-container d-flex row">
+                    @foreach ($stores as $store)
+                        <div role="card" class="p-0 item-card">
+                                <a href="{{ route('welcome.showStore', $store) }}">
+                                    @isset($store->image_path)
+                                    <img class="img img-responsive" alt="" height="200" src="{{ $store->image_path }}">
+                                @else
+                                    <img class="img img-responsive" alt="" height="200" src="{{ asset('/img/1.jpg') }}">                                        
+                                @endisset
+                                <div class="item-card-name">{{$store->name}}</div>
+                                <div class="item-card-username">ユーザー名：{{$store->storeOwner->name}}</div>
+                                {{-- <div class="item-card-icons"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin"></i></a></div> --}}
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
             </div>
+
         </div>
 
     </div>

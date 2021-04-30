@@ -16,7 +16,7 @@ class StoreTableSeeder extends Seeder
         DB::table('stores')->insert([
             [                             
                 'name' => "カフェカフェダ",
-                'adress' => "abcd-1-391-10-13231",
+                'adress' => "千葉県浦安市舞浜１−１３",
                 'description' => "とても素晴らしい外観とお茶が売りのお店になっておりまする。",
                 'available' => "10",
                 'store_url' => "nothing",    

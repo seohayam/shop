@@ -2,6 +2,7 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/js/comment.js": "/js/comment.js",
+    "/js/map.js": "/js/map.js",
     "/js/scroll.js": "/js/scroll.js",
     "/js/toast.js": "/js/toast.js"
 }

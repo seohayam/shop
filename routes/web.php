@@ -21,9 +21,11 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CommentController;
 
-Route::get('/', 'WelcomeController@index')->name('welcome.index');
-Route::get('/show/items/{item}', 'WelcomeController@showItem')->name('welcome.showItem');
-Route::get('/show/stores/{store}', 'WelcomeController@showStore')->name('welcome.showStore');
+Route::get('/', 'HomeController@index')->name('home.index');
+
+Route::get('/welcome', 'WelcomeController@index')->name('welcome.index');
+Route::get('/welcome/show/items/{item}', 'WelcomeController@showItem')->name('welcome.showItem');
+Route::get('/welcome/show/stores/{store}', 'WelcomeController@showStore')->name('welcome.showStore');
 
 Route::get('/comments', 'CommentController@index')->name('comments.index');
 Route::post('/comments/store', 'CommentController@store')->name('comments.store');
@@ -32,7 +34,7 @@ Route::get('/applications/{application}/show/result/ajax', 'CommentController@ge
 
 Route::get('/applications', 'applicationController@index')->name('applications.index');
 Route::get('/applications/{application}/show', 'applicationController@show')->name('applications.show');
-Route::post('/applications', 'applicationController@store')->name('applications.store');
+Route::post('/applications/store', 'applicationController@store')->name('applications.store');
 Route::post('/applications/update', 'applicationController@update')->name('applications.update');
 
 
@@ -63,7 +65,7 @@ Route::prefix('store_owners')->group(function(){
 
     Route::post('/logout','Auth\LoginController@logout')->name('logout');
     Route::resource('{store_owner}/stores', 'StoreController');    
-    Route::get('/home', 'HomeController@storeOwnerIndex')->name('store_owners.home');
+    Route::get('/home', 'HomeController@storeOwnerIndex')->name('store_owner.home');
 });
 
 // Route::get('/home', 'HomeController@index')->name('home');
