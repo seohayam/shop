@@ -7,6 +7,7 @@
 <div class="container-fluid p-0">
     <div class="alert alert-warning alert-dismissible fade show w-100 m-0" role="alert">
         {{$errors->first()}}
+        <a class="btn bg-second" href="{{ route('applications.show', ['application' => session('id')] ) }}">チャットへ</a>      
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
         </button>

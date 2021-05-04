@@ -1,76 +1,22 @@
-{{-- 素材コンテント --}}
-{{-- ===1=== --}}
-{{-- <div class="container-fluid row py-5">
-    <div class="col-6 p-0">
-        <div class="text-center">
-            <h5 class="text-title">1.First</h5>
-            <img class="my-5" src="img/user/search.svg" height="200px" alt="">
-        </div>
-    </div>
-    <div class="col-6 flex-column d-flex justify-content-center align-items-center">
-        <div class="w-75">
-            <h5 class="text-title">欲しい物を見つけよう！</h5>
-            <p class="text-subTitle">
-                普段はネットショップでしか売られていない商品がお店に置いてあり、実際にとって試せる！欲しい商品を見つけて見に行ってみよう！
-            </p>
-        </div>
-    </div>
-</div> --}}
-{{-- ===2=== --}}
-{{-- <div class="container-fluid row py-5 bg-second">
-    <div class="col-6 flex-column d-flex justify-content-center align-items-center">
-        <div class="w-75">
-            <h5 class="text-title">お店に行こう！</h5>
-            <p class="text-subTitle">
-                欲しいものが見つかったらお店に行って商品を実際にみよう！
-            </p>
-        </div>
-    </div>
-    <div class="col-6 p-0">
-        <div class="text-center">
-            <h5 class="text-title">2.Second</h5>
-            <img class="my-5" src="img/user/go.svg" height="200px" alt="">
-        </div>
-    </div>
-</div> --}}
-{{-- ===3=== --}}
-{{-- <div class="container-fluid row py-5">
-    <div class="col-6 p-0">
-        <div class="text-center">
-            <h5 class="text-title">3.Third</h5>
-            <img class="my-5" src="img/user/buy.svg" height="200px" alt="">
-        </div>
-    </div>
-    <div class="col-6 flex-column d-flex justify-content-center align-items-center">
-        <div class="w-75">
-            <h5 class="text-title">買うかどうか迷おう！</h5>
-            <p class="text-subTitle">
-                気に入ったら商品のネットショップへ行き買うかどうかを迷おう
-            </p>
-        </div>
-    </div>
-</div> --}}
-
-{{-- img
-
-<img src="img/feature/shop.svg" height="200px" alt="">
- --}}
-
-{{-- タブできり変えよう！
-
-data-toggle="tab"
-id=
-href=
-~~~~~~~~~
-id
-aria-labelledby
-class="tab-pane fade" or class="tab-pane fade show active" --}}
-
+{{-- smooth scroll = .smooth --}}
 @extends('layouts.app')
 
 @section('content')
 
-<div id="home_top"></div>
+<div id="home_top" class="container-fluid d-flex justify-content-start p-0">
+    <div id="home_container">
+        <h1 class="m-0 pb-5">CoShop</h1>
+        <div class="row col-4 pb-5">
+            <div class="card shadow-none">
+                <div class="card-body bg-second p-0">
+                    <h5 class="card-text">ネットショップの商品を実際の店舗に置いてもらう事を可能にします。買う人が商品を手にとって確かめてもらいながらもネットショップで販売する事ができます。リアルとインターネットをつなげたサービスです。</h5>
+                </div>
+            </div>
+        </div>
+        <a id="home_btn" href="#home_content" class="smooth btn bg-second border-dark px-5 py-2">Let's Try</a>
+    </div>
+    <img class="" src="img/TOPIMG.png" width="100%" alt="">
+</div>
 
 <div id="home_content" class="contaienr-fluid">
     {{-- ナビ --}}
@@ -301,9 +247,6 @@ class="tab-pane fade" or class="tab-pane fade show active" --}}
         </div>
     </div>
 </div>
-
-
-
 
 <div id="home_fature" class="container-fluid text-center py-5 shadow-lg bg-white">
     <h1>特徴</h1>

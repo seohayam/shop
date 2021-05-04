@@ -50,10 +50,7 @@ class CommentController extends Controller
             $comment->from_user_id = $request->user_id;
             $comment->to_store_owner_id =  $request->store_owner_id;
         }
-        // $comment->from_user_id = $request->from_user_id;
-        // $comment->from_store_owner_id = $request->from_store_owner_id;
-        // $comment->to_user_id = $request->to_user_id;
-        // $comment->to_store_owner_id =  $request->to_store_owner_id;
+        
         $comment->updated_at = new DateTime();
 
         // dd($comment);

@@ -13,13 +13,12 @@ use Illuminate\Support\Facades\Auth;
 class applicationController extends Controller
 {
 
-    public function __construct(){   
+    public function __construct(Auth $auth){
         
-        // $this->middleware('auth');
-
+        $this->middleware('auth:user,store_owner');
     }
 
-    public function index(Request $request){           
+    public function index(Request $request){         
 
         $query = $request->query('application_id');
         $query['application_id'] = 1;
@@ -69,7 +68,7 @@ class applicationController extends Controller
 
         if($application != null)
             {
-                return back()->withInput()->withErrors(['既に応募積みです！']);
+                return back()->with('id',$application->id)->withErrors(['既に応募積みです！']);
             }
 
         // ===応募機能完了===        

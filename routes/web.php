@@ -24,8 +24,9 @@ use App\Http\Controllers\CommentController;
 Route::get('/', 'HomeController@index')->name('home.index');
 
 Route::get('/welcome', 'WelcomeController@index')->name('welcome.index');
-Route::get('/welcome/show/items/{item}', 'WelcomeController@showItem')->name('welcome.showItem');
-Route::get('/welcome/show/stores/{store}', 'WelcomeController@showStore')->name('welcome.showStore');
+// アーキテクチャ検討
+Route::get('/items/show/{item}', 'WelcomeController@showItem')->name('welcome.showItem');
+Route::get('/stores/show/{store}', 'WelcomeController@showStore')->name('welcome.showStore');
 
 Route::get('/comments', 'CommentController@index')->name('comments.index');
 Route::post('/comments/store', 'CommentController@store')->name('comments.store');

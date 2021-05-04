@@ -1,79 +1,88 @@
-{{-- itemの場合 --}}
+<div class="col-4 app-card p-0 border">
 
-<div class="card border-0 rounded-0" style="width: 18rem;">
-    {{-- <img src="{{$application->item->image_path}}" class="card-img-top" alt="..."> --}}
-    @isset($item->image_path)
-        <img class="img img-responsive" alt="" height="200" src="{{ $item->image_path }}">
-    @else
-        <img class="img img-responsive" alt="" height="200" src="{{ asset('/img/1.jpg') }}">                                        
-    @endisset   
-    <div class="p-3">
-      <p class="text-secondary">{{$application->created_at->format('Y m/d')}}</p>
-      <h5 class="">
-        @if(isset($application->fromUser))
-            ユーザー：{{$application->fromUser->name}}
-        @endif
-        
-        @if(isset($application->fromStoreOwner))
-            ストアオーナー：{{$application->fromStoreOwner->name}}
-        @endif  
-      </h5>
+    @if(Auth::check())
+    <a class="text-dark text-decoration-none" href="{{ route('welcome.showStore', ['store' => $application->store->id]) }}">
+    @elseif(Auth::guard('store_owner')->check())
+    <a class="text-dark text-decoration-none" href="{{ route('welcome.showItem', ['item' => $application->item->id]) }}">
+    @endif
 
-      <div class="col-12">
-        <div class="row d-flex justify-content-between align-items-center">
-            <div>
-                <p class="card-text text-secondary">{{$application->item->title}}</p>
+        <div class="app-card-chat-container m-0 p-0 row bg-main">
+
+            {{-- アイコン --}}
+            <div class="col-2 bg-main d-flex align-items-center">
+                @if(isset($application->fromUser) && Auth::check())
+                    <i class="fas fa-store-alt fa-2x"></i>
+                @elseif(isset($application->fromUser) && Auth::guard('store_owner')->check())
+                    <i class="fas fa-user-circle fa-2x"></i>
+                @endif
+
+                @if(isset($application->fromStoreOwner) && Auth::check())
+                    <i class="fas fa-store-alt fa-2x"></i>
+                @elseif(isset($application->fromStoreOwner) && Auth::guard('store_owner')->check())
+                    <i class="fas fa-user-circle fa-2x"></i>
+                @endif
             </div>
-            <div>
-                <a href="#"><i class="fas fa-2x fa-arrow-circle-right"></i></a>
+
+            {{-- 名前 and title --}}
+            <div class="col-5 d-flex align-items-start justify-content-center flex-column bg-main">
+
+                <h5 class="m-0 text-truncate">
+                    @if(isset($application->fromUser) && Auth::check())
+                        {{$application->toStoreOwner->name}}
+                    @elseif(isset($application->fromUser) && Auth::guard('store_owner')->check())
+                        {{$application->fromUser->name}}
+                    @endif
+
+                    @if(isset($application->fromStoreOwner) && Auth::check())
+                        {{$application->fromStoreOwner->name}}
+                    @elseif(isset($application->fromStoreOwner) && Auth::guard('store_owner')->check())
+                        {{$application->toUser->name}}
+                    @endif
+                </h5>
+                <p class="m-0 text-subText">ー {{$application->item->title}} ー</p>
             </div>
-        </div>
-      </div>
 
-    </div>
-</div>
-
-    <div class="card">
-        <div class="card-body">            
-            {{-- @if(isset($application->item))             --}}
-                <h5 class="card-title">{{$application->item->title}}</h5>
-                <a class="btn bg-main" href="{{ route('welcome.showItem', ['item' => $application->item_id]) }}">            
-                    詳細
-                </a>       
-            {{-- @if(isset($application->store)) --}}
-                <h5 class="card-title">{{$application->store->name}}</h5>  
-                <a class="btn bg-main" href="{{ route('welcome.showStore', ['store' => $application->store_id]) }}">            
-                    詳細
-                </a>       
-                <a href="{{ route('applications.show', ['application' => $application]) }}" class="btn bg-main">
-                    チャットする
-                </a> 
-            {{-- @endif --}}
-
+             {{-- state --}}
+             <div class="col-2 bg-main d-flex justify-content-center align-items-center">
                 @if ($application->applicaiton_status == "onboard")
-                    <p class="bg-main rounded w-50 text-center">state:{{$application->applicaiton_status}}</p>
+                    <i class="far fa-comment-dots fa-2x text-point"></i>
                 @elseif ($application->applicaiton_status == "accept")
-                    <p class="bg-point rounded w-50 text-center">state:{{$application->applicaiton_status}}</p>
+                    <i class="far fa-check-circle fa-2x text-success"></i>
                 @elseif ($application->applicaiton_status == "reject")
-                    <p class="bg-second rounded w-50 text-center">state:{{$application->applicaiton_status}}</p>
-                @endif        
-            
-            <p class="card-text">date:{{$application->created_at}}</p>
-                    
-                    @if(isset($application->fromUser))
-                        <p class="card-text">form:{{$application->fromUser->name}}</p>
-                    @endif
-                    
-                    @if(isset($application->fromStoreOwner))
-                        <p class="card-text">form:{{$application->fromStoreOwner->name}}</p>
-                    @endif     
-            
-                    @if(isset($application->toUser))
-                        <p class="card-text">to:{{$application->toUser->name}}</p>
-                    @endif
-            
-                    @if(isset($application->toStoreOwner))
-                        <p class="card-text">to:{{$application->toStoreOwner->name}}</p>
-                    @endif
+                    <i class="far fa-times-circle fa-2x text-danger"></i>
+                @endif
+            </div>
+
+            {{-- date --}}
+            <div class="col-3 bg-main d-flex justify-content-center align-items-center">
+                <p class="text-subText m-0">{{$application->created_at->format('m/d')}}</p>
+            </div>
+
         </div>
-    </div>
+
+        <div class="app-card-img bg-light">
+
+            @if(Auth::guard('store_owner')->check())
+                @if(isset($application->item->image_path))
+                    <img class="" alt="" height="200" src="{{ $application->item->image_path }}">
+                @else
+                    <div style="height: 200px" class="d-flex justify-content-center align-items-center">
+                        <i class="fa fa-images fa-5x"></i>
+                    </div>
+                @endif
+            @endif
+
+            @if(Auth::check())
+                @if(isset($application->store->image_path))
+                    <img class="" alt="" height="200" src="{{ $application->store->image_path }}">
+                @else
+                    <div style="height: 200px" class="d-flex justify-content-center align-items-center">
+                        <i class="fa fa-images fa-5x"></i>
+                    </div>
+                @endif
+            @endif
+        </div>
+
+    </a>
+
+</div>

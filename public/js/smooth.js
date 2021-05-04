@@ -81,32 +81,41 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/scroll.js":
+/***/ "./resources/js/smooth.js":
 /*!********************************!*\
-  !*** ./resources/js/scroll.js ***!
+  !*** ./resources/js/smooth.js ***!
   \********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
 $(function () {
-  $(".overview").scrollTop($("#auto_scroll")[0].scrollHeight);
+  $(".smooth").click(function () {
+    var speed = 500;
+    var href = $(this).attr("href");
+    var target = $(href == "#" || href == "" ? "html" : href);
+    var position = target.offset().top;
+    $("html, body").animate({
+      scrollTop: position
+    }, speed, "swing");
+    return false;
+  });
 });
 
 /***/ }),
 
-/***/ 3:
+/***/ 5:
 /*!***********************************!*\
-  !*** multi ./resources/js/scroll ***!
+  !*** multi ./resources/js/smooth ***!
   \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/haruto/dev/CoShop/resources/js/scroll */"./resources/js/scroll.js");
+module.exports = __webpack_require__(/*! /Users/haruto/dev/CoShop/resources/js/smooth */"./resources/js/smooth.js");
 
 
 /***/ })

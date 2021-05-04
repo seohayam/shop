@@ -17,4 +17,5 @@ mix
   .js("resources/js/comment", "public/js")
   .js("resources/js/scroll", "public/js")
   .js("resources/js/toast", "public/js")
+  .js("resources/js/smooth", "public/js")
   .sass("resources/sass/app.scss", "public/css");

@@ -9,9 +9,9 @@
 {{-- 説明・誘導 --}}
 <div id="explain">
     
-    <div class="container-fluid border-bottom bg-second py-5 pl-5">
+    <div class="bg-second d-flex justify-content-center pt-5">
 
-        <div class="contaienr">            
+        <div class="contaienr-fluid text-center">            
             @if(Auth::guard('store_owner')->check())
                 <h1>商品を探そう</h1>
                 <p>新しい商品をお店に体幹しに行こう！</p>
@@ -20,18 +20,11 @@
                 <p>新しいお店を探して自分の商品を広めよう</p>
             @endif
 
-            <div class="row d-flex jsutify-content-left">
-                <div class="text-center mr-3">
-                    @if(Auth::guard('store_owner')->check())
-                        <a class="btn bg-main" href="{{ route('stores.create', ['store_owner' => Auth::guard('store_owner')->user()->id]) }}">+　店舗情報を登録</a>
-                    @elseif(Auth::check())
-                        <a class="btn bg-main" href="{{ route('items.create', ['user' => Auth::user()->id]) }}">+　商品を登録</a>                    
-                    @endif
-                </div>        
-                <div class="text-center">
-                    <a class="btn bg-point" href="">手順を確認する</a>
-                </div>                
-            </div>                       
+            @if(Auth::guard('store_owner')->check())
+                <a class="btn bg-main" href="{{ route('stores.create', ['store_owner' => Auth::guard('store_owner')->user()->id]) }}">+　店舗情報を登録</a>
+            @elseif(Auth::check())
+                <a class="btn bg-main" href="{{ route('items.create', ['user' => Auth::user()->id]) }}">+　商品を登録</a>                    
+            @endif                       
         </div>
 
 
@@ -44,8 +37,13 @@
 
     <nav>
         <div class="nav nav-tabs d-flex justify-content-around" id="nav-tab" role="tablist">
-            <a class="nav-link active rounded rounded-circle bg-second p-5" id="nav-home-tab" data-toggle="tab" href="#items" role="tab" aria-controls="nav-home" aria-selected="true"><i class="fas fa-shopping-cart fa-3x"></i></a>
-            <a class=" nav-link rounded rounded-circle bg-second p-5" id="nav-profile-tab" data-toggle="tab" href="#stores" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="fas fa-store-alt fa-3x"></i></a>      
+            @if(Auth::check())
+                <a class="nav-link rounded rounded-circle bg-second p-5" id="nav-home-tab" data-toggle="tab" href="#items" role="tab" aria-controls="nav-home" aria-selected="true"><i class="fas fa-shopping-cart fa-3x"></i></a>
+                <a class=" nav-link active rounded rounded-circle bg-second p-5" id="nav-profile-tab" data-toggle="tab" href="#stores" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="fas fa-store-alt fa-3x"></i></a>      
+            @elseif(Auth::guard('store_owner')->check())
+                <a class="nav-link active rounded rounded-circle bg-second p-5" id="nav-home-tab" data-toggle="tab" href="#items" role="tab" aria-controls="nav-home" aria-selected="true"><i class="fas fa-shopping-cart fa-3x"></i></a>
+                <a class=" nav-link rounded rounded-circle bg-second p-5" id="nav-profile-tab" data-toggle="tab" href="#stores" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="fas fa-store-alt fa-3x"></i></a>      
+            @endif
         </div>
     </nav>
 
@@ -55,8 +53,12 @@
 <div id="item" class="container-fluid p-0 py-5">
 
     <div class="tab-content" id="nav-tabContent">
-
-        <div class="tab-pane fade show active" id="items" role="tabpanel" aria-labelledby="nav-home-tab">
+        
+        @if(Auth::check())
+            <div class="tab-pane fade" id="items" role="tabpanel" aria-labelledby="nav-home-tab">
+        @elseif(Auth::guard('store_owner')->check())
+            <div class="tab-pane fade show active" id="items" role="tabpanel" aria-labelledby="nav-home-tab">
+        @endif
 
             <div class="container-fluid d-flex justify-content-center">
                 <div class="item-card-container d-flex row">
@@ -79,7 +81,11 @@
 
         </div>
 
-        <div class="tab-pane fade" id="stores" role="tabpanel" aria-labelledby="nav-profile-tab">
+        @if(Auth::check())
+            <div class="tab-pane fade show active" id="stores" role="tabpanel" aria-labelledby="nav-profile-tab">
+        @elseif(Auth::guard('store_owner')->check())
+            <div class="tab-pane fade" id="stores" role="tabpanel" aria-labelledby="nav-profile-tab">
+        @endif
             
             <div class="container-fluid d-flex justify-content-center">
                 <div class="item-card-container d-flex row">

@@ -17445,7 +17445,7 @@ get_data();
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/haruto/dev/expo/resources/js/comment */"./resources/js/comment.js");
+module.exports = __webpack_require__(/*! /Users/haruto/dev/CoShop/resources/js/comment */"./resources/js/comment.js");
 
 
 /***/ })
