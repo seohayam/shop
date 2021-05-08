@@ -33,13 +33,16 @@
             <p class="m-0 text-subText">ー {{$application->item->title}} ー</p>
         </div>
         {{-- state --}}
-        <div class="col-2 bg-main d-flex justify-content-center align-items-center">
+        <div class="col-2 bg-main d-flex justify-content-center align-items-center flex-column p-0">
             @if ($application->applicaiton_status == "onboard")
                 <i class="far fa-comment-dots fa-2x text-point"></i>
+                <p class="text-subText m-0 mt-1">ー 状況 ー</p>
             @elseif ($application->applicaiton_status == "accept")
                 <i class="far fa-check-circle fa-2x text-success"></i>
+                <p class="text-subText m-0 mt-1">ー 状況 ー</p>
             @elseif ($application->applicaiton_status == "reject")
                 <i class="far fa-times-circle fa-2x text-danger"></i>
+                <p class="text-subText m-0 mt-1">ー 状況 ー</p>
             @endif
         </div>
 

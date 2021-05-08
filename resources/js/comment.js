@@ -26,6 +26,27 @@ const get_data = () => {
         let flex = "start";
         let time = data.comments[i].updated_at;
 
+        // var y = time.getFullYear();
+        // var m = ("00" + (time.getMonth() + 1)).slice(-2);
+        // var d = ("00" + time.getDate()).slice(-2);
+
+        let timeSplit = time.split(" ");
+        let yearData = timeSplit[0];
+        let tiemData = timeSplit[1];
+
+        yearData = yearData.split("-");
+        tiemData = tiemData.split(":");
+
+        let year = yearData[0];
+        let mouth = yearData[1];
+        let day = yearData[2];
+
+        let hour = tiemData[0];
+        let minutes = tiemData[1];
+        let econds = tiemData[2];
+
+        console.log(yearData, tiemData);
+
         if (!isEmpty(fromUser)) {
           name = fromUser.name;
           logo = `<i class="far fa-3x fa-user-circle"></i>`;
@@ -48,29 +69,32 @@ const get_data = () => {
           flex = "end";
         }
 
-        // if (!isEmpty(time)) {
-        //   time = time;
-        // } else {
-        //   time = data.comments[i].created_at;
-        // }
-
         var html = `                                        
-                    <div class="media my-3 d-flex justify-content-${flex}">                    
-                      <div class="media-body comment-body col-5 bg-main rounded row d-flex justify-content-center py-3 mx-5">                        
+                    <div class="media my-3 d-flex justify-content-${flex}">          
+                    
+                      <div class="media-body comment-body col-4">
+                      
+                        <div class="row d-flex justify-content-between align-items-center">
 
-                        <div class="col-3 d-flex justify-content-center align-items-center">
-                          ${logo}
+                          <div class="col-2 d-flex justify-content-center align-items-center flex-column p-0">
+                            ${logo}
+                            <span class="comment-body-user">${name}</span>
+                          </div>
+
+                          <div class="col-10 row bg-main rounded py-3">
+                            <span class="col-10 comment-body-content text-subTitle">
+                              ${data.comments[i].content}
+                            </span>
+                          </div>
+                          
                         </div>
 
-                        <div class="col-7 d-flex flex-column">                    
-                          <span class="comment-body-user">${name}</span>
-                          <span class="comment-body-time">${time}</span>                        
-                          <span class="comment-body-content">
-                            ${data.comments[i].content}
-                          </span>
+                        <div class="d-flex justify-content-end">                                              
+                          <span class="comment-body-time">${hour}時 ${minutes}分</span>
                         </div>
-
+                      
                       </div>
+                    
                     </div>
                 `;
 

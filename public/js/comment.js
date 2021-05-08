@@ -17394,7 +17394,22 @@ var get_data = function get_data() {
         var name = "";
         var logo = "";
         var flex = "start";
-        var time = data.comments[i].updated_at;
+        var time = data.comments[i].updated_at; // var y = time.getFullYear();
+        // var m = ("00" + (time.getMonth() + 1)).slice(-2);
+        // var d = ("00" + time.getDate()).slice(-2);
+
+        var timeSplit = time.split(" ");
+        var yearData = timeSplit[0];
+        var tiemData = timeSplit[1];
+        yearData = yearData.split("-");
+        tiemData = tiemData.split(":");
+        var year = yearData[0];
+        var mouth = yearData[1];
+        var day = yearData[2];
+        var hour = tiemData[0];
+        var minutes = tiemData[1];
+        var econds = tiemData[2];
+        console.log(yearData, tiemData);
 
         if (!isEmpty(fromUser)) {
           name = fromUser.name;
@@ -17416,14 +17431,9 @@ var get_data = function get_data() {
           name = fromStoreOwner.name;
           logo = "<i class=\"fas fa-3x fa-store\"></i>";
           flex = "end";
-        } // if (!isEmpty(time)) {
-        //   time = time;
-        // } else {
-        //   time = data.comments[i].created_at;
-        // }
+        }
 
-
-        var html = "                                        \n                    <div class=\"media my-3 d-flex justify-content-".concat(flex, "\">                    \n                      <div class=\"media-body comment-body col-5 bg-main rounded row d-flex justify-content-center py-3 mx-5\">                        \n\n                        <div class=\"col-3 d-flex justify-content-center align-items-center\">\n                          ").concat(logo, "\n                        </div>\n\n                        <div class=\"col-7 d-flex flex-column\">                    \n                          <span class=\"comment-body-user\">").concat(name, "</span>\n                          <span class=\"comment-body-time\">").concat(time, "</span>                        \n                          <span class=\"comment-body-content\">\n                            ").concat(data.comments[i].content, "\n                          </span>\n                        </div>\n\n                      </div>\n                    </div>\n                ");
+        var html = "                                        \n                    <div class=\"media my-3 d-flex justify-content-".concat(flex, "\">          \n                    \n                      <div class=\"media-body comment-body col-4\">\n                      \n                        <div class=\"row d-flex justify-content-between align-items-center\">\n\n                          <div class=\"col-2 d-flex justify-content-center align-items-center flex-column p-0\">\n                            ").concat(logo, "\n                            <span class=\"comment-body-user\">").concat(name, "</span>\n                          </div>\n\n                          <div class=\"col-10 row bg-main rounded py-3\">\n                            <span class=\"col-10 comment-body-content text-subTitle\">\n                              ").concat(data.comments[i].content, "\n                            </span>\n                          </div>\n                          \n                        </div>\n\n                        <div class=\"d-flex justify-content-end\">                                              \n                          <span class=\"comment-body-time\">").concat(hour, "\u6642 ").concat(minutes, "\u5206</span>\n                        </div>\n                      \n                      </div>\n                    \n                    </div>\n                ");
         $("#comment-data").append(html);
       }
     },
