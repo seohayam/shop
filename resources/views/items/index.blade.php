@@ -16,7 +16,7 @@
 @endif
 
 {{-- プロフィール --}}
-<ul class="nav nav-pills mb-3 d-flex justify-content-around pt-5" id="pills-tab" role="tablist">
+  <ul class="nav nav-pills mb-3 d-flex justify-content-around pt-5" id="pills-tab" role="tablist">
     <li class="nav-item">
       <a class="nav-link active text-point" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">アカウント</a>
     </li>
@@ -26,43 +26,44 @@
     <li class="nav-item">    
         <a class="nav-link text-point" href="{{ route('applications.index') }}">チャット</a>      
     </li>
-    <li class="nav-item text-center">
+    {{-- <li class="nav-item text-center">
         <a class="nav-link text-point" href="{{ route('items.create', ['user' => Auth::id()]) }}"><i class="far fa-2x fa-plus-square"></i></a>
-    </li>
+    </li> --}}
   </ul>
 
   <div class="tab-content" id="pills-tabContent">
     {{-- tab1 --}}
     <div class="tab-pane fade show active py-5" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">     
 
-            <div class="contaienr-fluid d-flex justify-content-md-end pb-5">
-                <div class="mx-auto d-flex align-items-center">
-                    {{-- <img src="" alt=""> --}}
+            <div class="contaienr-fluid d-flex flex-column flex-sm-row align-items-center pb-5">
+                <div class="mx-auto d-flex align-items-center mb-5">
                     <i class="far fa-5x fa-user-circle"></i>
                 </div>
-                <div class="card w-75">
+                <div class="card col-sm-10 p-0">
                     <div class="card-body bg-second">       
-                        <div class="contaienr p-5">
+                        <div class="py-2">
                             <div class="container">                                
                                 <h5 class="text-title text-capitalize pb-3">{{$user->name}}</h5>          
                                 <p class="text-text text-truncate">メール：{{$user->email}}</p> 
                             </div>                           
                             <hr class="bg-point">                            
-                            <div class="container d-flex justify-content-around pt-5">
+                            <div class="container d-flex justify-content-around pt-sm-5">
                                 <div class="contaienr">
-                                    <p>投稿した商品数</p>
+                                    <p>投稿</p>
                                     <p class="text-center">{{$itemMax}}</p>
                                 </div>
                                 <div class="contaienr">
-                                    <p>応募したお店の数</p>
+                                    <p>応募</p>
                                     <p class="text-center">{{$fromUserApplicationNum}}</p>
                                 </div>
                                 <div class="contaienr">
-                                    <p>オファーを受けた数</p>                                    
+                                    <p>オファー</p>                                    
                                     <p class="text-center">{{$fromStoreOwnerApplicationNum}}</p>
                                 </div>
-                                {{-- <a href="{{$item->url}}" class="w-25 btn bg-main">ネットショップへ遷移する</a>    --}}
-                                {{-- <a class="" href="{{ route('items.index', ['user' => Auth::id()] ) }}"><i class="fas fa-2x fa-user-edit"></i></a>                                --}}
+                            </div>
+                            <hr class="bg-point">                            
+                            <div class="text-center">
+                                <a class="btn bg-main" href="{{ route('items.create', ['user' => Auth::id()]) }}">アイテムを追加する</a>
                             </div>
                         </div>
                     </div>
@@ -75,9 +76,9 @@
         <div id="item" class="container-fluid">
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="items" role="tabpanel" aria-labelledby="nav-home-tab">
-                    <div class="container-fluid d-flex flex-wrap justify-content-center">
+                    <div class="container-fluid d-flex flex-column flex-sm-row flex-wrap justify-content-center align-items-center">
                         @foreach ($items as $item)
-                            <div role="card" class="col-3 p-0 item-card">
+                            <div role="card" class="col-sm-3 p-0 item-card">
                                 <a href="{{ route('items.show', ['user' => Auth::id(), 'item' => $item]) }}">                                    
                                     @isset($item->image_path)
                                         <img class="img img-responsive" alt="" src="{{ $item->image_path }}">

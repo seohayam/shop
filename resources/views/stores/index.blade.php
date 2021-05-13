@@ -37,14 +37,14 @@
     {{-- tab1 --}}
     <div class="tab-pane fade show active py-5" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">     
 
-            <div class="contaienr-fluid d-flex justify-content-md-end pb-5">
-                <div class="mx-auto d-flex align-items-center">
+            <div class="contaienr-fluid d-flex flex-column flex-sm-row justify-content-md-end pb-5">
+                <div class="mx-auto d-flex align-items-center mb-5">
                     {{-- <img src="" alt=""> --}}
                     <i class="far fa-5x fa-user-circle"></i>
                 </div>
-                <div class="card w-75">
+                <div class="card col-sm-10 p-0">
                     <div class="card-body bg-second">       
-                        <div class="contaienr p-5">
+                        <div class="p-sm-5">
                             <div class="container">                                
                                 <h5 class="text-title text-capitalize pb-3">{{$store_owner->name}}</h5>          
                                 <p class="text-text text-truncate">メール：{{$store_owner->email}}</p> 
@@ -77,9 +77,9 @@
         <div id="item" class="container-fluid">
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="items" role="tabpanel" aria-labelledby="nav-home-tab">
-                    <div class="container-fluid d-flex flex-wrap justify-content-center">
+                    <div class="container-fluid d-flex flex-column flex-sm-row flex-wrap justify-content-center align-items-center">
                         @foreach ($stores as $store)                        
-                            <div role="card" class="col-3 p-0 item-card m-5">
+                            <div role="card" class="col-sm-3 p-0 item-card m-sm-5">
                                 <a href="{{ route('stores.show', ['store_owner' => Auth::id(), 'store' => $store]) }}">
                                     {{-- <img src="http://envato.jayasankarkr.in/code/profile/assets/img/profile-2.jpg" class="img img-responsive"> --}}
                                     <img class="img img-responsive" alt="" src="{{ asset('/img/1.jpg') }}">

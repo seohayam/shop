@@ -30,22 +30,8 @@
 
 @endif
 
-{{-- <form method="POST" action="{{route('stores.store', ['store_owner' => Auth::id()])}}" enctype="multipart/form-data">
-    @csrf        
-
-    <input name="name" type="text" placeholder="name" value="{{ old('name') }}">
-    <input name="adress" type="text" placeholder="adress" value="{{ old('value') }}">
-    <input name="available" type="text" placeholder="available" value="{{ old('available') }}">
-    <input name="store_url" type="text" placeholder="store_url" value="{{ old('store_url') }}">        
-
-    <textarea name="description" id="" cols="30" rows="10" placeholder="description">{{old('description')}}</textarea>
-    
-    <input type="submit" name="" id="" value="追加">
-</form> --}}
-
-
 <div class="container-fluid py-5 d-flex justify-content-center">
-    <h1>お店を掲載しよう！</h1>
+    <h3 class="text-title">お店を掲載しよう！</h3>
 </div>
 <div class="container-fluid pb-5 d-flex justify-content-center">
     <form class="col-md-6 d-flex flex-column" method="POST" action="{{route('stores.store', ['store_owner' => Auth::id()] )}}" enctype="multipart/form-data">

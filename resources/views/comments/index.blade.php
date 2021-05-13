@@ -1,12 +1,11 @@
- <div class="chat-container mx-auto pt-5 col-10">
+ <div class="chat-container mx-auto p-0 py-3 col-11 col-sm-10">
     <div class="chat-area">
         <div class="card">
-            {{-- <div class="card-header">Comment</div> --}}
-            <div class="card-body chat-card"> 
+            <div class="card-body chat-card p-0"> 
                 <div id="comment-first"></div>                                                 
 
-                <div class="overview" style="overflow:auto;" id="auto_scroll">  
-                    <div style="height: 350px;" id="comment-data">                                        
+                <div class="overview container-fluid" style="overflow:auto;" id="auto_scroll">  
+                    <div style="height: 450px;" id="comment-data">                                        
                     </div>
                 </div>  
 
@@ -69,7 +68,7 @@
 @endif
 
 <div class="comment-container">    
-    <form class="row col-10 mx-auto" method="POST" action="{{ route('comments.store') }}">                        
+    <form class="row col-sm-10 mx-auto" method="POST" action="{{ route('comments.store') }}">                        
         @csrf
         <input name="application" type="hidden" value="{{$application}}">
         <input name="application_id" type="hidden" value="{{$application->id}}">
@@ -92,7 +91,7 @@
 
         <div class="input-group mb-3">
             <textarea style="height: 100px" class="col-10 p-3" name="content" placeholder="command + Enter" class="form-control" placeholder="input massage" aria-label="With textarea" onkeydown="if(event.metaKey&&event.keyCode==13){document.getElementById('submit').click();return false};" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2"></textarea>
-            <button class="btn btn-outline-secondary col-2" id="submit" type="input-group-prepend button"><i class="fas fa-3x fa-paper-plane text-point"></i></button>
+            <button class="btn btn-outline-secondary col-2" id="submit" type="input-group-prepend button"><i class="fas fa-2x fa-sm-3x fa-paper-plane text-point"></i></button>
           </div>
 </form>    
 </div>

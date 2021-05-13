@@ -23,6 +23,7 @@ const get_data = () => {
 
         let name = "";
         let logo = "";
+        let bg = "main";
         let flex = "start";
         let time = data.comments[i].updated_at;
 
@@ -49,30 +50,32 @@ const get_data = () => {
 
         if (!isEmpty(fromUser)) {
           name = fromUser.name;
-          logo = `<i class="far fa-3x fa-user-circle"></i>`;
+          logo = `<i class="far text-title fa-user-circle"></i>`;
         }
 
         if (auth == "user" && !isEmpty(fromUser)) {
           name = fromUser.name;
-          logo = `<i class="far fa-3x fa-user-circle"></i>`;
+          logo = `<i class="far text-title fa-user-circle"></i>`;
           flex = "end";
+          bg = "second";
         }
 
         if (!isEmpty(fromStoreOwner)) {
           name = fromStoreOwner.name;
-          logo = `<i class="fas fa-3x fa-store"></i>`;
+          logo = `<i class="fas text-title fa-store"></i>`;
         }
 
         if (auth == "store_owner" && !isEmpty(fromStoreOwner)) {
           name = fromStoreOwner.name;
-          logo = `<i class="fas fa-3x fa-store"></i>`;
+          logo = `<i class="fas text-title fa-store"></i>`;
           flex = "end";
+          bg = "second";
         }
 
         var html = `                                        
-                    <div class="media my-3 d-flex justify-content-${flex}">          
+                    <div class="media m-3 d-flex justify-content-${flex}">          
                     
-                      <div class="media-body comment-body col-4">
+                      <div class="media-body comment-body col-10 col-sm-4">
                       
                         <div class="row d-flex justify-content-between align-items-center">
 
@@ -81,7 +84,7 @@ const get_data = () => {
                             <span class="comment-body-user">${name}</span>
                           </div>
 
-                          <div class="col-10 row bg-main rounded py-3">
+                          <div class="col-10 row bg-${bg} rounded py-3">
                             <span class="col-10 comment-body-content text-subTitle">
                               ${data.comments[i].content}
                             </span>

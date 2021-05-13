@@ -26,20 +26,8 @@
 
 @endif
 
-{{-- <form method="POST" action="{{route('items.store', ['user' => Auth::id()])}}" enctype="multipart/form-data">
-    @csrf
-    <input name="title" type="text" placeholder="title" value="{{ old('title') }}">
-    <input name="value" type="number" placeholder="value" value="{{ old('value') }}">
-    <input name="item_url" type="text" placeholder="url" value="{{ old('item_url') }}">
-
-    <textarea name="description" id="" cols="30" rows="10" placeholder="description" value="{{old('description')}}"></textarea>
-
-    <input type="submit" name="" id="" value="投稿">
-</form> --}}
-
-
 <div class="container-fluid py-5 d-flex justify-content-center">
-    <h1>新しい商品を投稿しよう！</h1>
+    <h3 class="text-title">新しい商品を投稿しよう！</h3>
 </div>
 <div class="container-fluid pb-5 d-flex justify-content-center">
     <form class="col-md-6 d-flex flex-column" method="POST" action="{{route('items.store', ['user' => Auth::id()] )}}" enctype="multipart/form-data">        
