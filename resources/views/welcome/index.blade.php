@@ -13,10 +13,10 @@
 
         <div class="contaienr-fluid text-center">            
             @if(Auth::guard('store_owner')->check())
-                <h1>商品を探そう</h1>
+                <h3 class="text-title">商品を探そう</h3>
                 <p>新しい商品をお店に体幹しに行こう！</p>
             @else
-                <h1>お店を探そう</h1>
+                <h3 class="text-title">お店を探そう</h3>
                 <p>新しいお店を探して自分の商品を広めよう</p>
             @endif
 
@@ -38,11 +38,11 @@
     <nav>
         <div class="nav nav-tabs d-flex justify-content-around" id="nav-tab" role="tablist">
             @if(Auth::check())
-                <a class="nav-link rounded rounded-circle bg-second p-5" id="nav-home-tab" data-toggle="tab" href="#items" role="tab" aria-controls="nav-home" aria-selected="true"><i class="fas fa-shopping-cart fa-3x"></i></a>
-                <a class=" nav-link active rounded rounded-circle bg-second p-5" id="nav-profile-tab" data-toggle="tab" href="#stores" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="fas fa-store-alt fa-3x"></i></a>      
+                <a class="nav-link rounded rounded-circle bg-second p-3" id="nav-1" data-toggle="tab" href="#items" role="tab" aria-controls="nav-home" aria-selected="true"><i class="fas fa-shopping-cart fa-2x"></i></a>
+                <a class=" nav-link active rounded rounded-circle bg-second p-3" id="nav-profile-tab" data-toggle="tab" href="#stores" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="fas fa-store-alt fa-2x"></i></a>      
             @elseif(Auth::guard('store_owner')->check())
-                <a class="nav-link active rounded rounded-circle bg-second p-5" id="nav-home-tab" data-toggle="tab" href="#items" role="tab" aria-controls="nav-home" aria-selected="true"><i class="fas fa-shopping-cart fa-3x"></i></a>
-                <a class=" nav-link rounded rounded-circle bg-second p-5" id="nav-profile-tab" data-toggle="tab" href="#stores" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="fas fa-store-alt fa-3x"></i></a>      
+                <a class="nav-link active rounded rounded-circle bg-second p-3" id="nav-home-tab" data-toggle="tab" href="#items" role="tab" aria-controls="nav-home" aria-selected="true"><i class="fas fa-shopping-cart fa-2x"></i></a>
+                <a class=" nav-link rounded rounded-circle bg-second p-3" id="nav-profile-tab" data-toggle="tab" href="#stores" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="fas fa-store-alt fa-2x"></i></a>      
             @endif
         </div>
     </nav>
@@ -50,7 +50,7 @@
 </div>
 
 {{-- カード --}}
-<div id="item" class="container-fluid p-0 py-5">
+<div id="item" class="container-fluid p-0 p-5">
 
     <div class="tab-content" id="nav-tabContent">
         

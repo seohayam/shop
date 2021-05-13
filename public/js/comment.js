@@ -17393,6 +17393,7 @@ var get_data = function get_data() {
 
         var name = "";
         var logo = "";
+        var bg = "main";
         var flex = "start";
         var time = data.comments[i].updated_at; // var y = time.getFullYear();
         // var m = ("00" + (time.getMonth() + 1)).slice(-2);
@@ -17413,27 +17414,29 @@ var get_data = function get_data() {
 
         if (!isEmpty(fromUser)) {
           name = fromUser.name;
-          logo = "<i class=\"far fa-3x fa-user-circle\"></i>";
+          logo = "<i class=\"far text-title fa-user-circle\"></i>";
         }
 
         if (auth == "user" && !isEmpty(fromUser)) {
           name = fromUser.name;
-          logo = "<i class=\"far fa-3x fa-user-circle\"></i>";
+          logo = "<i class=\"far text-title fa-user-circle\"></i>";
           flex = "end";
+          bg = "second";
         }
 
         if (!isEmpty(fromStoreOwner)) {
           name = fromStoreOwner.name;
-          logo = "<i class=\"fas fa-3x fa-store\"></i>";
+          logo = "<i class=\"fas text-title fa-store\"></i>";
         }
 
         if (auth == "store_owner" && !isEmpty(fromStoreOwner)) {
           name = fromStoreOwner.name;
-          logo = "<i class=\"fas fa-3x fa-store\"></i>";
+          logo = "<i class=\"fas text-title fa-store\"></i>";
           flex = "end";
+          bg = "second";
         }
 
-        var html = "                                        \n                    <div class=\"media my-3 d-flex justify-content-".concat(flex, "\">          \n                    \n                      <div class=\"media-body comment-body col-4\">\n                      \n                        <div class=\"row d-flex justify-content-between align-items-center\">\n\n                          <div class=\"col-2 d-flex justify-content-center align-items-center flex-column p-0\">\n                            ").concat(logo, "\n                            <span class=\"comment-body-user\">").concat(name, "</span>\n                          </div>\n\n                          <div class=\"col-10 row bg-main rounded py-3\">\n                            <span class=\"col-10 comment-body-content text-subTitle\">\n                              ").concat(data.comments[i].content, "\n                            </span>\n                          </div>\n                          \n                        </div>\n\n                        <div class=\"d-flex justify-content-end\">                                              \n                          <span class=\"comment-body-time\">").concat(hour, "\u6642 ").concat(minutes, "\u5206</span>\n                        </div>\n                      \n                      </div>\n                    \n                    </div>\n                ");
+        var html = "                                        \n                    <div class=\"media m-3 d-flex justify-content-".concat(flex, "\">          \n                    \n                      <div class=\"media-body comment-body col-10 col-sm-4\">\n                      \n                        <div class=\"row d-flex justify-content-between align-items-center\">\n\n                          <div class=\"col-2 d-flex justify-content-center align-items-center flex-column p-0\">\n                            ").concat(logo, "\n                            <span class=\"comment-body-user\">").concat(name, "</span>\n                          </div>\n\n                          <div class=\"col-10 row bg-").concat(bg, " rounded py-3\">\n                            <span class=\"col-10 comment-body-content text-subTitle\">\n                              ").concat(data.comments[i].content, "\n                            </span>\n                          </div>\n                          \n                        </div>\n\n                        <div class=\"d-flex justify-content-end\">                                              \n                          <span class=\"comment-body-time\">").concat(hour, "\u6642 ").concat(minutes, "\u5206</span>\n                        </div>\n                      \n                      </div>\n                    \n                    </div>\n                ");
         $("#comment-data").append(html);
       }
     },

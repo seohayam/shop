@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\Auth;
 
 class WelcomeController extends Controller
 {
+
+    public function __construct(Auth $auth){
+        
+        $this->middleware('auth:user,store_owner');
+    }
+
+
     /**
      * Display a listing of the resource.
      *

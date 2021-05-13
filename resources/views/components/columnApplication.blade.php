@@ -1,5 +1,5 @@
 <a class="text-dark text-decoration-none" href="{{ route('applications.show', ['application' => $application->id]) }}">
-    <div class="app-card-chat-container container-fluid col-10 my-2 mx-auto p-3 row bg-main border border-light rounded">
+    <div class="app-card-chat-container container-fluid col-11 col-sm-10 my-2 mx-auto p-3 row bg-main border border-light rounded shadow-lg">
         {{-- icon --}}
         <div class="col-2 bg-main d-flex align-items-center">
             @if(isset($application->fromUser) && Auth::check())
@@ -36,13 +36,13 @@
         <div class="col-2 bg-main d-flex justify-content-center align-items-center flex-column p-0">
             @if ($application->applicaiton_status == "onboard")
                 <i class="far fa-comment-dots fa-2x text-point"></i>
-                <p class="text-subText m-0 mt-1">ー 状況 ー</p>
+                <p class="d-none d-sm-block text-subText m-0 mt-1">ー 状況 ー</p>
             @elseif ($application->applicaiton_status == "accept")
                 <i class="far fa-check-circle fa-2x text-success"></i>
-                <p class="text-subText m-0 mt-1">ー 状況 ー</p>
+                <p class="d-none d-sm-block text-subText m-0 mt-1">ー 状況 ー</p>
             @elseif ($application->applicaiton_status == "reject")
                 <i class="far fa-times-circle fa-2x text-danger"></i>
-                <p class="text-subText m-0 mt-1">ー 状況 ー</p>
+                <p class="d-none d-sm-block text-subText m-0 mt-1">ー 状況 ー</p>
             @endif
         </div>
 

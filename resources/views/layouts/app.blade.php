@@ -28,10 +28,14 @@
     <div id="app">
         <nav id="nav-top" class="navbar navbar-expand-md navbar-light shadow-sm">
             <div class="container">
-                <a class="navbar-nav text-point" href="{{ url('/') }}">                    
+                @if(Auth::check() || Auth::guard('store_owner')->check())
+                    <a class="navbar-nav text-point" href="{{ route('welcome.index') }}">                    
+                @else
+                    <a class="navbar-nav text-point" href="{{ url('/') }}">                    
+                @endif
                     CoShop
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button id="login_nav" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -138,11 +142,11 @@
             @yield('content')
         </main>
 
-        <div id="footer" class="bg-second d-flex align-items-center">
+        <div id="footer" class="bg-second d-flex align-items-center jsutify-content-around">
 
             <div class="container-fluid text-center">
 
-                <h1><a class="text-point" href="#">expo</a></h1>
+                <h1><a class="text-point" href="#">CoShop</a></h1>
 
                 <nav role="footer-nav" class="navbar navbar-expand-lg navbar-light">
                     <div class="container-fluid d-flex justify-content-center">                                    
@@ -165,31 +169,37 @@
 
                 <nav role="social-icon-nav" class="navbar navbar-expand-lg navbar-light">
                     <div class="container-fluid d-flex justify-content-center">                                    
-                        <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="">
-                                <i class="fab fa-twitter fa-2x rounded rounded-circle bg-main
-                                p-2"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="">
-                                <i class="fab fa-twitter fa-2x rounded rounded-circle bg-main
-                                p-2"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="">
-                                <i class="fab fa-twitter fa-2x rounded rounded-circle bg-main
-                                p-2"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="">
-                                <i class="fab fa-twitter fa-2x rounded rounded-circle bg-main
-                                p-2"></i>
-                            </a>
-                        </li>
+                        <ul class="navbar-nav d-flex flex-row">
+                            <li class="nav-item mx-2">
+                                <a class="nav-link" href="">
+                                    <i class="fab fa-twitter fa-2x rounded rounded-circle bg-main
+                                    p-2"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <a class="nav-link" href="">
+                                    <i class="fab fa-twitter fa-2x rounded rounded-circle bg-main
+                                    p-2"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <a class="nav-link" href="">
+                                    <i class="fab fa-twitter fa-2x rounded rounded-circle bg-main
+                                    p-2"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <a class="nav-link" href="">
+                                    <i class="fab fa-twitter fa-2x rounded rounded-circle bg-main
+                                    p-2"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <a class="nav-link" href="">
+                                    <i class="fab fa-twitter fa-2x rounded rounded-circle bg-main
+                                    p-2"></i>
+                                </a>
+                            </li>
                         </ul>
                     </div>                                
                 </nav>
