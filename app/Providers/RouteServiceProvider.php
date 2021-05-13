@@ -21,7 +21,9 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    // ＝＝＝ログインできた時の行先＝＝＝
+    // public const HOME = '/welcome';
+    public const HOME = '/users/home';
 
     /**
      * Define your route model bindings, pattern filters, etc.

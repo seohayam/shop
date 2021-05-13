@@ -5,10 +5,14 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
+use App\Comment;
 
 class User extends Authenticatable
 {
     use Notifiable;
+
+    protected $guard = 'user';
 
     /**
      * The attributes that are mass assignable.
@@ -36,4 +40,26 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function item()
+    {
+        return $this->hasMany('App\Item', 'user_id', 'id');
+    }
+
+    public function application()
+    {
+        if(Auth::guard('store_owner')->check())
+        {
+            return $this->hasMany('App\Application', 'from_user_id','id');
+        }else{
+            return $this->hasMany('App\Application', 'to_user_id','id');
+        }  
+    }
+
+    public function comment()
+    {
+        // HasManyの逆
+        return $this->hasMany('App\Comment');
+    }
 }
