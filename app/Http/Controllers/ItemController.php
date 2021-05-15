@@ -130,13 +130,12 @@ class ItemController extends Controller
     public function update(ItemRequest $request, $item)
     {   
         // 画像アップデート：画像を消す→新規追加
-
-        $item = (int)$item;
-        $item = Item::where('id', $item)->with('user')->first();
+        // $item = Item::where('id', $item)->with('user')->first();
+        $item = Item::find($item);
 
         if(Auth::id() != $item->user_id) {
             return abort('403');
-        }            
+        }
 
         $item->title        = $request->title;
         $item->description  = $request->description;
