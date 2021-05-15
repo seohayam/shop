@@ -19,40 +19,14 @@ class HomeController extends Controller
 
      public function index()
      {
-         return view('homes.index');
+         if(Auth::guard('user')->check())
+        {
+            return redirect()->route('items.index', ['user' => Auth::guard('user')->id()]);
+        }elseif(Auth::guard('store_owner')->check())
+        {
+            return redirect()->route('stores.index', ['store_owner' => Auth::guard('store_owner')->id()]);
+        }else{
+            return view('homes.index');
+        }
      }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function userIndex()
-    {
-        // $items = Item::where('user_id', Auth::id())->with('user')->get();
-
-        // return view('items.index', ['items'=> $items]);
-        // $items = Item::where('user_id', Auth::id())->with('user')->get();
-        // $itemMax = $items->count();
-        // $user = User::where('id', Auth::id())->with('item')->first();        
-
-        // return view('items.index',['items'=> $items, 'user' => $user, 'itemMax' => $itemMax]);
-
-        return redirect()->route('items.index', ['user' => Auth::id()]);
-    }
-
-    public function storeOwnerIndex()
-    {        
-        // $stores = Store::where('store_owner_id', Auth::id())->with('storeOwner')->get();
-        
-        // return view('store_owners.home', ['stores'=> $stores]);
-
-        // $stores = store::where('store_owner_id', Auth::id())->with('storeOwner')->get();
-        // $storeMax = $stores->count();
-        // $store_owner = StoreOwner::where('id', Auth::id())->with('store')->first();        
-
-        // return view('stores.index',['stores'=> $stores, 'store_owner' => $store_owner, 'storeMax' => $storeMax]);
-
-        return redirect()->route('stores.index', ['store_owner' => Auth::id()]);
-    }
 }

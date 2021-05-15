@@ -37,7 +37,7 @@
 
     <nav>
         <div class="nav nav-tabs d-flex justify-content-around" id="nav-tab" role="tablist">
-            @if(Auth::check())
+            @if(Auth::guard("user")->check())
                 <a class="nav-link rounded rounded-circle bg-second p-3" id="nav-1" data-toggle="tab" href="#items" role="tab" aria-controls="nav-home" aria-selected="true"><i class="fas fa-shopping-cart fa-2x"></i></a>
                 <a class=" nav-link active rounded rounded-circle bg-second p-3" id="nav-profile-tab" data-toggle="tab" href="#stores" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="fas fa-store-alt fa-2x"></i></a>      
             @elseif(Auth::guard('store_owner')->check())
@@ -54,7 +54,7 @@
 
     <div class="tab-content" id="nav-tabContent">
         
-        @if(Auth::check())
+        @if(Auth::guard("user")->check())
             <div class="tab-pane fade" id="items" role="tabpanel" aria-labelledby="nav-home-tab">
         @elseif(Auth::guard('store_owner')->check())
             <div class="tab-pane fade show active" id="items" role="tabpanel" aria-labelledby="nav-home-tab">
@@ -81,7 +81,7 @@
 
         </div>
 
-        @if(Auth::check())
+        @if(Auth::guard("user")->check())
             <div class="tab-pane fade show active" id="stores" role="tabpanel" aria-labelledby="nav-profile-tab">
         @elseif(Auth::guard('store_owner')->check())
             <div class="tab-pane fade" id="stores" role="tabpanel" aria-labelledby="nav-profile-tab">

@@ -20,8 +20,8 @@ class applicationController extends Controller
 
     public function index(Request $request){         
 
-        $query = $request->query('application_id');
-        $query['application_id'] = 1;
+        // $query = $request->query('application_id');
+        // $query['application_id'] = 1;
 
         if(Auth::guard('store_owner')->check())
         {
@@ -32,12 +32,14 @@ class applicationController extends Controller
             $applications = Application::where('from_user_id', Auth::id())->orWhere('to_user_id', Auth::id())->with('item','store','fromUser','toUser','fromStoreOwner','toStoreOwner')->get();                                
         }                       
         
-        if(empty($applications))
+        $appCount = $applications->count();
+
+        if($appCount == 0)
         {
-            return redirect()->route('welcome.index');
+            return redirect()->route('items.index', Auth::id())->with('error', '応募がされていません');;
         }        
 
-        return view('applications.index', compact('applications','query'));
+        return view('applications.index', compact('applications'));
 
     }
 

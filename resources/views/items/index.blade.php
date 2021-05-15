@@ -2,15 +2,32 @@
 
 @section('content')
 
-@if($itemMax == 0)
-<div class="container-fluid p-0">
-    <div class="toast bg-point m-0" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-body">
-            右上の <i class="far fa-plus-square text-second"></i> 商品を押して追加してみよう！
-            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
+@if($itemMax == 0 || session('error'))
+<div class="container-fluid d-flex justify-content-end p-0 m-0">
+    <div class="col-10 col-sm-3 p-0 py-3 m-0">
+        @if($itemMax == 0)
+            <div class="toast bg-danger m-0" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-body">
+                    商品を登録してみよう
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        @endif
+
+        @if (session('error'))
+        <div class="toast bg-warning d-flex justify-content-between align-items-center p-2 my-2" data-delay="3000" role="alert" aria-live="assertive" aria-atomic="true">
+            <div>
+                <strong class="mr-auto">{{ session('error') }}</strong>
+            </div>
+            <div>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         </div>
+        @endif
     </div>
 </div>
 @endif
@@ -81,9 +98,9 @@
                             <div role="card" class="col-sm-3 p-0 item-card">
                                 <a href="{{ route('items.show', ['user' => Auth::id(), 'item' => $item]) }}">                                    
                                     @isset($item->image_path)
-                                        <img class="img img-responsive" alt="" src="{{ $item->image_path }}">
+                                        <img height="200px" class="img img-responsive" alt="" src="{{ $item->image_path }}">
                                     @else
-                                        <img class="img img-responsive" alt="" src="{{ asset('/img/1.jpg') }}">                                        
+                                        <img height="200px" class="img img-responsive" alt="" src="{{ asset('/img/1.jpg') }}">                                        
                                     @endisset                                                                        
                                     <div class="item-card-name">{{$item->title}}</div>
                                     <div class="item-card-username">ユーザー名：{{$item->user->name}}</div>

@@ -19,7 +19,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
 
-        $redirectTo = $guard . 's/home';        
+        $redirectTo = $guard.'s/home';        
 
         if(Auth::guard($guard)->check()) {            
 

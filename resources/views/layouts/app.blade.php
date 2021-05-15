@@ -57,16 +57,16 @@
                                     <a class="btn bg-point text-second" href="{{ route('welcome.index')}}">                                                                   
                                         @if(Auth::guard('store_owner')->check())                                        
                                             <i class="text-second fas fa-search"></i>　商品を探す
-                                        @else
+                                        @elseif(Auth::guard("user")->check())
                                             <i class="text-second fas fa-search"></i>　お店を探す
                                         @endif     
                                     </a>  
                                 @else                                                                                                   
                                         @if(Auth::guard('store_owner')->check())                                      
                                             <a class="btn bg-point text-second" href="{{ route('stores.index',['store_owner' => Auth::guard('store_owner')->user()->id])}}">
-                                                <i class="far fa-user-circle"></i>　プロフィールへ
+                                                <i class="fas fa-store-alt text-second"></i>　プロフィールへ
                                             </a>
-                                        @else
+                                        @elseif(Auth::guard("user")->check())
                                             <a class="btn bg-point text-second" href="{{ route('items.index', ['user' => Auth::user()->id])}}">
                                                 <i class="far fa-user-circle"></i>　プロフィールへ
                                             </a>                            
@@ -82,8 +82,8 @@
                                 @endif
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                <div class="dropdown-menu dropdown-menu-right bg-second border none" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item boder rounded shadow mb-3" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
@@ -102,13 +102,13 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>USER</a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-right bg-second border none" aria-labelledby="navbarDropdown">
                                     {{-- login --}}
-                                    <a class="dropdown-item" href="{{ route('login') }}">
+                                    <a class="dropdown-item boder rounded shadow mb-3" href="{{ route('login') }}">
                                         {{ __('Login as User') }}
                                     </a>
                                     {{-- register --}}
-                                    <a class="dropdown-item" href="{{ route("register") }}">                                        
+                                    <a class="dropdown-item boder rounded shadow" href="{{ route("register") }}">                                        
                                         {{ __('Register as User') }}
                                     </a>                                 
                                 </div>
@@ -119,13 +119,13 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>STORE OWNER</a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-right bg-second border none" aria-labelledby="navbarDropdown">
                                     {{-- login --}}
-                                    <a class="dropdown-item" href="{{ route('store_owner.login') }}">                                        
+                                    <a class="dropdown-item boder rounded shadow mb-3" href="{{ route('store_owner.login') }}">                                        
                                         {{ __('Login as Store Owner') }}
                                     </a>
                                     {{-- register --}}
-                                    <a class="dropdown-item" href="{{ route("store_owner.register") }}">                                       
+                                    <a class="dropdown-item boder rounded shadow" href="{{ route("store_owner.register") }}">                                       
                                        {{ __('Register as Store Owner') }}
                                     </a>                                                                        
                                 </div>
@@ -152,18 +152,12 @@
                 <nav role="footer-nav" class="navbar navbar-expand-lg navbar-light">
                     <div class="container-fluid d-flex justify-content-center">                                    
                         <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">開発者について</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">サービスの趣旨</a>
+                            </li>
                         </ul>
                     </div>                                
                 </nav>
@@ -172,32 +166,32 @@
                     <div class="container-fluid d-flex justify-content-center">                                    
                         <ul class="navbar-nav d-flex flex-row">
                             <li class="nav-item mx-2">
-                                <a class="nav-link" href="">
+                                <a class="nav-link" href="https://twitter.com/creationH1" target="_blank" rel="noopener noreferrer">
                                     <i class="fab fa-twitter fa-2x rounded rounded-circle bg-main
                                     p-2"></i>
                                 </a>
                             </li>
                             <li class="nav-item mx-2">
-                                <a class="nav-link" href="">
-                                    <i class="fab fa-twitter fa-2x rounded rounded-circle bg-main
+                                <a class="nav-link" href="https://www.instagram.com/harutopcp/" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-instagram fa-2x rounded rounded-circle bg-main
                                     p-2"></i>
                                 </a>
                             </li>
                             <li class="nav-item mx-2">
-                                <a class="nav-link" href="">
-                                    <i class="fab fa-twitter fa-2x rounded rounded-circle bg-main
+                                <a class="nav-link" href="https://www.facebook.com/ino.haruto.3" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-facebook fa-2x rounded rounded-circle bg-main
                                     p-2"></i>
                                 </a>
                             </li>
                             <li class="nav-item mx-2">
-                                <a class="nav-link" href="">
-                                    <i class="fab fa-twitter fa-2x rounded rounded-circle bg-main
+                                <a class="nav-link" href="https://github.com/seohayam" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-github fa-2x rounded rounded-circle bg-main
                                     p-2"></i>
                                 </a>
                             </li>
                             <li class="nav-item mx-2">
-                                <a class="nav-link" href="">
-                                    <i class="fab fa-twitter fa-2x rounded rounded-circle bg-main
+                                <a class="nav-link" href="https://www.linkedin.com/in/haruto-ino-87251519b/" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-linkedin fa-2x rounded rounded-circle bg-main
                                     p-2"></i>
                                 </a>
                             </li>

@@ -53,7 +53,7 @@ Route::prefix('users')->group(function(){
 
     Route::post('/logout','Auth\LoginController@logout')->name('logout');
     Route::resource('{user}/items', 'ItemController');        
-    Route::get('/home', 'HomeController@userIndex')->name('user.home');    
+    Route::get('/home', 'HomeController@index')->name('home.index');    
 });
 
 Route::prefix('store_owners')->group(function(){
@@ -66,7 +66,7 @@ Route::prefix('store_owners')->group(function(){
 
     Route::post('/logout','Auth\LoginController@logout')->name('logout');
     Route::resource('{store_owner}/stores', 'StoreController');    
-    Route::get('/home', 'HomeController@storeOwnerIndex')->name('store_owner.home');
+    Route::get('/home', 'HomeController@index')->name('home.index');
 });
 
 // Route::get('/home', 'HomeController@index')->name('home');

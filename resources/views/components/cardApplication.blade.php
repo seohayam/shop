@@ -1,6 +1,6 @@
 <div class="col-4 app-card p-0 border">
 
-    @if(Auth::check())
+    @if(Auth::guard('user')->check())
     <a class="text-dark text-decoration-none" href="{{ route('welcome.showStore', ['store' => $application->store->id]) }}">
     @elseif(Auth::guard('store_owner')->check())
     <a class="text-dark text-decoration-none" href="{{ route('welcome.showItem', ['item' => $application->item->id]) }}">
@@ -10,13 +10,13 @@
 
             {{-- アイコン --}}
             <div class="col-2 bg-main d-flex align-items-center">
-                @if(isset($application->fromUser) && Auth::check())
+                @if(isset($application->fromUser) && Auth::guard('user')->check())
                     <i class="fas fa-store-alt fa-2x"></i>
                 @elseif(isset($application->fromUser) && Auth::guard('store_owner')->check())
                     <i class="fas fa-user-circle fa-2x"></i>
                 @endif
 
-                @if(isset($application->fromStoreOwner) && Auth::check())
+                @if(isset($application->fromStoreOwner) && Auth::guard('user')->check())
                     <i class="fas fa-store-alt fa-2x"></i>
                 @elseif(isset($application->fromStoreOwner) && Auth::guard('store_owner')->check())
                     <i class="fas fa-user-circle fa-2x"></i>
@@ -27,13 +27,13 @@
             <div class="col-5 d-flex align-items-start justify-content-center flex-column bg-main">
 
                 <h5 class="m-0 text-truncate">
-                    @if(isset($application->fromUser) && Auth::check())
+                    @if(isset($application->fromUser) && Auth::guard('user')->check())
                         {{$application->toStoreOwner->name}}
                     @elseif(isset($application->fromUser) && Auth::guard('store_owner')->check())
                         {{$application->fromUser->name}}
                     @endif
 
-                    @if(isset($application->fromStoreOwner) && Auth::check())
+                    @if(isset($application->fromStoreOwner) && Auth::guard('user')->check())
                         {{$application->fromStoreOwner->name}}
                     @elseif(isset($application->fromStoreOwner) && Auth::guard('store_owner')->check())
                         {{$application->toUser->name}}
@@ -72,7 +72,7 @@
                 @endif
             @endif
 
-            @if(Auth::check())
+            @if(Auth::guard('user')->check())
                 @if(isset($application->store->image_path))
                     <img class="" alt="" height="200" src="{{ $application->store->image_path }}">
                 @else

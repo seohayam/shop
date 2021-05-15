@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ isset($authgroup) ? ucwords($authgroup) : "" }} {{ __('Register') }}</div>
+                <div class="card-header bg-main">{{ isset($authgroup) ? ucwords($authgroup) : "" }} {{ __('Register') }}</div>
 
                 <div class="card-body">
                     @isset($authgroup)
-                        <form method="POST" action="{{ url("register/$authgroup") }}">
+                        <form method="POST" action="{{ route("store_owner.register") }}">
                     @else
                         <form method="POST" action="{{ route('register') }}">
                     @endisset
@@ -67,7 +67,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn bg-second">
                                     {{ __('Register') }}
                                 </button>
                             </div>

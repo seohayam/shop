@@ -14,60 +14,60 @@
     </div>
 </div>
 
-{{-- statu --}}
+{{-- status --}}
 @if(Auth::id() != $application->from_user_id || Auth::guard('store_owner')->id() != $application->from_store_owner_id)
-<div class="status-container py-2">    
-    <div class="row col-10 mx-auto">
+<div class="status-container container-fluid d-flex justify-content-center align-items-center py-2">    
+    <div class="row col-sm-10 m-0 p-0">
         {{-- accept --}}
-        <div class="col-4">
+        <div class="col-4 p-0">
             <form class="text-center" method="POST" action="{{ route('applications.update') }}">
                 {{-- @method('PATCH') --}}
                 @csrf
                 <input name="application_id" type="hidden" value="{{ $application->id }}">
                 <input name="status" type="hidden" value="accept">
                 @if ($application->applicaiton_status == "accept")
-                    <input class="fas fa-2x btn text-success border-dark p-3" type="submit" value="&#xf058　承認する">
+                    <input class="fas text-title btn text-success border-dark" type="submit" value="&#xf058　承認する">
                 @else
-                    <input class="fas fa-2x btn p-3" type="submit" value="&#xf058　承認する">
+                    <input class="fas text-title btn" type="submit" value="&#xf058　承認する">
                 @endif                
             </form>
-            <hr class="bg-point">
+            <hr class="d-none d-sm-block bg-point">
         </div>        
         {{-- onboarding --}}
-        <div class="col-4">
+        <div class="col-4 p-0">
             <form class="text-center" method="POST" action="{{ route('applications.update') }}">
                 {{-- @method('PATCH') --}}
                 @csrf
                 <input name="application_id" type="hidden" value="{{ $application->id }}">
                 <input name="status" type="hidden" value="onboard">
                 @if ($application->applicaiton_status == "onboard")
-                    <input class="fas fa-2x btn p-3 text-dark border border-dark" type="submit" value="&#xf4ad　検討中">
+                    <input class="fas text-title btn text-dark border border-dark" type="submit" value="&#xf4ad　検討中">
                 @else
-                    <input class="fas fa-2x btn p-3" type="submit" value="&#xf4ad　検討中">
+                    <input class="fas text-title btn" type="submit" value="&#xf4ad　検討中">
                 @endif
             </form>
-            <hr class="bg-point">
+            <hr class="d-none d-sm-block bg-point">
         </div>
         {{-- reject --}}
-        <div class="col-4">
+        <div class="col-4 p-0">
             <form class="text-center" method="POST" action="{{ route('applications.update') }}">
                 {{-- @method('PATCH') --}}
                 @csrf
                 <input name="application_id" type="hidden" value="{{ $application->id }}">
                 <input name="status" type="hidden" value="reject">
                 @if ($application->applicaiton_status == "reject")
-                    <input class="fas fa-2x btn text-danger border-dark p-3" type="submit" value="&#xf057　丁重に断る">
+                    <input class="fas text-title btn text-danger border-dark" type="submit" value="&#xf057　丁重に断る">
                 @else
-                    <input class="fas fa-2x btn p-3" type="submit" value="&#xf057　丁重に断る">
+                    <input class="fas text-title btn" type="submit" value="&#xf057　丁重に断る">
                 @endif
             </form>
-            <hr class="bg-point">
+            <hr class="d-none d-sm-block bg-point">
         </div>              
     </div>
 </div>
 @endif
 
-<div class="comment-container">    
+<div class="comment-container pt-2">    
     <form class="row col-sm-10 mx-auto" method="POST" action="{{ route('comments.store') }}">                        
         @csrf
         <input name="application" type="hidden" value="{{$application}}">

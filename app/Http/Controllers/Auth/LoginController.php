@@ -37,8 +37,9 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        // 同時ログインを防ぐ
         $this->middleware('guest')->except('logout');
-        // $this->middleware('guest:store_owner')->except('logout');
+        $this->middleware('guest:store_owner')->except('logout');
     }
 
     public function showStoreOwnerLoginForm()
@@ -60,7 +61,7 @@ class LoginController extends Controller
         if(Auth::guard('store_owner')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember') ))
         {
             // ストアでログインできた際の行先
-            return redirect()->intended(route('store_owner.home'));
+            return redirect()->intended(route('home.index'));
         }
 
         return back()->withInput($request->only('email','remember'));
