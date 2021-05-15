@@ -28,7 +28,11 @@
 {{-- img --}}
 <div class="contaienr-fluid py-5">
     <div class="col-10 col-sm-5  d-flex justify-content-center mx-auto">
-        <img class="card show-img" alt="" src="{{ asset('/img/1.jpg') }}">
+        @if(isset($item->image_path))
+            <img class="img img-responsive" alt="" height="200" src="{{ $item->image_path }}">
+        @else
+            <img class="img img-responsive" alt="" height="200" src="{{ asset('/img/1.jpg') }}">                                        
+        @endif   
     </div>
 </div>
 {{-- card --}}
@@ -71,7 +75,11 @@
 {{-- img --}}
 <div class="contaienr-fluid py-5">
     <div class="col-10 col-sm-5  d-flex justify-content-center mx-auto">
-        <img class="card show-img" alt="" src="{{ asset('/img/1.jpg') }}">
+        @if(isset($store->image_path))
+            <img class="img img-responsive" alt="" height="200" src="{{ $store->image_path }}">
+        @else
+            <img class="img img-responsive" alt="" height="200" src="{{ asset('/img/1.jpg') }}">                                        
+        @endif  
     </div>
 </div>
 {{-- card --}}
@@ -147,11 +155,11 @@
 
                     <div role="card" class="p-0 item-card">
                         <a href="{{ route('welcome.showItem', $application->store) }}">                                                        
-                            @isset($application->store->image_path)
+                            @if(isset($application->store->image_path))
                                 <img class="img img-responsive" alt="" height="200" src="{{ $application->store->image_path }}">
                             @else
                                 <img class="img img-responsive" alt="" height="200" src="{{ asset('/img/1.jpg') }}">                                        
-                            @endisset   
+                            @endif   
                             <div class="item-card-name">{{$application->store->title}}</div>
                             <div class="item-card-username">ユーザー名：{{$application->store->storeOwner->name}}</div>
                             {{-- <div class="item-card-icons"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin"></i></a></div> --}}
@@ -162,11 +170,11 @@
 
                     <div role="card" class="p-0 item-card">
                         <a href="{{ route('welcome.showItem', $application->item) }}">                                                        
-                            @isset($application->item->image_path)
+                            @if(isset($application->store->image_path))
                                 <img class="img img-responsive" alt="" height="200" src="{{ $application->item->image_path }}">
                             @else
                                 <img class="img img-responsive" alt="" height="200" src="{{ asset('/img/1.jpg') }}">                                        
-                            @endisset   
+                            @endif   
                             <div class="item-card-name">{{$application->item->title}}</div>
                             <div class="item-card-username">ユーザー名：{{$application->item->user->name}}</div>
                             {{-- <div class="item-card-icons"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin"></i></a></div> --}}
