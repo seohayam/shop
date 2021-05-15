@@ -102,13 +102,14 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>USER</a>
 
-                                <div class="dropdown-menu dropdown-menu-right bg-second border none" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-right bg-main shadow border noen p-3" aria-labelledby="navbarDropdown">
                                     {{-- login --}}
-                                    <a class="dropdown-item boder rounded  mb-3" href="{{ route('login') }}">
+                                    <a class="dropdown-item boder rounded mb-3" href="{{ route('login') }}">
                                         {{ __('Login as User') }}
                                     </a>
+                                    <hr class="bg-second">
                                     {{-- register --}}
-                                    <a class="dropdown-item boder rounded " href="{{ route("register") }}">                                        
+                                    <a class="dropdown-item boder rounded" href="{{ route("register") }}">                                        
                                         {{ __('Register as User') }}
                                     </a>                                 
                                 </div>
@@ -119,11 +120,12 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>STORE OWNER</a>
 
-                                <div class="dropdown-menu dropdown-menu-right bg-second border none" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-right bg-main border none shadow p-3" aria-labelledby="navbarDropdown">
                                     {{-- login --}}
                                     <a class="dropdown-item boder rounded  mb-3" href="{{ route('store_owner.login') }}">                                        
                                         {{ __('Login as Store Owner') }}
                                     </a>
+                                    <hr class="bg-second">
                                     {{-- register --}}
                                     <a class="dropdown-item boder rounded " href="{{ route("store_owner.register") }}">                                       
                                        {{ __('Register as Store Owner') }}
