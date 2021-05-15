@@ -10,7 +10,7 @@
     <meta property="og:description" content="手に取るように、ネットショプの商品を手にっとってみよう！" />
     <meta property="og:type" content="WEBサービス" />
     <meta property="og:url" content="https://laravel-coshop.herokuapp.com/" />
-    <meta property="og:image" content="{{ asset('/img/1.jpg') }}"/>
+    <meta property="og:image" content="{{ asset('/img/2.jpg') }}"/>
     <meta property="og:site_name" content="CoShop" />
     <meta property="og:locale" content="ja_JP"/>
 
@@ -24,6 +24,7 @@
     {{-- <script src="js/bootstrap.min.js"></script> --}}
 
     <!-- Fonts -->
+    <link rel="icon" href="{{ asset('/img/favicon.io') }}" />
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 

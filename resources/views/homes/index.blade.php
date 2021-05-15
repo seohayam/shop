@@ -118,13 +118,13 @@
                     <div class="w-75">
                         <h5 class="text-title">商品を登録しよう！</h5>
                         <p class="text-subTitle">
-                            普段はネットショップでしか売られていない商品がお店に置いてあり、実際にとって試せる！欲しい商品を見つけて見に行ってみよう！
+                            手にとってみて欲しい商品を登録しよう！
                         </p>
                     </div>
                 </div>
             </div>
             {{-- ===2=== --}}
-            <div class="container-fluid py-5 bg-second d-flex flex-column flex-sm-row">
+            <div class="container-fluid py-5 bg-second d-flex flex-column flex-sm-row-reverse">
                 <div class="col-sm-6 p-0">
                     <div class="text-center">
                         <h5 class="text-title">2.Second</h5>
@@ -135,7 +135,7 @@
                     <div class="w-75">
                         <h5 class="text-title">お店を探そう！</h5>
                         <p class="text-subTitle">
-                            欲しいものが見つかったらお店に行って商品を実際にみよう！
+                            どこのお店に置くかを考えお店を探そう！
                         </p>
                     </div>
                 </div>
@@ -152,13 +152,13 @@
                     <div class="w-75">
                         <h5 class="text-title">応募してみよう！</h5>
                         <p class="text-subTitle">
-                            気に入ったら商品のネットショップへ行き買うかどうかを迷おう
+                            置くお店が決まったら応募をしてお店の人にアポを取ろう！
                         </p>
                     </div>
                 </div>
             </div>
             {{-- ===4=== --}}
-            <div class="container-fluid py-5 bg-second d-flex flex-column flex-sm-row">
+            <div class="container-fluid py-5 bg-second d-flex flex-column flex-sm-row-reverse">
                 <div class="col-sm-6 p-0">
                     <div class="text-center">
                         <h5 class="text-title">4.Fourth</h5>
@@ -169,7 +169,7 @@
                     <div class="w-75">
                         <h5 class="text-title">シェアしよう！</h5>
                         <p class="text-subTitle">
-                            欲しいものが見つかったらお店に行って商品を実際にみよう！
+                            ネットショップやSNSで置いてあるお店をシェアしよう！
                         </p>
                     </div>
                 </div>
@@ -192,13 +192,13 @@
                     <div class="w-75">
                         <h5 class="text-title">お店を登録しよう！</h5>
                         <p class="text-subTitle">
-                            普段はネットショップでしか売られていない商品がお店に置いてあり、実際にとって試せる！欲しい商品を見つけて見に行ってみよう！
+                            スペースを有効活用したいのならばまずは登録してみよう！
                         </p>
                     </div>
                 </div>
             </div>
             {{-- ===2=== --}}
-            <div class="container-fluid py-5 bg-second d-flex flex-column flex-sm-row">
+            <div class="container-fluid py-5 bg-second d-flex flex-column flex-sm-row-reverse">
                 <div class="col-sm-6 p-0">
                     <div class="text-center">
                         <h5 class="text-title">2.Second</h5>
@@ -209,7 +209,7 @@
                     <div class="w-75">
                         <h5 class="text-title">商品を探そう！</h5>
                         <p class="text-subTitle">
-                            欲しいものが見つかったらお店に行って商品を実際にみよう！
+                            お店に置いても良いと思える商品を探そう！
                         </p>
                     </div>
                 </div>
@@ -226,13 +226,13 @@
                     <div class="w-75">
                         <h5 class="text-title">応募してみよう！</h5>
                         <p class="text-subTitle">
-                            気に入ったら商品のネットショップへ行き買うかどうかを迷おう
+                            商品を出品している人にコンタクトを取ろう！
                         </p>
                     </div>
                 </div>
             </div>
             {{-- ===4=== --}}
-            <div class="container-fluid py-5 bg-second d-flex flex-column flex-sm-row">
+            <div class="container-fluid py-5 bg-second d-flex flex-column flex-sm-row-reverse">
                 <div class="col-sm-6 p-0">
                     <div class="text-center">
                         <h5 class="text-title">4.Fourth</h5>
@@ -241,9 +241,9 @@
                 </div>
                 <div class="col-sm-6 flex-column d-flex justify-content-center align-items-center">
                     <div class="w-75">
-                        <h5 class="text-title">実際にお店に置こう！</h5>
+                        <h5 class="text-title">お店に商品を置こう！</h5>
                         <p class="text-subTitle">
-                            欲しいものが見つかったらお店に行って商品を実際にみよう！
+                            お店に商品を置いてネットショップやSNSでお店を紹介してもらおう！
                         </p>
                     </div>
                 </div>
