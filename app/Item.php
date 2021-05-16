@@ -20,16 +20,16 @@ class Item extends Model
     {
         // HasManyの逆
         // ＊\のむ気に注意
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'user_id');
     }
 
-    // public function application()
-    // {
-    //     return $this->hasMany('App\application', 'item_id', 'id');
-    // }
+    public function application()
+    {
+        return $this->hasMany('App\application', 'item_id', 'id');
+    }
 
-    // public function comment()
-    // {
-    //     return $this->hasMany('App\comment', 'item_id', 'id');
-    // }
+    public function comment()
+    {
+        return $this->hasMany('App\comment', 'item_id', 'id');
+    }
 }
