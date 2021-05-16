@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Application;
 use App\Http\Requests\ItemRequest;
-use App\Item as Item;
+use App\Item;
 use App\Store;
 use DateTime;
 use Illuminate\Http\Request;
@@ -111,9 +111,9 @@ class ItemController extends Controller
         $item = Item::where('id', $item)->with('user')->first();       
         $itemUserId = optional($item)->user_id;
 
-        // if(Auth::id() !=  $itemUserId){
-        //     return abort('403');
-        // }
+        if(Auth::id() !=  $itemUserId){
+            return abort('403');
+        }
 
         return view('items.edit', ['item' => $item]);
         
