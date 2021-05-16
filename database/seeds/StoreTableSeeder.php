@@ -16,10 +16,10 @@ class StoreTableSeeder extends Seeder
         DB::table('stores')->insert([
             [                             
                 'name' => "カフェカフェダ",
-                'adress' => "千葉県浦安市舞浜１−１３",
+                'adress' => "〒105-0011 東京都港区芝公園４丁目２−８",
                 'description' => "とても素晴らしい外観とお茶が売りのお店になっておりまする。",
                 'available' => "10",
-                'store_url' => "nothing",    
+                'store_url' => "https://sample-site-coshop.studio.site/",    
                 'store_owner_id' => '1',   
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),         
