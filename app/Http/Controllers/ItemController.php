@@ -108,7 +108,7 @@ class ItemController extends Controller
      */
     public function edit($item)
     {
-        dd($item);
+        $item = (int)$item;
 
         $item = Item::where('id', $item)->with('user')->first();       
         $itemUserId = optional($item)->user_id;
@@ -130,6 +130,8 @@ class ItemController extends Controller
      */
     public function update(ItemRequest $request, $item)
     {   
+
+        $item = (int)$item;
         // 画像アップデート：画像を消す→新規追加
         $item = Item::where('id', $item)->with('user')->first();
         $itemUserId = optional($item)->user_id;
