@@ -170,7 +170,7 @@
                 @elseif(isset($store))
 
                     <div role="card" class="p-0 item-card">
-                        <a href="{{ route('welcome.showItem', $application->item) }}">      
+                        <a href="{{ route('welcome.showStore', $application->item) }}">      
                             @if(isset($application->item->image_path))
                                 <img class="img img-responsive" alt="" height="200" src="{{ $application->item->image_path }}">
                             @else
