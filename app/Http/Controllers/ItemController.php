@@ -105,10 +105,10 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function edit($item)
+    public function edit(Request $request)
     {
-        $item = (int)$item;
-        $item = Item::with('user')->find($item);
+        $id = $request->route('item');
+        $item = Item::with('user')->find($id);
         
         $itemUserId = $item->user_id;
         $itemUserId = optional($item)->user_id;
@@ -118,7 +118,6 @@ class ItemController extends Controller
         }
 
         return view('items.edit', ['item' => $item]);
-        
     }
 
     /**
@@ -128,12 +127,12 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function update(ItemRequest $request, $item)
+    public function update(ItemRequest $request)
     {   
+        $id = $request->route('item');
 
-        $item = (int)$item;
         // 画像アップデート：画像を消す→新規追加
-        $item = Item::with('user')->where('id', $item)->first();     
+        $item = Item::with('user')->find($id);    
         $itemUserId = optional($item)->user_id;
         if(Auth::id() != $itemUserId) {
             return abort('403');
