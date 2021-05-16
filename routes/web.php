@@ -23,10 +23,13 @@ use App\Http\Controllers\CommentController;
 
 Route::get('/', 'HomeController@index')->name('home.index');
 
+Route::get('login/google', 'Auth\LoginController@redirectToGoogle');
+Route::get('login/google/callback', 'Auth\LoginController@handleGoogleCallback');
+
 Route::get('/welcome', 'WelcomeController@index')->name('welcome.index');
 // アーキテクチャ検討
-Route::get('/items/show/{item}', 'WelcomeController@showItem')->name('welcome.showItem');
-Route::get('/stores/show/{store}', 'WelcomeController@showStore')->name('welcome.showStore');
+Route::get('/welcome/items/show/{item}', 'WelcomeController@showItem')->name('welcome.showItem');
+Route::get('/welcome/stores/show/{store}', 'WelcomeController@showStore')->name('welcome.showStore');
 
 Route::get('/comments', 'CommentController@index')->name('comments.index');
 Route::post('/comments/store', 'CommentController@store')->name('comments.store');
@@ -65,7 +68,7 @@ Route::prefix('store_owners')->group(function(){
     });    
     
     Route::resource('{store_owner}/stores', 'StoreController');    
-    Route::post('/logout','Auth\LoginController@logout')->name('logout');
+    Route::post('/logout','Auth\LoginController@logout')->name('store_owner.logout');
     Route::get('/home', 'HomeController@index')->name('home.index');
 });
 

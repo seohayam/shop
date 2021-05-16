@@ -91,6 +91,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right bg-second border none" aria-labelledby="navbarDropdown">
+                                    @if(Auth::guard('user')->check())
                                     <a class="dropdown-item boder rounded  mb-3" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
@@ -100,6 +101,17 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+                                    @elseif(Auth::guard('store_owner')->check())
+                                        <a class="dropdown-item boder rounded  mb-3" href="{{ route('store_owner.logout') }}"
+                                            onclick="event.preventDefault();
+                                                            document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('store_owner.logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    @endif
                                 </div>
                             </li>
                         

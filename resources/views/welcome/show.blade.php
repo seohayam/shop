@@ -156,7 +156,7 @@
                 @if(isset($item))
 
                     <div role="card" class="p-0 item-card">
-                        <a href="{{ route('welcome.showItem', $application->store) }}">                                                        
+                        <a href="{{ route('welcome.showStore', $application->store) }}">                                                        
                             @if(isset($application->store->image_path))
                                 <img class="img img-responsive" alt="" height="200" src="{{ $application->store->image_path }}">
                             @else
@@ -168,9 +168,9 @@
                     </div>
                     
                 @elseif(isset($store))
-
+                
                     <div role="card" class="p-0 item-card">
-                        <a href="{{ route('welcome.showStore', $application->item) }}">      
+                        <a href="{{ route('welcome.showItem', $application->item) }}">      
                             @if(isset($application->item->image_path))
                                 <img class="img img-responsive" alt="" height="200" src="{{ $application->item->image_path }}">
                             @else

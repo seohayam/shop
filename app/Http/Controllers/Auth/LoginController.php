@@ -7,6 +7,10 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
+use App\User;
+use App\StoreOwner;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -67,5 +71,37 @@ class LoginController extends Controller
         return back()->withInput($request->only('email','remember'));
     }
 
+
+    // googleLogin
+    public function redirectToGoogle()
+    {
+        // Google へのリダイレクト
+            return Socialite::driver('google')->redirect();
+    }
+
+    public function handleGoogleCallback()
+    {
+        // Google 認証後の処理
+        $gUser = Socialite::driver('google')->user();
+
+        $user = User::where('email', $gUser->email)->first();
+        // 見つからなければ新しくユーザーを作成
+        if ($user == null) {
+            $user = $this->createUserByGoogle($gUser);
+        }
+        // ログイン処理
+        Auth::login($user, true);
+        return redirect('/');
+    }
+
+    public function createUserByGoogle($gUser)
+    {
+        $user = User::create([
+            'name'     => $gUser->name,
+            'email'    => $gUser->email,
+            'password' => Hash::make(uniqid()),
+        ]);
+        return $user;
+    }
 
 }

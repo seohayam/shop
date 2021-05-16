@@ -60,6 +60,12 @@
                                 <button type="submit" class="btn bg-second">
                                     {{ __('Login') }}
                                 </button>
+                                
+                                @if(Request::is('users/*'))
+                                <a href="/login/google" class="btn btn-secondary" role="button">
+                                    Google Login
+                                </a>
+                                @endif
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
