@@ -31,7 +31,7 @@
         @if(isset($item->image_path))
             <img class="img img-responsive" alt="" height="200" src="{{ $item->image_path }}">
         @else
-            <img class="img img-responsive" alt="" height="200" src="{{ asset('/img/1.jpg') }}">                                        
+            <img class="img img-responsive" alt="" height="200" src="https://res.cloudinary.com/delvmfnei/image/upload/v1621186998/1_eihryo.jpg">                                        
         @endif   
     </div>
 </div>
@@ -78,7 +78,7 @@
         @if(isset($store->image_path))
             <img class="img img-responsive" alt="" height="200" src="{{ $store->image_path }}">
         @else
-            <img class="img img-responsive" alt="" height="200" src="{{ asset('/img/1.jpg') }}">                                        
+            <img class="img img-responsive" alt="" height="200" src="https://res.cloudinary.com/delvmfnei/image/upload/v1621186998/1_eihryo.jpg">
         @endif  
     </div>
 </div>
@@ -158,7 +158,7 @@
                             @if(isset($application->store->image_path))
                                 <img class="img img-responsive" alt="" height="200" src="{{ $application->store->image_path }}">
                             @else
-                                <img class="img img-responsive" alt="" height="200" src="{{ asset('/img/1.jpg') }}">                                        
+                                <img class="img img-responsive" alt="" height="200" src="https://res.cloudinary.com/delvmfnei/image/upload/v1621186998/1_eihryo.jpg">                                        
                             @endif   
                             <div class="item-card-name">{{$application->store->title}}</div>
                             <div class="item-card-username">ユーザー名：{{$application->store->storeOwner->name}}</div>
@@ -173,7 +173,7 @@
                             @if(isset($application->store->image_path))
                                 <img class="img img-responsive" alt="" height="200" src="{{ $application->item->image_path }}">
                             @else
-                                <img class="img img-responsive" alt="" height="200" src="{{ asset('/img/1.jpg') }}">                                        
+                                <img class="img img-responsive" alt="" height="200" src="https://res.cloudinary.com/delvmfnei/image/upload/v1621186998/1_eihryo.jpg">
                             @endif   
                             <div class="item-card-name">{{$application->item->title}}</div>
                             <div class="item-card-username">ユーザー名：{{$application->item->user->name}}</div>

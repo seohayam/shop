@@ -31,7 +31,7 @@
         @if(isset($item->image_path))
         <img src="{{ $item->image_path }}" class="img img-responsive">
         @else
-        <img src="{{ asset('/img/1.jpg') }}" class="img img-responsive">
+        <img src="https://res.cloudinary.com/delvmfnei/image/upload/v1621186998/1_eihryo.jpg" class="img img-responsive">
         @endif
         <div class="item-card-name">{{$item->title}}</div>
         <div class="item-card-username">ユーザー名：{{$item->user->name}}</div>

@@ -68,11 +68,9 @@
                         @foreach ($stores as $store)                        
                             <div role="card" class="col-sm-3 p-0 item-card m-sm-5">
                                 <a href="{{ route('stores.show', ['store_owner' => Auth::id(), 'store' => $store]) }}">
-                                    {{-- <img src="http://envato.jayasankarkr.in/code/profile/assets/img/profile-2.jpg" class="img img-responsive"> --}}
-                                    <img class="img img-responsive" alt="" src="{{ asset('/img/1.jpg') }}">
+                                    <img class="img img-responsive" alt="" src="https://res.cloudinary.com/delvmfnei/image/upload/v1621186998/1_eihryo.jpg">
                                     <div class="item-card-name">{{$store->title}}</div>
                                     <div class="item-card-username">ユーザー名：{{$store->storeOwner->name}}</div>
-                                    {{-- <div class="item-card-icons"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin"></i></a></div> --}}
                                 </a>
                             </div>
                         @endforeach

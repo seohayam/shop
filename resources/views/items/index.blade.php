@@ -100,7 +100,7 @@
                                     @isset($item->image_path)
                                         <img height="200px" class="img img-responsive" alt="" src="{{ $item->image_path }}">
                                     @else
-                                        <img height="200px" class="img img-responsive" alt="" src="{{ asset('/img/1.jpg') }}">                                        
+                                        <img height="200px" class="img img-responsive" alt="" src="https://res.cloudinary.com/delvmfnei/image/upload/v1621186998/1_eihryo.jpg">                                        
                                     @endisset                                                                        
                                     <div class="item-card-name">{{$item->title}}</div>
                                     <div class="item-card-username">ユーザー名：{{$item->user->name}}</div>

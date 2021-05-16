@@ -68,7 +68,7 @@
                                 @isset($item->image_path)
                                     <img class="img img-responsive" alt="" height="200" src="{{ $item->image_path }}">
                                 @else
-                                    <img class="img img-responsive" alt="" height="200" src="{{ asset('/img/1.jpg') }}">                                        
+                                    <img class="img img-responsive" alt="" height="200" src="https://res.cloudinary.com/delvmfnei/image/upload/v1621186998/1_eihryo.jpg">                                        
                                 @endisset   
                                 <div class="item-card-name">{{$item->title}}</div>
                                 <div class="item-card-username">ユーザー名：{{$item->user->name}}</div>
@@ -95,7 +95,7 @@
                                     @isset($store->image_path)
                                     <img class="img img-responsive" alt="" height="200" src="{{ $store->image_path }}">
                                 @else
-                                    <img class="img img-responsive" alt="" height="200" src="{{ asset('/img/1.jpg') }}">                                        
+                                    <img class="img img-responsive" alt="" height="200" src="https://res.cloudinary.com/delvmfnei/image/upload/v1621186998/1_eihryo.jpg">
                                 @endisset
                                 <div class="item-card-name">{{$store->name}}</div>
                                 <div class="item-card-username">ユーザー名：{{$store->storeOwner->name}}</div>
