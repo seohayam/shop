@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Application;
 use App\Http\Requests\ItemRequest;
 use App\Item;
+use App\Like;
 use App\Store;
 use DateTime;
 use Illuminate\Http\Request;
@@ -31,11 +32,14 @@ class ItemController extends Controller
 
         $items = Item::where('user_id', Auth::id())->with('user')->get();
         $itemMax = $items->count();
-        $user = User::where('id', Auth::id())->with('item')->first();                
+        $user = User::where('id', Auth::id())->with('item')->first();
         $fromUserApplicationNum = Application::where('from_user_id', Auth::id())->count();
         $fromStoreOwnerApplicationNum = Application::where('to_user_id', Auth::id())->count();
-        
-        return view('items.index',['items'=> $items, 'user' => $user, 'itemMax' => $itemMax,'fromUserApplicationNum' => $fromUserApplicationNum, 'fromStoreOwnerApplicationNum' => $fromStoreOwnerApplicationNum]);
+        // like
+        $likeItems = Like::where('user_id', Auth::guard('user')->id())->where('status', 1)->whereNotNull('item_id')->with('item')->get();
+        $likeStores = Like::where('store_owner_id', Auth::guard('store_owner')->id())->where('status', 1)->whereNotNull('store_id')->with('store')->get();
+
+        return view('items.index',['items'=> $items, 'user' => $user, 'itemMax' => $itemMax,'fromUserApplicationNum' => $fromUserApplicationNum, 'fromStoreOwnerApplicationNum' => $fromStoreOwnerApplicationNum, 'likeItems' => $likeItems, 'likeStores' => $likeStores]);
     }
 
     /**

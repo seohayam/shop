@@ -35,7 +35,7 @@
             <img class="img img-responsive" alt="" height="200" src="{{ $item->image_path }}">
         @else
             <img class="img img-responsive" alt="" height="200" src="https://res.cloudinary.com/delvmfnei/image/upload/v1621186998/1_eihryo.jpg">                                        
-        @endif   
+        @endif
     </div>
 </div>
 {{-- card --}}
@@ -48,7 +48,6 @@
                 <p class="text-text text-truncate">値段：{{$item->value}}</p>
                 <div class="container d-flex justify-content-around pt-sm-5">
                     <a href="{{$item->url}}" class="btn bg-main">ネットショップを見る</a>
-                                                            
                     @if (Auth::guard('store_owner')->check() && $storeNum != 0)
                         <form class="w-25 border rounded text-center bg-point" method="POST" action="{{ route('applications.store', ['store_owner' => Auth::id()])}}">
                             @csrf

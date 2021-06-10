@@ -36,4 +36,9 @@ class Item extends Model
     {
         return $this->hasMany('App\comment', 'item_id', 'id');
     }
+
+    public function like()
+    {
+        return $this->hasMany('App\Like', 'item_id', 'id');
+    }
 }

@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikeController;
 
 Route::get('/', 'HomeController@index')->name('home.index');
 
@@ -54,9 +55,9 @@ Route::prefix('users')->group(function(){
         Route::post('/register', 'Auth\RegisterController@register')->name('register');
     });
 
-    Route::resource('{user}/items', 'ItemController');        
+    Route::resource('{user}/items', 'ItemController');
     Route::post('/logout','Auth\LoginController@logout')->name('logout');
-    Route::get('/home', 'HomeController@index')->name('home.index');    
+    Route::get('/home', 'HomeController@index')->name('home.index');
 });
 
 Route::prefix('store_owners')->group(function(){
@@ -65,12 +66,17 @@ Route::prefix('store_owners')->group(function(){
         Route::get('/register', 'Auth\RegisterController@showStoreOwnerRegisterForm');
         Route::post('/login', 'Auth\LoginController@storeOwnerLogin')->name('store_owner.login');
         Route::post('/register', 'Auth\RegisterController@createStoreOwner')->name('store_owner.register');        
-    });    
-    
-    Route::resource('{store_owner}/stores', 'StoreController');    
+    });
+
+    Route::resource('{store_owner}/stores', 'StoreController');
     Route::post('/logout','Auth\LoginController@logout')->name('store_owner.logout');
     Route::get('/home', 'HomeController@index')->name('home.index');
 });
+
+Route::get('like/{version}/{post}/firstCheck', 'LikeController@firstCheck');
+// Route::get('like/store/{post}/firstCheck', 'LikeController@storeFirstCheck');
+Route::get('like/{version}/{post}/check', 'LikeController@check');
+// Route::get('like/store/{post}/check', 'LikeController@storeCheck');
 
 // Route::get('/home', 'HomeController@index')->name('home');
 

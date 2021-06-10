@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Date;
 use App\StoreOwner;
 use App\Application;
 use JD\Cloudder\Facades\Cloudder;
+use App\Like;
 
 class StoreController extends Controller
 {
@@ -39,8 +40,11 @@ class StoreController extends Controller
         $store_owner = StoreOwner::where('id', $storeId)->with('store')->first();        
         $fromStoreOwnerApplicationNum   = Application::where('from_store_owner_id', $storeId)->count();
         $fromUserApplicationNum         = Application::where('to_store_owner_id', $storeId )->count();
+        // like
+        $likeItems = Like::where('user_id', Auth::guard('user')->id())->where('status', 1)->whereNotNull('item_id')->with('item')->get();
+        $likeStores = Like::where('store_owner_id', Auth::guard('store_owner')->id())->where('status', 1)->whereNotNull('store_id')->with('store')->get();
 
-        return view('stores.index',['stores'=> $stores, 'store_owner' => $store_owner, 'storeMax' => $storeMax, 'fromStoreOwnerApplicationNum' => $fromStoreOwnerApplicationNum, 'fromUserApplicationNum' => $fromUserApplicationNum]);
+        return view('stores.index',['stores'=> $stores, 'store_owner' => $store_owner, 'storeMax' => $storeMax, 'fromStoreOwnerApplicationNum' => $fromStoreOwnerApplicationNum, 'fromUserApplicationNum' => $fromUserApplicationNum, 'likeStores' => $likeStores, 'likeItems' => $likeItems]);
     }
 
     /**
