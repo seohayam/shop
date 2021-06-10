@@ -14,7 +14,7 @@
     <meta property="og:site_name" content="CoShop" />
     <meta property="og:locale" content="ja_JP"/>
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'CoShop') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>    
