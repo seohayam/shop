@@ -19,9 +19,15 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    {{-- map --}}
-    {{-- <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=AIzaSyCC05dInZBrIvVs5I4iAzTdGOqT2TExrEY&callback=initMap" async defer></script> --}}
-    {{-- <script src="js/bootstrap.min.js"></script> --}}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-35E7K63Z86"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-35E7K63Z86');
+    </script>
 
     <!-- Fonts -->
     <link rel="icon" href="{{ asset('/img/favicon.io') }}" />
