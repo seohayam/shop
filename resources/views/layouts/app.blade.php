@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ネットショップの商品を実際の店舗に置いてもらう事を可能にします。買う人が商品を手にとって確かめてもらいながらもネットショップで販売する事ができます。リアルとインターネットをつなげたサービスです。">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
