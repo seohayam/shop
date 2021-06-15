@@ -229,7 +229,7 @@
     @yield('js')
         <script src="{{ mix('/js/smooth.js') }}"></script>
 
-    @if(config('app.google_analytics') === 'production')
+    @if(config('app.google_analytics'))
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
