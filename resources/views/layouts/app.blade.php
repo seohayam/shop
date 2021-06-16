@@ -21,7 +21,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-35E7K63Z86"></script>
+    <script async src='https://www.googletagmanager.com/gtag/js?id={{config('google_maps_api')}}'></script>
 
     <!-- Fonts -->
     <link rel="canonical" href="https://laravel-coshop.herokuapp.com">
