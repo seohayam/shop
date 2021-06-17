@@ -83,28 +83,28 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 @if(Auth::guard('store_owner')->check())
-                                    {{ Auth::guard('store_owner')->user()->name }} (Store Owner)
+                                    {{ Auth::guard('store_owner')->user()->name }}
                                 @else
-                                    {{ Auth::user()->name }} (User)
+                                    {{ Auth::user()->name }}
                                 @endif
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right bg-second border none" aria-labelledby="navbarDropdown">
                                     @if(Auth::guard('user')->check())
-                                    <a class="dropdown-item boder rounded  mb-3" href="{{ route('logout') }}"
+                                    <a class="dropdown-item boder none rounded  mb-3 bg-point text-main text-center" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('ログアウト') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
                                     @elseif(Auth::guard('store_owner')->check())
-                                        <a class="dropdown-item boder rounded  mb-3" href="{{ route('store_owner.logout') }}"
+                                        <a class="dropdown-item boder rounded  mb-3 bg-point text-main text-center" href="{{ route('store_owner.logout') }}"
                                             onclick="event.preventDefault();
                                                             document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
+                                            {{ __('ログアウト') }}
                                         </a>
 
                                         <form id="logout-form" action="{{ route('store_owner.logout') }}" method="POST" style="display: none;">
@@ -119,17 +119,17 @@
 
                                        {{-- as Users --}}
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>USER</a>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>ユーザー</a>
 
                                 <div class="dropdown-menu dropdown-menu-right bg-main shadow border noen p-3" aria-labelledby="navbarDropdown">
                                     {{-- login --}}
                                     <a class="dropdown-item boder rounded mb-3" href="{{ route('login') }}">
-                                        {{ __('Login as User') }}
+                                        {{ __('ログイン') }}
                                     </a>
                                     <hr class="bg-second">
                                     {{-- register --}}
                                     <a class="dropdown-item boder rounded" href="{{ route("register") }}">                                        
-                                        {{ __('Register as User') }}
+                                        {{ __('新規登録') }}
                                     </a>                                 
                                 </div>
 
@@ -137,17 +137,17 @@
                             
                             {{-- as store owner auth --}}
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>STORE OWNER</a>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>ストアオーナー</a>
 
                                 <div class="dropdown-menu dropdown-menu-right bg-main border none shadow p-3" aria-labelledby="navbarDropdown">
                                     {{-- login --}}
                                     <a class="dropdown-item boder rounded  mb-3" href="{{ route('store_owner.login') }}">                                        
-                                        {{ __('Login as Store Owner') }}
+                                        {{ __('ログイン（ストア）') }}
                                     </a>
                                     <hr class="bg-second">
                                     {{-- register --}}
                                     <a class="dropdown-item boder rounded " href="{{ route("store_owner.register") }}">                                       
-                                       {{ __('Register as Store Owner') }}
+                                       {{ __('新規登録（ストア）') }}
                                     </a>                                                                        
                                 </div>
 

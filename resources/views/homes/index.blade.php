@@ -12,9 +12,8 @@
         <h1 class="mb-5">CoShop</h1>
         <h5 class="mb-5">ネットショップの商品を実際の店舗に置いてもらう事を可能にします。買う人が商品を手にとって確かめてもらいながらもネットショップで販売する事ができます。リアルとインターネットをつなげたサービスです。</h5>
         <div class="shadow-lg border rounded p-3 text-center mb-5">
-            <h5><u>LOGIN</u></h5>
-            <a href="{{ route('login') }}" class="btn border-dark col-12 mb-2">ログイン（ユザー）</a>
-            <a href="{{ route('store_owner.login') }}" class="btn border-dark col-12">ログイン（ストアオーナー）</a>
+            <a href="{{ route('login') }}" class="btn border-dark col-12 mb-2">ログイン</a>
+            <a href="{{ route('store_owner.login') }}" class="btn bg-point text-main border-dark col-12">ストアオーナーの方はこちら</a>
         </div>
         </div>
     </div>
