@@ -20,7 +20,7 @@
               <div class="container d-flex justify-content-around pt-5">
                   {{-- <a href="{{$item->url}}" class="w-25 btn bg-main">ネットショップへ遷移する</a>    --}}
                   <div class="d-flex align-items-center">
-                    <a class="" href="{{ route('items.index', ['user' => Auth::id()] ) }}"><i class="fas fa-2x fa-user-edit"></i></a>  
+                    <a class="" href="{{ route('items.index', ['user' => Auth::id()] ) }}"><i class="fas fa-2x fa-user-edit"></i></a>
                   </div>
                   <div class="d-flex align-items-center">
                     <a class="" href="{{ route('items.edit', ['user' => Auth::id(), 'item' => $item->id]) }}"><i class="fas fa-2x fa-edit"></i></a>
