@@ -23,6 +23,15 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src='https://www.googletagmanager.com/gtag/js?id={{config('google_maps_api')}}'></script>
 
+    @if(config("app.google_analytics"))
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '{{ config("app.google_analytics") }}');
+    </script>
+    @endif
+
     <!-- Fonts -->
     <link rel="canonical" href="https://laravel-coshop.herokuapp.com">
     <link rel="icon" href="https://res.cloudinary.com/delvmfnei/image/upload/v1623767157/favicon_1_l6wb5i.ico" />
@@ -228,15 +237,6 @@
     </div>
 
     @yield('js')
-        <script src="{{ mix('/js/smooth.js') }}"></script>
-
-    @if(config('app.google_analytics'))
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', "{{config('app.google_analytics')}}");
-    </script>
-    @endif
+    <script src="{{ mix('/js/smooth.js') }}"></script>
 </body>
 </html>
