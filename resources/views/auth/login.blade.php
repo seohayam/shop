@@ -68,13 +68,13 @@
                                 </button>
                                 
                                 @if(Request::is('users/*'))
-                                <a href="{{ route('google.login') }}" class="btn btn-block btn-social btn-google text-white col-12" style="background-color: #DD4B39">
+                                <a href="{{ route('google.login', ['type' => 'user']) }}" class="btn btn-block btn-social btn-google text-white col-12" style="background-color: #DD4B39">
                                     <span class="fab fa-google"></span>oogleアカウントでログイン
                                   </a>
                                 @endif
 
                                 @if(Request::is('store_owners/*'))
-                                <a href="{{ route('google.store_owners') }}" class="btn btn-block btn-social btn-google text-white col-12" style="background-color: #DD4B39">
+                                <a href="{{ route('google.store_owner', ['type' => 'store_owner']) }}" class="btn btn-block btn-social btn-google text-white col-12" style="background-color: #DD4B39">
                                     <span class="fab fa-google"></span>oogleアカウントでログイン
                                   </a>
                                 @endif
