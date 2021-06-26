@@ -4,7 +4,7 @@
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">                  
+            <div class="card">
                 <div class="card-header bg-main">{{  isset($authgroup) ? "ストアオーナー" : "" }} {{ __('ログイン') }}</div>
 
                 <div class="card-body">
@@ -68,7 +68,13 @@
                                 </button>
                                 
                                 @if(Request::is('users/*'))
-                                <a href="/login/google" class="btn btn-block btn-social btn-google text-white col-12" style="background-color: #DD4B39">
+                                <a href="{{ route('google.login', ['type' => 'user']) }}" class="btn btn-block btn-social btn-google text-white col-12" style="background-color: #DD4B39">
+                                    <span class="fab fa-google"></span>oogleアカウントでログイン
+                                  </a>
+                                @endif
+
+                                @if(Request::is('store_owners/*'))
+                                <a href="{{ route('google.login', ['type' => 'store_owner']) }}" class="btn btn-block btn-social btn-google text-white col-12" style="background-color: #DD4B39">
                                     <span class="fab fa-google"></span>oogleアカウントでログイン
                                   </a>
                                 @endif

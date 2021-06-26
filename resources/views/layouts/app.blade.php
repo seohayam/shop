@@ -170,6 +170,13 @@
         </nav>
 
         <main class="bg-main">
+            @if(session('error'))
+                <div class="alert alert-warning alert-dismissable">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>{{session('error')}}</strong>
+                </div>
+            @endif
+
             @yield('content')
         </main>
 

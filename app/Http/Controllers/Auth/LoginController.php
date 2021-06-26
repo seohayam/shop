@@ -11,6 +11,7 @@ use Laravel\Socialite\Facades\Socialite;
 use App\User;
 use App\StoreOwner;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\URL;
 
 class LoginController extends Controller
 {
@@ -76,7 +77,7 @@ class LoginController extends Controller
     public function redirectToGoogle()
     {
         // Google へのリダイレクト
-            return Socialite::driver('google')->redirect();
+        return Socialite::driver('google')->redirect();
     }
 
     public function handleGoogleCallback()
@@ -84,19 +85,54 @@ class LoginController extends Controller
         // Google 認証後の処理
         $gUser = Socialite::driver('google')->stateless()->user();
 
-        $user = User::where('email', $gUser->email)->first();
-        // 見つからなければ新しくユーザーを作成
-        if ($user == null) {
-            $user = $this->createUserByGoogle($gUser);
+        $preUrl = url()->previous();
+        $preUrl = $preUrl;
+
+        if(str_contains($preUrl, "type=user") == true){
+
+            $user = User::where('email', $gUser->email)->first();
+
+            // 見つからなければ新しくユーザーを作成
+            if ($user == null) {
+                $user = $this->createUserByGoogle($gUser);
+            }
+            // ログイン処理
+            // Auth::login($user, true);
+            Auth::guard('user')->login($user);
+            return redirect('/');
+
+        }elseif(str_contains($preUrl, "type=store_owner") == true){
+
+            $storeOnwer = StoreOwner::where('email', $gUser->email)->first();
+
+            // 見つからなければ新しくユーザーを作成
+            if ($storeOnwer == null) {
+                $storeOnwer = $this->createStoreOwnerByGoogle($gUser);
+            }
+            // ログイン処理
+            Auth::guard('store_owner')->login($storeOnwer);
+            return redirect('/');
+
+        }else{
+
+            return redirect('/')->with('error', 'Google アカウントを使用に慣れませんでした。');
         }
-        // ログイン処理
-        Auth::login($user, true);
-        return redirect('/');
+
     }
 
     public function createUserByGoogle($gUser)
     {
         $user = User::create([
+            'name'     => $gUser->name,
+            'email'    => $gUser->email,
+            'password' => Hash::make(uniqid()),
+        ]);
+        return $user;
+    }
+
+    public function createStoreOwnerByGoogle($gUser)
+    {
+        $user = StoreOwner::create([
             'name'     => $gUser->name,
             'email'    => $gUser->email,
             'password' => Hash::make(uniqid()),
