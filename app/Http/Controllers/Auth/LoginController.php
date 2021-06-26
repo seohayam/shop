@@ -88,14 +88,9 @@ class LoginController extends Controller
 
         // Google 認証後の処理
         $gUser = Socialite::driver('google')->stateless()->user();
-        $currentUrl = URL::full();
-        $pre = session()->previousUrl();
-        dd($pre);
+        $previousUrl = session()->previousUrl();
 
-
-        dd($request);
-
-        if(str_contains($currentUrl, "type=user") == true){
+        if(str_contains($previousUrl, "type=user") == true){
 
             $user = User::where('email', $gUser->email)->first();
 
@@ -108,7 +103,7 @@ class LoginController extends Controller
             Auth::guard('user')->login($user);
             return redirect('/');
 
-        }elseif(str_contains($currentUrl, "type=store_owner") == true){
+        }elseif(str_contains($previousUrl, "type=store_owner") == true){
 
             $storeOnwer = StoreOwner::where('email', $gUser->email)->first();
 
