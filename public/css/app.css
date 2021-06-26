@@ -17086,6 +17086,18 @@ readers do not read off random characters that represent icons */
   font-weight: 400;
 }
 
+a {
+  outline: none !important;
+}
+
+a:hover {
+  opacity: 0.5 !important;
+}
+
+a:active {
+  background-color: #716040 !important;
+}
+
 .new {
   display: flex;
   justify-content: center;

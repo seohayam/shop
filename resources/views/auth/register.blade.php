@@ -65,13 +65,28 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
+                        <div class="form-group row mb-2">
                             <div class="col-12">
                                 <button type="submit" class="btn bg-second col-12">
                                     {{ __('新規登録') }}
                                 </button>
                             </div>
                         </div>
+
+
+                        @if(Request::is('users/*'))
+                            <a href="{{ route('google.login', ['type' => 'user']) }}" class="btn btn-block btn-social btn-google text-white col-12" style="background-color: #DD4B39">
+                                <span class="fab fa-google"></span>oogleアカウントで新規登録
+                                </a>
+                            @endif
+
+                            @if(Request::is('store_owners/*'))
+                            <a href="{{ route('google.store_owner', ['type' => 'store_owner']) }}" class="btn btn-block btn-social btn-google text-white col-12" style="background-color: #DD4B39">
+                                <span class="fab fa-google"></span>oogleアカウントで新規登録
+                            </a>
+                        @endif
+
+
                     </form>
                 </div>
             </div>

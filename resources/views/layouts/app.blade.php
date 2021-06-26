@@ -98,9 +98,9 @@
                                 @endif
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right bg-second border none" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-right bg-second border none m-0 p-0" aria-labelledby="navbarDropdown">
                                     @if(Auth::guard('user')->check())
-                                    <a class="dropdown-item boder none rounded  mb-3 bg-point text-main text-center" href="{{ route('logout') }}"
+                                    <a class="dropdown-item boder none rounded bg-point text-main text-center" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
                                         {{ __('ログアウト') }}
@@ -110,7 +110,7 @@
                                         @csrf
                                     </form>
                                     @elseif(Auth::guard('store_owner')->check())
-                                        <a class="dropdown-item boder rounded  mb-3 bg-point text-main text-center" href="{{ route('store_owner.logout') }}"
+                                        <a class="dropdown-item boder rounded　bg-point text-main text-center" href="{{ route('store_owner.logout') }}"
                                             onclick="event.preventDefault();
                                                             document.getElementById('logout-form').submit();">
                                             {{ __('ログアウト') }}

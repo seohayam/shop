@@ -25,6 +25,18 @@ $second: #eaddcf;
 $point: #716040;
 $button: #8c7851;
 
+a {
+  outline: none !important;
+}
+
+a:hover {
+  opacity: 0.5 !important;
+}
+
+a:active {
+  background-color: $point !important;
+}
+
 // newmorphism
 .new {
   display: flex;
