@@ -24,7 +24,8 @@ use App\Http\Controllers\LikeController;
 
 Route::get('/', 'HomeController@index')->name('home.index');
 
-Route::get('/login/google/', 'Auth\LoginController@redirectToGoogle')->name('google.login');
+Route::get('/login/google/user', 'Auth\LoginController@redirectToGoogle')->name('google.login');
+Route::get('/login/google/store_owner', 'Auth\LoginController@redirectToGoogle')->name('google.store_owner');
 // Route::get('/login/google/store_owner', 'Auth\LoginController@redirectToGoogle')->name('google.store_owner');
 Route::get('login/google/callback', 'Auth\LoginController@handleGoogleCallback');
 

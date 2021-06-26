@@ -78,39 +78,24 @@ class LoginController extends Controller
     public function redirectToGoogle()
     {
 
-        // Google へのリダイレクト
         return Socialite::driver('google')->redirect();
     }
 
-    public function handleGoogleCallback()
+
+
+    public function handleGoogleCallback(Request $request)
     {
-        $urls = array();
-        if(Session::has('links')){
-            $urls[] = Session::get('links');
-        }
-
-        $currentUrl = $_SERVER['REQUEST_URI'];
-        
-        array_unshift($urls, $currentUrl);
-        Session::flash('urls', $urls);
-
-        $links = Session::get('urls');
-
-        dd($links);
-
-
-
-
 
         // Google 認証後の処理
         $gUser = Socialite::driver('google')->stateless()->user();
+        $currentUrl = URL::full();
+        $pre = session()->previousUrl();
+        dd($pre);
 
-        $preUrl = url()->previous();
-        $preUrl = $preUrl;
 
-        dd($preUrl);
+        dd($request);
 
-        if(str_contains($preUrl, "type=user") == true){
+        if(str_contains($currentUrl, "type=user") == true){
 
             $user = User::where('email', $gUser->email)->first();
 
@@ -123,7 +108,7 @@ class LoginController extends Controller
             Auth::guard('user')->login($user);
             return redirect('/');
 
-        }elseif(str_contains($preUrl, "type=store_owner") == true){
+        }elseif(str_contains($currentUrl, "type=store_owner") == true){
 
             $storeOnwer = StoreOwner::where('email', $gUser->email)->first();
 
