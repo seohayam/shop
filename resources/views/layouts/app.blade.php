@@ -171,7 +171,7 @@
 
         <main class="bg-main">
             @if(session('error'))
-                <div class="alert alert-warning alert-dismissable">
+                <div class="alert alert-warning alert-dismissable m-0">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     <strong>{{session('error')}}</strong>
                 </div>

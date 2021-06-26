@@ -88,6 +88,8 @@ class LoginController extends Controller
         $preUrl = url()->previous();
         $preUrl = $preUrl;
 
+        var_dump($preUrl);
+
         if(str_contains($preUrl, "type=user") == true){
 
             $user = User::where('email', $gUser->email)->first();
